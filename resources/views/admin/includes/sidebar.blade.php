@@ -54,6 +54,30 @@
                     </ul>
                 </div>
             </li>
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebaruUser" aria-expanded="false" aria-controls="sidebaruUser"
+                    class="side-nav-link">
+                    <i class=" uil-chat-bubble-user"></i>
+                    <span> User </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebaruUser">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="#">All User</a>
+                        </li>
+                        <li>
+                            <a href="#">User Create</a>
+                        </li>
+                        <li>
+                            <a href="#">User Role</a>
+                        </li>
+                        <li>
+                            <a href="#">User Parmition</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
         <!-- End Sidebar -->
 
