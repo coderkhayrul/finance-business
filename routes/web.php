@@ -15,14 +15,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/', [WebsiteController::class, 'home'])->name('admin.home');
-
+// Default Route
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Website Route List
+Route::get('/', [WebsiteController::class, 'home'])->name('admin.home');
 
+// Admin Route List
 Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
