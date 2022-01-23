@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Website\WebsiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,14 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 // Website Route List
-Route::get('/', [WebsiteController::class, 'home'])->name('admin.home');
+Route::get('/', [WebsiteController::class, 'home'])->name('website.home');
+Route::get('/about', [WebsiteController::class, 'about'])->name('website.about');
+Route::get('/service', [WebsiteController::class, 'service'])->name('website.service');
+Route::get('/contact-us', [WebsiteController::class, 'contactus'])->name('website.contactus');
 
 // Admin Route List
-Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::resource('/user', UserController::class);
+    Route::post('/users/{id}/password', [UserController::class, 'password_update'])->name('user.password.update');
+});

@@ -3,80 +3,72 @@
     <!-- LOGO -->
     <a href="index.html" class="logo text-center logo-light">
         <span class="logo-lg">
-            <img src="{{ asset('admin') }}/assets/images/logo.png" alt="" height="16">
+            {{-- <img src="{{ asset('admin') }}/assets/images/logo.png" alt="" height="16"> --}}
+            <h3><strong>FINANCE</strong></h3>
         </span>
         <span class="logo-sm">
-            <img src="{{ asset('admin') }}/assets/images/logo_sm.png" alt="" height="16">
-        </span>
-    </a>
-
-    <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-dark">
-        <span class="logo-lg">
-            <img src="{{ asset('admin') }}/assets/images/logo-dark.png" alt="" height="16">
-        </span>
-        <span class="logo-sm">
-            <img src="{{ asset('admin') }}/assets/images/logo_sm_dark.png" alt="" height="16">
+            {{-- <img src="{{ asset('admin') }}/assets/images/logo_sm.png" alt="" height="16"> --}}
+            <h3><strong>FINANCE</strong></h3>
         </span>
     </a>
 
     <div class="h-100" id="leftside-menu-container" data-simplebar>
 
         <!--- Sidemenu -->
-        <ul class="side-nav">
+        <ul class="side-nav nav-font">
 
             <li class="side-nav-title side-nav-item">Navigation</li>
             <li class="side-nav-item">
-                <a href="#" class="side-nav-link">
+                <a href="{{ url('/dashboard') }}" class="side-nav-link">
                     <i class="uil-home-alt"></i>
-                    <span> Dashboards </span>
+                    <span> DASHBOARD </span>
                 </a>
             </li>
-
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false"
-                    aria-controls="sidebarEcommerce" class="side-nav-link">
-                    <i class="uil-store"></i>
-                    <span> Ecommerce </span>
-                    <span class="menu-arrow"></span>
+                <a href="{{ route('user.index') }}" class="side-nav-link">
+                    <i class="uil-chat-bubble-user"></i>
+                    <span> USERS </span>
                 </a>
-                <div class="collapse" id="sidebarEcommerce">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a href="apps-ecommerce-products.html">Products</a>
-                        </li>
-                        <li>
-                            <a href="apps-ecommerce-products-details.html">Products Details</a>
-                        </li>
-                        <li>
-                            <a href="apps-ecommerce-orders.html">Orders</a>
-                        </li>
-                    </ul>
-                </div>
             </li>
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebaruUser" aria-expanded="false" aria-controls="sidebaruUser"
                     class="side-nav-link">
-                    <i class=" uil-chat-bubble-user"></i>
-                    <span> User </span>
+                    <i class=" uil-cog"></i>
+                    <span> MANAGE </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebaruUser">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="#">All User</a>
+                            <a href="#">BASIC INFORMATION</a>
                         </li>
                         <li>
-                            <a href="#">User Create</a>
+                            <a href="#">CONTACT INFORMATION</a>
                         </li>
                         <li>
-                            <a href="#">User Role</a>
+                            <a href="#">CONTENTS</a>
                         </li>
                         <li>
-                            <a href="#">User Parmition</a>
+                            <a href="#">PAGES</a>
                         </li>
                     </ul>
                 </div>
+            </li>
+            <li class="side-nav-item">
+                <a href="{{ route('logout') }}" class="side-nav-link" onclick="event.preventDefault('logout-form'); getElementById('logout-form').submit();">
+                    <i class="uil-chat-bubble-user"></i>
+                    <span> LOGOUT </span>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
+            <hr>
+            <li class="side-nav-item">
+                <a target="_blank" href="{{ url('/') }}" class="side-nav-link">
+                    <i class="uil-volleyball"></i>
+                    <span> LIVE WEBSITE </span>
+                </a>
             </li>
         </ul>
         <!-- End Sidebar -->

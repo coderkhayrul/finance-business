@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-<!-- Mirrored from coderthemes.com/hyper/saas/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 15 Nov 2021 09:17:46 GMT -->
-
 <head>
     <meta charset="utf-8" />
     <title>Dashboard | Finance Business</title>
@@ -18,9 +14,11 @@
     <!-- third party css end -->
 
     <!-- App css -->
+    <link href="{{ asset('admin') }}/assets/css/custom.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin') }}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin') }}/assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style" />
     <link href="{{ asset('admin') }}/assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style" />
+    @yield('admin-custrom-css')
 
 </head>
 
@@ -28,4 +26,3 @@
     data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
     <!-- Begin page -->
     <div class="wrapper">
-        <!-- ========== Left Sidebar Start ========== -->

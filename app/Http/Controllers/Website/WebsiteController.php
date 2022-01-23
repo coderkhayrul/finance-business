@@ -11,4 +11,16 @@ class WebsiteController extends Controller
     {
         return view('layouts.website-layout');
     }
+    public function about()
+    {
+        return view('layouts.website-layout');
+    }
+    public function service()
+    {
+        return view('layouts.website-layout');
+    }
+    public function contactus()
+    {
+        return view('layouts.website-layout');
+    }
 }
