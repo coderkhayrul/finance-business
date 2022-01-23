@@ -1,4 +1,4 @@
-    <div class="partners">
+    <div class="partners {{ url()->current() == route('website.contactus') ? 'contact-partners' : '' }}">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

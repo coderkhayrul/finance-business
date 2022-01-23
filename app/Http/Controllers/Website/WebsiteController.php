@@ -9,18 +9,18 @@ class WebsiteController extends Controller
 {
     public function home()
     {
-        return view('layouts.website-layout');
+        return view('website.index');
     }
     public function about()
     {
-        return view('layouts.website-layout');
+        return view('website.aboutus');
     }
     public function service()
     {
-        return view('layouts.website-layout');
+        return view('website.services');
     }
     public function contactus()
     {
-        return view('layouts.website-layout');
+        return view('website.contact');
     }
 }
