@@ -32,13 +32,6 @@
                     <a href="{{ route('role.index') }}" class="btn btn-secondary btn-sm">Roles Users</a>
                 </div>
                 <div class="card-body">
-                    @if (Session::Has('success'))
-                    <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show"
-                        role="alert">
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        <strong>Success - </strong> {{ Session::get('success') }}
-                    </div>
-                    @endif
                     <div class="row mb-3 mt-3">
                         <label for="inputEmail3" class="col-3 col-form-label">Name <strong
                                 class="text-danger">*</strong></label>

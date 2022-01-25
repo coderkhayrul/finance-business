@@ -90,6 +90,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        $role = Role::where('id', $role->id)->first();
         $role->delete();
         Session::flash('success', 'Role deleted successfully');
         return redirect()->route('role.index');

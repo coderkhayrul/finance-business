@@ -31,14 +31,6 @@
                 <a href="{{ route('user.index') }}" class="btn btn-secondary btn-sm">All Users</a>
             </div>
             <div class="card-body">
-
-                @if (Session::Has('message'))
-                <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show"
-                    role="alert">
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <strong>Success - </strong> {{ Session::get('message') }}
-                </div>
-                @endif
                 <form class="form-horizontal" action="{{ route('user.update',$user->id) }}" method="POST"
                     id="update-form">
                     @csrf
@@ -112,13 +104,6 @@
         <form action="{{ route('user.password.update',$user->id) }}" method="post" id="password_update">
             @csrf
             <div class="card-body">
-                @if (Session::Has('up_password'))
-                <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show"
-                    role="alert">
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <strong>Success - </strong> {{ Session::get('up_password') }}
-                </div>
-                @endif
                 <div class="row mb-2">
                     <div class="col-12 mb-2">
                         <input type="password" class="form-control @error('old_password') is-invalid @enderror"

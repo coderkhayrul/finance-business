@@ -57,6 +57,14 @@
     }
             toastr.warning("{{ session('warning') }}");
     @endif
+    @if(Session::has('updatepassword'))
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.warning("{{ session('updatepassword') }}");
+    @endif
 </script>
 {{-- NOTIFICATION END --}}
 

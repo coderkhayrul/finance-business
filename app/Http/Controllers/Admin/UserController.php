@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -55,8 +56,8 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->status = 0;
         $user->save();
-        $message = "User created successfully";
-        return redirect()->back()->with('message', $message);
+        Session::flash('success', 'User created successfully!');
+        return redirect()->back();
     }
 
     /**
@@ -101,8 +102,8 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->update();
-        $message = "User Information Update";
-        return redirect()->back()->with('message', $message);
+        Session::flash('success', 'User Information Update');
+        return redirect()->back();
     }
 
     /**

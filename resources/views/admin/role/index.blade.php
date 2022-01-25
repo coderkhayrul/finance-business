@@ -24,18 +24,6 @@
 <div class="row d-flex justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            @if (Session::Has('updatepassword'))
-                <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <strong>Success - </strong> {{ Session::get('updatepassword') }}
-                </div>
-            @endif
-            @if (Session::Has('success'))
-                <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <strong>Success - </strong> {{ Session::get('success') }}
-                </div>
-            @endif
             <div class="card-header d-flex justify-content-between bg-dark text-light">
                 <strong class="fs-4"> <i class="uil-keyhole-square-full"></i> All Roles Information</strong>
                 <a href="{{ route('role.create') }}" class="btn btn-secondary btn-sm">Create Role</a>
@@ -55,7 +43,8 @@
                                 <td class="table-action" style="width: 90px;">
                                     {{-- <a href="{{ route('role.show',$role->id) }}" class="action-icon text-primary"> <i class="mdi mdi-eye"></i></a> --}}
                                     <a href="{{ route('role.edit',$role->id) }}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                    <a href="{{ route('role.destroy',$role->id) }}" class="action-icon text-danger" onclick="event.preventDefault(); getElementById('delete-form').submit();"> <i class="mdi mdi-delete"></i></a>
+                                    <a href="{{ route('role.destroy',$role->id) }}" class="action-icon text-danger show_confirm" title="Delete"> <i class="mdi mdi-delete" ></i></a>
+                                    {{-- onclick="event.preventDefault(); getElementById('delete-form').submit();" --}}
                                     <form id="delete-form" action="{{ route('role.destroy',$role->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -74,6 +63,7 @@
 </div>
 
 @endsection
+
 @section('admin-custrom-css')
 <!-- Datatables css -->
 <link href="{{ asset('admin') }}/assets/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
@@ -89,4 +79,7 @@
 
 <!-- Datatable Init js -->
 <script src="{{ asset('admin') }}/assets/js/pages/demo.datatable-init.js"></script>
+
+{{-- Delete Alert --}}
+@include('admin.includes.delete_alert')
 @endsection

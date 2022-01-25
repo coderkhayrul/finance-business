@@ -31,14 +31,6 @@
                 <a href="{{ route('role.index') }}" class="btn btn-secondary btn-sm">All Role</a>
             </div>
             <div class="card-body">
-
-                @if (Session::Has('success'))
-                <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show"
-                    role="alert">
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <strong>Success - </strong> {{ Session::get('success') }}
-                </div>
-                @endif
                 <form class="form-horizontal" action="{{ route('role.update',$role->id) }}" method="POST"
                     id="update-form">
                     @csrf
