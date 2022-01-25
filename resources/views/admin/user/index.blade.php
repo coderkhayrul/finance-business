@@ -53,7 +53,7 @@
                                 <td class="table-action" style="width: 90px;">
                                     <a href="{{ route('user.show',$user->id) }}" class="action-icon text-primary"> <i class="mdi mdi-eye"></i></a>
                                     <a href="{{ route('user.edit',$user->id) }}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                    <a href="{{ route('user.destroy',$user->id) }}" class="action-icon text-danger" onclick="event.preventDefault(); getElementById('delete-form').submit();"> <i class="mdi mdi-delete"></i></a>
+                                    <a href="{{ route('user.destroy',$user->id) }}" class="action-icon text-danger show_confirm"> <i class="mdi mdi-delete"></i></a>
                                     <form id="delete-form" action="{{ route('user.destroy',$user->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -87,4 +87,7 @@
 
 <!-- Datatable Init js -->
 <script src="{{ asset('admin') }}/assets/js/pages/demo.datatable-init.js"></script>
+
+{{-- Delete Alert --}}
+@include('admin.includes.delete_alert')
 @endsection

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleRequest;
 use App\Models\Role;
 use Illuminate\Http\Request;
@@ -90,7 +91,6 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        $role = Role::where('id', $role->id)->first();
         $role->delete();
         Session::flash('success', 'Role deleted successfully');
         return redirect()->route('role.index');

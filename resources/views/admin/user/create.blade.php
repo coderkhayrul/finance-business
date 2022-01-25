@@ -68,12 +68,24 @@
                                 name="password_confirmation" placeholder="Retype Password">
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label for="inputPassword3" class="col-3 col-form-label">Selete Role <strong
+                                class="text-danger">*</strong></label>
+                        <div class="col-9">
+                            <select class="form-select mb-3" name="role_id">
+                                <option selected>Select Your Role</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer bg-dark">
                     <div class="justify-content-end row">
                         <div class="col-9">
                             {{-- <button type="submit" class="btn btn-primary">Register</button> --}}
-                            <button type="submit" class="btn btn-primary"><i class="mdi mdi-cloud me-1"></i>
+                            <button type="submit" class="btn btn-primary"><i class="uil-sync me-1"></i>
                                 <span>Register</span> </button>
                         </div>
                     </div>

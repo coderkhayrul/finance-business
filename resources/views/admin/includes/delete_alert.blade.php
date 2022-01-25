@@ -5,9 +5,8 @@ $('.show_confirm').click(function(event) {
     var form =  $(this).closest("form");
     var name = $(this).data("name");
     event.preventDefault();
-    let id = $(this).data('id');
     swal({
-        title: `Are you sure you want delete this record?`,
+        title: `Are you sure you want to delete this record?`,
         text: "If you delete this, it will be gone forever.",
         icon: "warning",
         buttons: true,
@@ -19,5 +18,4 @@ $('.show_confirm').click(function(event) {
     }
     });
 });
-
 </script>
