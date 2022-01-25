@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Website\WebsiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +31,5 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('/user', UserController::class);
     Route::post('/users/{id}/password', [UserController::class, 'password_update'])->name('user.password.update');
+    Route::resource('/role', RoleController::class);
 });

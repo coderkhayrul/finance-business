@@ -31,6 +31,12 @@
                 </a>
             </li>
             <li class="side-nav-item">
+                <a href="{{ route('role.index') }}" class="side-nav-link">
+                    <i class="uil-keyhole-square-full"></i>
+                    <span> ROLES</span>
+                </a>
+            </li>
+            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebaruUser" aria-expanded="false" aria-controls="sidebaruUser"
                     class="side-nav-link">
                     <i class=" uil-cog"></i>
