@@ -18,6 +18,18 @@
     <link href="{{ asset('admin') }}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin') }}/assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style" />
     <link href="{{ asset('admin') }}/assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style" />
+    {{-- Swite Alert CDN --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- Toster Notification Start --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    {{-- Toster Notification End --}}
+
+
     @yield('admin-custrom-css')
 
 </head>
