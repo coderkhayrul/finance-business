@@ -58,6 +58,7 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
         $user->status = 0;
+        $user->role_id = $request->role_id;
         $user->save();
         Session::flash('success', 'User created successfully!');
         return redirect()->back();
