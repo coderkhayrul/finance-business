@@ -36,14 +36,24 @@
                         <label for="name" class="col-3 col-form-label">Name <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Name">
+                            @error('name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="email" class="col-3 col-form-label">Email <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email">
+                            @error('email')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -56,8 +66,13 @@
                         <label for="passsword" class="col-3 col-form-label">Password <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="password" class="form-control" id="password" name="password"
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password"
                                 placeholder="Password">
+                            @error('password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -72,18 +87,22 @@
                         <label for="role" class="col-3 col-form-label">Selete Role <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <select class="form-select mb-3" name="role_id">
+                            <select class="form-select mb-3 @error('role_id') is-invalid @enderror" name="role_id">
                                 <option selected>Select Your Role</option>
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->id }}">{{ $role->role_name }}</option>
                                 @endforeach
                             </select>
+                             @error('role_id')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="image" class="col-3 col-form-label">User Image Upload<strong
-                                class="text-danger">*</strong></label>
+                        <label for="image" class="col-3 col-form-label">User Image Upload</label>
                         <div class="col-6">
                             <input type="file" id="example-fileinput" name="image" class="form-control">
                         </div>
@@ -97,7 +116,7 @@
                     <div class="justify-content-end row">
                         <div class="col-9">
                             <button type="submit" class="btn btn-primary"><i class="uil-sync me-1"></i>
-                                <span>Register</span> </button>
+                            <span>Register</span> </button>
                         </div>
                     </div>
                 </div>

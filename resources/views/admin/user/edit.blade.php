@@ -90,63 +90,103 @@
         </div>
     </div>
 
+    {{-- PASSWORD UPDATE --}}
     <div class="col-md-4">
         <div class="card">
-            {{-- @if (Session::Has('up_password'))
-            <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                <strong>Success - </strong> {{ Session::get('up_password') }}
-        </div>
-        @endif --}}
-        <div class="card-header bg-dark text-light">
-            <strong class="fs-4"> <i class="uil-chat-bubble-user"></i> User Password Update</strong>
-        </div>
-        <form action="{{ route('user.password.update',$user->id) }}" method="post" id="password_update">
-            @csrf
-            <div class="card-body">
-                <div class="row mb-2">
-                    <div class="col-12 mb-2">
-                        <input type="password" class="form-control @error('old_password') is-invalid @enderror"
-                            id="old_password" name="old_password" placeholder="Old Password">
-                        @error('old_password')
-                        <div class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+            <div class="card-header bg-dark text-light">
+                <strong class="fs-4"> <i class="uil-chat-bubble-user"></i> User Password Update</strong>
+            </div>
+            <form action="{{ route('user.password.update',$user->id) }}" method="post">
+                @csrf
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-12 mb-2">
+                            <input type="password" class="form-control @error('old_password') is-invalid @enderror"
+                                id="old_password" name="old_password" placeholder="Old Password">
+                            @error('old_password')
+                            <div class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </div>
+                            @enderror
                         </div>
-                        @enderror
+                        <div class="col-12 mb-2">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                id="password" name="password" placeholder="Password">
+                            @error('password')
+                            <div class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="col-12">
+                            <input type="password"
+                                class="form-control @error('password_confirmation') is-invalid @enderror"
+                                id="password_confirmation" name="password_confirmation" placeholder="Confirm Password">
+                            @error('password_confirmation')
+                            <div class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="col-12 mb-2">
-                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-                            id="password" name="password" placeholder="Password">
-                        @error('password')
-                        <div class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="col-12">
-                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
-                            id="password_confirmation" name="password_confirmation" placeholder="Confirm Password">
-                        @error('password_confirmation')
-                        <div class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </div>
-                        @enderror
+                </div>
+            </form>
+            <div class="card-footer bg-dark">
+                <div class="justify-content-end row">
+                    <div class="col-9">
+                        <button onclick="event.preventDefault(); getElementById('password_update').submit();"
+                            class="btn btn-primary"><i class="uil-sync me-1"></i>
+                            <span>Update Password</span> </button>
                     </div>
                 </div>
             </div>
-        </form>
-        <div class="card-footer bg-dark">
-            <div class="justify-content-end row">
-                <div class="col-9">
-                    <button onclick="event.preventDefault(); getElementById('password_update').submit();"
-                        class="btn btn-primary"><i class="uil-sync me-1"></i>
-                        <span>Update Password</span> </button>
+        </div>
+    </div>
+
+    {{-- IMAGE UPLOAD --}}
+    <div class="row f-flex justify-content-start">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between bg-dark text-light">
+                    <strong class="fs-4"> <i class="uil-chat-bubble-user"></i> User Image Update</strong>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('user.image.update',$user->id) }}" method="post" id="update-form-image" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row mb-3 d-flex justify-content-between">
+                            <div class="col-6 m-auto">
+                                <input type="file" id="example-fileinput" name="image" class="form-control">
+                            </div>
+                            <div class="col-3 m-auto">
+                                <img id="preview-image" src="{{ asset('uploads/avatar.png') }}" alt="image"
+                                    class="img-fluid rounded" width="100" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer bg-dark">
+                    <div class="justify-content-end row ">
+                        <div class="12 m-auto text-center">
+                            <button onclick="event.preventDefault(); getElementById('update-form-image').submit();"
+                                class="btn btn-primary"><i class=" uil-sync me-1"></i>
+                                <span>Update Image</span> </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
 
+<script type="text/javascript">
+    $('#example-fileinput').change(function(){
+    let reader = new FileReader();
+    reader.onload = (e) => {
+        $('#preview-image').attr('src', e.target.result);
+    }
+    reader.readAsDataURL(this.files[0]);
+
+    });
+</script>
 
 @endsection

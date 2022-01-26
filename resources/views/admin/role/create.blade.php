@@ -36,7 +36,12 @@
                         <label for="role_name" class="col-3 col-form-label">Name <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control" id="role_name" name="role_name" placeholder="Name" value="{{ old('role_name') }}">
+                            <input type="text" class="form-control @error('role_name') is-invalid @enderror" id="role_name" name="role_name" placeholder="Name" value="{{ old('role_name') }}">
+                            @error('role_name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>

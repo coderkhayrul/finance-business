@@ -31,5 +31,6 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('/user', UserController::class);
     Route::post('/users/{id}/password', [UserController::class, 'password_update'])->name('user.password.update');
+    Route::post('/users/{id}/image', [UserController::class, 'image_update'])->name('user.image.update');
     Route::resource('/role', RoleController::class);
 });

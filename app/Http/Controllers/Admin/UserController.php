@@ -149,4 +149,21 @@ class UserController extends Controller
     {
         //
     }
+
+    public function image_update(Request $request, $id)
+    {
+        $user = User::where('id', $id)->firstOrFail();
+        // Image Upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . rand(100000, 10000000) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(200, 200)->save('uploads/users/' . $imageName);
+        } else {
+            $imageName = null;
+        }
+        $user->photo = $imageName;
+        $user->update();
+        Session::flash('success', 'Image Update successfully');
+        return redirect()->route('user.index');
+    }
 }
