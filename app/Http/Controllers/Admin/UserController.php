@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Intervention\Image\ImageManagerStatic as Image;
+
 
 class UserController extends Controller
 {
@@ -53,13 +55,25 @@ class UserController extends Controller
         ]);
 
         $user = new User();
+
+        // Image Upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . rand(100000, 10000000) . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(200, 200)->save('uploads/users/' . $imageName);
+        } else {
+            $imageName = null;
+        }
+
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
         $user->status = 0;
         $user->role_id = $request->role_id;
+        $user->photo = $imageName;
         $user->save();
+
         Session::flash('success', 'User created successfully!');
         return redirect()->back();
     }

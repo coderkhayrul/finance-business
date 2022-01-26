@@ -39,6 +39,7 @@
                 <table id="basic-datatable" class="table dt-responsive nowrap w-100">
                     <thead>
                         <tr>
+                            <th>Image</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
@@ -49,6 +50,13 @@
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
+                                <td>
+                                    @if ($user->photo)
+                                    <img src="{{ asset('uploads/users/'.$user->photo) }}" alt="image" class="img-fluid avatar-sm rounded">
+                                    @else
+                                    <img src="{{ asset('uploads/avatar.png') }}" alt="image" class="img-fluid avatar-sm rounded">
+                                    @endif
+                                </td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone ? $user->phone : 'Not Found' }}</td>
