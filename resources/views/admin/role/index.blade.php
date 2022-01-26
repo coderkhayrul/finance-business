@@ -49,15 +49,14 @@
                                     @endif
                                 </td>
                                 <td class="table-action" style="width: 90px;">
-                                    {{-- <a href="{{ route('role.show',$role->id) }}" class="action-icon text-primary"> <i class="mdi mdi-eye"></i></a> --}}
                                     <a href="{{ route('role.edit',$role->id) }}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
 
-                                    <a href="{{ route('role.destroy',$role->id) }}" class="action-icon text-danger show_confirm" title="Delete">
+                                    <a href="#" class="action-icon text-danger" title="Delete" onclick="event.preventDefault();">
                                         <i class="mdi mdi-delete" ></i></a>
-                                    <form id="delete-form" action="{{ route('role.destroy',$role->id) }}" method="POST">
+                                    {{-- <form id="delete-form" action="{{ route('role.destroy',$role->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                    </form>
+                                    </form> --}}
                                 </td>
                             </tr>
                         @endforeach

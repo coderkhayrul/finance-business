@@ -64,11 +64,9 @@
                                 <td class="table-action">
                                     <a href="{{ route('user.show',$user->id) }}" class="action-icon text-primary"> <i class="mdi mdi-eye"></i></a>
                                     <a href="{{ route('user.edit',$user->id) }}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-                                    <a href="{{ route('user.destroy',$user->id) }}" class="action-icon text-danger show_confirm"> <i class="mdi mdi-delete"></i></a>
-                                    <form id="delete-form" action="{{ route('user.destroy',$user->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
+
+
+                                    <a href="javascript:void(0);" data-bs-toggle="modal" data-value="{{ $user->id }}" data-bs-target="#deleteModal" class="action-icon text-danger delete-modal"> <i class="mdi mdi-delete"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -81,7 +79,27 @@
         </div>
     </div>
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Are you sure?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div> <!-- end modal header -->
+            <div class="modal-body">
+                Do you really want to delete these records? This process cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <form action="{{ route('user.soft.delete',$user->id) }}" method="post">
+                    @csrf
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger" name="delete_user">Yes, delete it</button>
+                </form>
+            </div> <!-- end modal footer -->
+        </div> <!-- end modal content-->
+    </div> <!-- end modal dialog-->
+</div> <!-- end modal-->
 @endsection
 @section('admin-custrom-css')
 <!-- Datatables css -->

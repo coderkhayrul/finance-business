@@ -137,7 +137,7 @@ class UserController extends Controller
 
     public function softdelete($id)
     {
-        //
+        return $id;
     }
 
     public function restore($id)

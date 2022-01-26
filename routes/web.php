@@ -28,9 +28,15 @@ Route::get('/contact-us', [WebsiteController::class, 'contactus'])->name('websit
 
 // Admin Route List
 Route::prefix('dashboard')->group(function () {
+    // ROOT ROUTE
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+
+    // USER ROUTE LIST
     Route::resource('/user', UserController::class);
     Route::post('/users/{id}/password', [UserController::class, 'password_update'])->name('user.password.update');
     Route::post('/users/{id}/image', [UserController::class, 'image_update'])->name('user.image.update');
+    Route::delete('/users/{id}/delete', [UserController::class, 'softdelete'])->name('user.soft.delete');
+
+    // ROLE ROUTE LIST
     Route::resource('/role', RoleController::class);
 });
