@@ -33,6 +33,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -40,6 +41,13 @@
                         @foreach ($roles as $role)
                             <tr>
                                 <td>{{ $role->role_name }}</td>
+                                <td>
+                                    @if ($role->role_status === 1)
+                                    <span class="badge badge-success-lighten">Active</span>
+                                    @else
+                                    <span class="badge badge-danger-lighten">Blocked</span>
+                                    @endif
+                                </td>
                                 <td class="table-action" style="width: 90px;">
                                     {{-- <a href="{{ route('role.show',$role->id) }}" class="action-icon text-primary"> <i class="mdi mdi-eye"></i></a> --}}
                                     <a href="{{ route('role.edit',$role->id) }}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>

@@ -23,9 +23,8 @@
 </div>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
         <div class="card">
-
             <div class="card-header d-flex justify-content-between bg-dark text-light">
                 <strong class="fs-4"> <i class="uil-chat-bubble-user"></i> User Information Update</strong>
                 <a href="{{ route('user.index') }}" class="btn btn-secondary btn-sm">All Users</a>
@@ -79,8 +78,8 @@
             </div>
             </form>
             <div class="card-footer bg-dark">
-                <div class="justify-content-end row">
-                    <div class="col-9">
+                <div class="row">
+                    <div class="col-12 text-center">
                         <button onclick="event.preventDefault(); getElementById('update-form').submit();"
                             class="btn btn-primary"><i class=" uil-sync me-1"></i>
                             <span>Update User</span> </button>
@@ -91,7 +90,8 @@
     </div>
 
     {{-- PASSWORD UPDATE --}}
-    <div class="col-md-4">
+    @if ($user->role->role_name !== 'admin')
+        <div class="col-md-5">
         <div class="card">
             <div class="card-header bg-dark text-light">
                 <strong class="fs-4"> <i class="uil-chat-bubble-user"></i> User Password Update</strong>
@@ -132,8 +132,8 @@
                 </div>
             </form>
             <div class="card-footer bg-dark">
-                <div class="justify-content-end row">
-                    <div class="col-9">
+                <div class="row">
+                    <div class="col-12 text-center">
                         <button onclick="event.preventDefault(); getElementById('password_update').submit();"
                             class="btn btn-primary"><i class="uil-sync me-1"></i>
                             <span>Update Password</span> </button>
@@ -142,8 +142,9 @@
             </div>
         </div>
     </div>
-
-    {{-- IMAGE UPLOAD --}}
+    @endif
+</div>
+{{-- IMAGE UPLOAD --}}
     <div class="row f-flex justify-content-start">
         <div class="col-md-6">
             <div class="card">
@@ -158,8 +159,15 @@
                                 <input type="file" id="example-fileinput" name="image" class="form-control">
                             </div>
                             <div class="col-3 m-auto">
+                                @if ($user->photo)
+                                <img id="preview-image" src="{{ asset('uploads/users/'.$user->photo) }}" alt="image"
+                                class="img-fluid rounded" width="100" />
+
+                                @else
                                 <img id="preview-image" src="{{ asset('uploads/avatar.png') }}" alt="image"
-                                    class="img-fluid rounded" width="100" />
+                                class="img-fluid rounded" width="100" />
+                                @endif
+
                             </div>
                         </div>
                     </form>
@@ -176,7 +184,6 @@
             </div>
         </div>
     </div>
-</div>
 
 <script type="text/javascript">
     $('#example-fileinput').change(function(){
