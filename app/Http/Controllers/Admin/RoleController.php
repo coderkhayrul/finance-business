@@ -7,6 +7,7 @@ use App\Http\Requests\RoleRequest;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class RoleController extends Controller
 {
@@ -40,7 +41,9 @@ class RoleController extends Controller
     public function store(RoleRequest $request)
     {
         $role = new Role();
-        $role->name = $request->name;
+        $role->role_name = $request->role_name;
+        $role->role_slug = Str::slug($request->role_name, '-');
+        $role->role_status = 1;
         $role->save();
         Session::flash('success', 'Role Create Successfully!');
         return redirect()->back();
@@ -77,7 +80,7 @@ class RoleController extends Controller
      */
     public function update(RoleRequest $request, Role $role)
     {
-        $role->name = $request->name;
+        $role->role_name = $request->role_name;
         $role->update();
         Session::flash('success', 'Role updated successfully');
         return redirect()->route('role.index');

@@ -33,10 +33,10 @@
                 </div>
                 <div class="card-body">
                     <div class="row mb-3 mt-3">
-                        <label for="inputEmail3" class="col-3 col-form-label">Name <strong
+                        <label for="role_name" class="col-3 col-form-label">Name <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ old('name') }}">
+                            <input type="text" class="form-control" id="role_name" name="role_name" placeholder="Name" value="{{ old('role_name') }}">
                         </div>
                     </div>
                 </div>

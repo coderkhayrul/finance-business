@@ -31,7 +31,7 @@
                 <a href="{{ route('role.index') }}" class="btn btn-secondary btn-sm">All Role</a>
             </div>
             <div class="card-body">
-                <form class="form-horizontal" action="{{ route('role.update',$role->id) }}" method="POST"
+                <form class="form-horizontal" action="#" method="POST"
                     id="update-form">
                     @csrf
                     @method('PUT')
@@ -39,8 +39,8 @@
                         <label for="inputEmail3" class="col-3 col-form-label">Name <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" value="{{ $role->name }}"
-                                class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                            <input type="text" value="{{ $role->role_name }}"
+                                class="form-control @error('role_name') is-invalid @enderror" id="role_name" name="role_name"
                                 placeholder="Name">
                             @error('name')
                             <div class="invalid-feedback" role="alert">

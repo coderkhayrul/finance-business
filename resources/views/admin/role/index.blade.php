@@ -39,14 +39,13 @@
                     <tbody>
                         @foreach ($roles as $role)
                             <tr>
-                                <td>{{ $role->name }}</td>
+                                <td>{{ $role->role_name }}</td>
                                 <td class="table-action" style="width: 90px;">
                                     {{-- <a href="{{ route('role.show',$role->id) }}" class="action-icon text-primary"> <i class="mdi mdi-eye"></i></a> --}}
                                     <a href="{{ route('role.edit',$role->id) }}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
 
                                     <a href="{{ route('role.destroy',$role->id) }}" class="action-icon text-danger show_confirm" title="Delete">
                                         <i class="mdi mdi-delete" ></i></a>
-                                    {{-- onclick="event.preventDefault(); getElementById('delete-form').submit();" --}}
                                     <form id="delete-form" action="{{ route('role.destroy',$role->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')

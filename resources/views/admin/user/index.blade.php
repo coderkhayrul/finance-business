@@ -1,3 +1,4 @@
+
 @extends('layouts.admin-layout')
 @section('admin-content')
 <!-- start page title -->
@@ -24,7 +25,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-             @if (Session::Has('updatepassword'))
+            @if (Session::Has('updatepassword'))
                 <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <strong>Success - </strong> {{ Session::get('updatepassword') }}
@@ -41,6 +42,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
+                            <th>Role</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -50,7 +52,8 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone ? $user->phone : 'Not Found' }}</td>
-                                <td class="table-action" style="width: 90px;">
+                                <td>{{ $user->role->role_name }}</td>
+                                <td class="table-action">
                                     <a href="{{ route('user.show',$user->id) }}" class="action-icon text-primary"> <i class="mdi mdi-eye"></i></a>
                                     <a href="{{ route('user.edit',$user->id) }}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
                                     <a href="{{ route('user.destroy',$user->id) }}" class="action-icon text-danger show_confirm"> <i class="mdi mdi-delete"></i></a>
