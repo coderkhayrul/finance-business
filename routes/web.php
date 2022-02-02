@@ -44,6 +44,9 @@ Route::prefix('dashboard')->group(function () {
     Route::get('basic', [ManageController::class, 'basic'])->name('admin.manage.basic');
     Route::post('basic', [ManageController::class, 'basic_update'])->name('admin.manage.basic.update');
 
+    // Contact Information Route List
     Route::get('contact-info', [ManageController::class, 'contactinfo'])->name('admin.manage.contactinfo');
+    Route::post('contact-info', [ManageController::class, 'contactinfo_update'])->name('admin.manage.contactinfo.update');
+
     Route::get('socialmedia', [ManageController::class, 'socialmedia'])->name('admin.manage.socialmedia');
 });

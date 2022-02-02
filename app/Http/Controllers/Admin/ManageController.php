@@ -8,6 +8,7 @@ use App\Models\Basic;
 use App\Models\ContactInformation;
 use App\Models\SocialMedia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ManageController extends Controller
@@ -50,13 +51,18 @@ class ManageController extends Controller
             $faviconName = $basic->basic_favicon;
         }
 
-        Basic::where('id', 1)->where('basic_status', 1)->update([
+        $update = Basic::where('id', 1)->where('basic_status', 1)->update([
             'basic_company' => $request->basic_company,
             'basic_title' => $request->basic_title,
             'basic_logo' => $logoName,
             'basic_flogo' => $footerName,
             'basic_favicon' => $faviconName,
         ]);
+        if ($update) {
+            Session::flash('success', 'Basic Information Update successfully');
+        } else {
+            Session::flash('error', 'Basic Information Update Failed!');
+        }
         return back();
     }
 
@@ -64,6 +70,30 @@ class ManageController extends Controller
     {
         $contactinfo = ContactInformation::where('id', 1)->where('cont_status', 1)->firstOrFail();
         return view('admin.manage.contact_info', compact('contactinfo'));
+    }
+
+    public function contactinfo_update(Request $request)
+    {
+        $update = ContactInformation::where('id', 1)->where('cont_status', 1)->update([
+            'cont_phone1' => $request->cont_phone1,
+            'cont_phone2' => $request->cont_phone2,
+            'cont_phone3' => $request->cont_phone3,
+            'cont_phone4' => $request->cont_phone4,
+            'cont_email1' => $request->cont_email1,
+            'cont_email2' => $request->cont_email2,
+            'cont_email3' => $request->cont_email3,
+            'cont_email4' => $request->cont_email4,
+            'cont_add1' => $request->cont_add1,
+            'cont_add2' => $request->cont_add2,
+            'cont_add3' => $request->cont_add3,
+            'cont_add4' => $request->cont_add4,
+        ]);
+        if ($update) {
+            Session::flash('success', 'Contact Update successfully');
+        } else {
+            Session::flash('error', 'Contact Update Failed!');
+        }
+        return back();
     }
 
     public function socialmedia()
