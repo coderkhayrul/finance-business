@@ -37,7 +37,7 @@
                             <div class="input-group flex-nowrap">
                                 <span class="input-group-text" id="basic-addon1"><i class="uil-facebook"></i></span>
                                 <input type="text" class="form-control @error('sm_facebook') is-invalid @enderror" placeholder="facebook url"
-                                name="sm_facebook">
+                                name="sm_facebook" value="{{ $socialmedia->sm_facebook }}">
                                 @error('sm_facebook')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -50,7 +50,7 @@
                             <div class="input-group flex-nowrap">
                                 <span class="input-group-text" id="basic-addon1"><i class="uil-twitter"></i></span>
                                 <input type="text" class="form-control @error('sm_twitter') is-invalid @enderror" placeholder="twitter url"
-                                name="sm_twitter">
+                                name="sm_twitter" value="{{ $socialmedia->sm_twitter }}">
                                 @error('sm_twitter')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -63,7 +63,7 @@
                             <div class="input-group flex-nowrap">
                                 <span class="input-group-text" id="basic-addon1"><i class=" uil-linkedin-alt"></i></span>
                                 <input type="text" class="form-control @error('sm_linkedin') is-invalid @enderror" placeholder="linkedin url"
-                                name="sm_linkedin">
+                                name="sm_linkedin" value="{{ $socialmedia->sm_linkedin }}">
                                 @error('sm_linkedin')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -76,7 +76,7 @@
                             <div class="input-group flex-nowrap">
                                 <span class="input-group-text" id="basic-addon1"><i class="uil-dribbble"></i></span>
                                 <input type="text" class="form-control @error('sm_dribbble') is-invalid @enderror" placeholder="dribbble url"
-                                name="sm_dribbble">
+                                name="sm_dribbble" value="{{ $socialmedia->sm_dribbble }}">
                                 @error('sm_dribbble')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -89,7 +89,7 @@
                             <div class="input-group flex-nowrap">
                                 <span class="input-group-text" id="basic-addon1"><i class="uil-youtube"></i></span>
                                 <input type="text" class="form-control @error('sm_youtube') is-invalid @enderror" placeholder="youtube url"
-                                name="sm_youtube">
+                                name="sm_youtube" value="{{ $socialmedia->sm_youtube }}">
                                 @error('sm_youtube')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -102,7 +102,7 @@
                             <div class="input-group flex-nowrap">
                                 <span class="input-group-text" id="basic-addon1"><i class="uil-slack"></i></span>
                                 <input type="text" class="form-control @error('sm_slack') is-invalid @enderror" placeholder="slack url"
-                                name="sm_slack">
+                                name="sm_slack" value="{{ $socialmedia->sm_slack }}">
                                 @error('sm_slack')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -114,7 +114,7 @@
                             <div class="input-group flex-nowrap">
                                 <span class="input-group-text" id="basic-addon1"><i class="uil-instagram"></i></span>
                                 <input type="text" class="form-control @error('sm_instagram') is-invalid @enderror" placeholder="instagram url"
-                                name="sm_instagram">
+                                name="sm_instagram" value="{{ $socialmedia->sm_instagram }}">
                                 @error('sm_instagram')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -126,7 +126,7 @@
                             <div class="input-group flex-nowrap">
                                 <span class="input-group-text" id="basic-addon1"><i class="uil-behance"></i></span>
                                 <input type="text" class="form-control @error('sm_behance') is-invalid @enderror" placeholder="behance url"
-                                name="sm_behance">
+                                name="sm_behance" value="{{ $socialmedia->sm_behance }}">
                                 @error('sm_behance')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -138,7 +138,7 @@
                             <div class="input-group flex-nowrap">
                                 <span class="input-group-text" id="basic-addon1"><i class="uil-google"></i></span>
                                 <input type="text" class="form-control @error('sm_google') is-invalid @enderror" placeholder="google url"
-                                name="sm_google">
+                                name="sm_google" value="{{ $socialmedia->sm_google }}">
                                 @error('sm_google')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -150,7 +150,7 @@
                             <div class="input-group flex-nowrap">
                                 <span class="input-group-text" id="basic-addon1"><i class="uil-raddit-alien-alt"></i></span>
                                 <input type="text" class="form-control @error('sm_raddit') is-invalid @enderror" placeholder="raddit url"
-                                name="sm_raddit">
+                                name="sm_raddit" value="{{ $socialmedia->sm_raddit }}">
                                 @error('sm_raddit')
                                 <div class="invalid-feedback">
                                     {{ $message }}

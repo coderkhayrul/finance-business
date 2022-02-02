@@ -8,6 +8,7 @@ use App\Models\Basic;
 use App\Models\ContactInformation;
 use App\Models\SocialMedia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -57,6 +58,7 @@ class ManageController extends Controller
             'basic_logo' => $logoName,
             'basic_flogo' => $footerName,
             'basic_favicon' => $faviconName,
+            'update_at' => Carbon::now()->toDateTimeString()
         ]);
         if ($update) {
             Session::flash('success', 'Basic Information Update successfully');
@@ -87,6 +89,7 @@ class ManageController extends Controller
             'cont_add2' => $request->cont_add2,
             'cont_add3' => $request->cont_add3,
             'cont_add4' => $request->cont_add4,
+            'update_at' => Carbon::now()->toDateTimeString()
         ]);
         if ($update) {
             Session::flash('success', 'Contact Information Updated successfully');
@@ -115,6 +118,7 @@ class ManageController extends Controller
             'sm_behance' => $request->sm_behance,
             'sm_google' => $request->sm_google,
             'sm_raddit' => $request->sm_raddit,
+            'update_at' => Carbon::now()->toDateTimeString()
         ]);
 
         if ($update) {
