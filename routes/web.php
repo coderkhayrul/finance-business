@@ -49,4 +49,5 @@ Route::prefix('dashboard')->group(function () {
     Route::post('contact-info', [ManageController::class, 'contactinfo_update'])->name('admin.manage.contactinfo.update');
 
     Route::get('socialmedia', [ManageController::class, 'socialmedia'])->name('admin.manage.socialmedia');
+    Route::post('socialmedia', [ManageController::class, 'socialmedia_update'])->name('admin.manage.socialmedia.update');
 });

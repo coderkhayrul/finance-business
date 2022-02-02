@@ -89,9 +89,9 @@ class ManageController extends Controller
             'cont_add4' => $request->cont_add4,
         ]);
         if ($update) {
-            Session::flash('success', 'Contact Update successfully');
+            Session::flash('success', 'Contact Information Updated successfully');
         } else {
-            Session::flash('error', 'Contact Update Failed!');
+            Session::flash('error', 'Contact Information Update Failed!');
         }
         return back();
     }
@@ -100,5 +100,28 @@ class ManageController extends Controller
     {
         $socialmedia = SocialMedia::where('id', 1)->where('sm_status', 1)->firstOrFail();
         return view('admin.manage.socialmedia', compact('socialmedia'));
+    }
+
+    public function socialmedia_update(Request $request)
+    {
+        $update = SocialMedia::where('id', 1)->where('sm_status', 1)->update([
+            'sm_facebook' => $request->sm_facebook,
+            'sm_twitter' => $request->sm_twitter,
+            'sm_linkedin' => $request->sm_linkedin,
+            'sm_dribbble' => $request->sm_dribbble,
+            'sm_youtube' => $request->sm_youtube,
+            'sm_slack' => $request->sm_slack,
+            'sm_instagram' => $request->sm_instagram,
+            'sm_behance' => $request->sm_behance,
+            'sm_google' => $request->sm_google,
+            'sm_raddit' => $request->sm_raddit,
+        ]);
+
+        if ($update) {
+            Session::flash('success', 'Social Media Updated successfully');
+        } else {
+            Session::flash('error', 'Contact Information Update Failed!');
+        }
+        return back();
     }
 }
