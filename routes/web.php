@@ -41,8 +41,9 @@ Route::prefix('dashboard')->group(function () {
     // ROLE ROUTE LIST
     Route::resource('/role', RoleController::class);
     // BASIC ROUTE LIST
-    Route::get('basic', [ManageController::class ,'basic'])->name('admin.manage.basic');
+    Route::get('basic', [ManageController::class, 'basic'])->name('admin.manage.basic');
+    Route::post('basic', [ManageController::class, 'basic_update'])->name('admin.manage.basic.update');
 
-    Route::get('contact-info', [ManageController::class ,'contactinfo'])->name('admin.manage.contactinfo');
-    Route::get('socialmedia', [ManageController::class ,'socialmedia'])->name('admin.manage.socialmedia');
+    Route::get('contact-info', [ManageController::class, 'contactinfo'])->name('admin.manage.contactinfo');
+    Route::get('socialmedia', [ManageController::class, 'socialmedia'])->name('admin.manage.socialmedia');
 });

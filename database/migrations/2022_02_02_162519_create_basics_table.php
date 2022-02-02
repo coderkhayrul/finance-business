@@ -18,8 +18,8 @@ class CreateBasicsTable extends Migration
             $table->string('basic_company', 150)->nullable();
             $table->string('basic_title', 190)->nullable();
             $table->string('basic_logo')->nullable();
-            $table->string('basic_favicon')->nullable();
             $table->string('basic_flogo')->nullable();
+            $table->string('basic_favicon')->nullable();
             $table->integer('basic_status')->default(1);
             $table->timestamps();
         });

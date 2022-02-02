@@ -25,7 +25,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <form class="form-horizontal" action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" action="{{ route('admin.manage.basic.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-header d-flex justify-content-between bg-dark text-light">
                     <strong class="fs-4"> <i class="uil-chat-bubble-user"></i> Basic Information</strong>
@@ -36,8 +36,9 @@
                         <label for="name" class="col-3 col-form-label">Company Name <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control @error('company_name') is-invalid @enderror" id="company_name" name="company_name" placeholder="Enter Company Name">
-                            @error('company_name')
+                            <input type="text" class="form-control @error('basic_company') is-invalid @enderror" id="basic_company" name="basic_company" placeholder="Enter Company Name"
+                            value="{{ $basic->basic_company }}">
+                            @error('basic_company')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -48,8 +49,9 @@
                         <label for="company_title" class="col-3 col-form-label">Company Title <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control @error('company_title') is-invalid @enderror" id="company_title" name="company_title" placeholder="Company Title">
-                            @error('company_title')
+                            <input type="text" class="form-control @error('basic_title') is-invalid @enderror" id="basic_title" name="basic_title" placeholder="Company Title"
+                            value="{{ $basic->basic_title }}">
+                            @error('basic_title')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -60,30 +62,42 @@
                     <div class="row mb-3">
                         <label for="image" class="col-3 col-form-label">Main Logo Upload</label>
                         <div class="col-6">
-                            <input type="file" id="mainlogo-fileinput" name="image" class="form-control">
+                            <input type="file" id="mainlogo-fileinput" name="basic_logo" class="form-control">
                         </div>
                         <div class="col-3 text-center">
-                            <img id="main-preview-image" src="{{ asset('uploads/avatar.png') }}" alt="image" class="img-fluid rounded" width="50"/>
+                            @if ($basic->basic_logo)
+                                <img id="main-preview-image" src="{{ asset('uploads/basic/'.$basic->basic_logo) }}" alt="image" class="img-fluid rounded" width="50">
+                            @else
+                                <img id="main-preview-image" src="{{ asset('uploads/no_image.jpg') }}" alt="image" class="img-fluid rounded" width="80"/>
+                            @endif
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="image" class="col-3 col-form-label">Footer Logo Upload</label>
                         <div class="col-6">
-                            <input type="file" id="footerlogo-fileinput" name="image" class="form-control">
+                            <input type="file" id="footerlogo-fileinput" name="basic_flogo" class="form-control">
                         </div>
                         <div class="col-3 text-center">
-                            <img id="footer-preview-image" src="{{ asset('uploads/avatar.png') }}" alt="image" class="img-fluid rounded" width="50"/>
+                            @if ($basic->basic_flogo)
+                                <img id="footer-preview-image" src="{{ asset('uploads/basic/'.$basic->basic_flogo) }}" alt="image" class="img-fluid rounded" width="50">
+                            @else
+                                <img id="footer-preview-image" src="{{ asset('uploads/no_image.jpg') }}" alt="image" class="img-fluid rounded" width="80"/>
+                            @endif
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="image" class="col-3 col-form-label">Favicon Upload</label>
                         <div class="col-6">
-                            <input type="file" id="favicon-fileinput" name="image" class="form-control">
+                            <input type="file" id="favicon-fileinput" name="basic_favicon" class="form-control">
                         </div>
                         <div class="col-3 text-center">
-                            <img id="favicon-preview-image" src="{{ asset('uploads/avatar.png') }}" alt="image" class="img-fluid rounded" width="50"/>
+                            @if ($basic->basic_favicon)
+                                <img id="favicon-preview-image" src="{{ asset('uploads/basic/'.$basic->basic_favicon) }}" alt="image" class="img-fluid rounded" width="50">
+                            @else
+                                <img id="favicon-preview-image" src="{{ asset('uploads/no_image.jpg') }}" alt="image" class="img-fluid rounded" width="80"/>
+                            @endif
                         </div>
                     </div>
                 </div>

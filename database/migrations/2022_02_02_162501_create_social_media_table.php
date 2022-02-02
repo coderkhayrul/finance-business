@@ -15,6 +15,17 @@ class CreateSocialMediaTable extends Migration
     {
         Schema::create('social_media', function (Blueprint $table) {
             $table->id();
+            $table->text('sm_facebook')->nullable();
+            $table->text('sm_twitter')->nullable();
+            $table->text('sm_linkedin')->nullable();
+            $table->text('sm_dribbble')->nullable();
+            $table->text('sm_youtube')->nullable();
+            $table->text('sm_slack')->nullable();
+            $table->text('sm_instagram')->nullable();
+            $table->text('sm_behance')->nullable();
+            $table->text('sm_google')->nullable();
+            $table->text('sm_raddit')->nullable();
+            $table->integer('sm_status')->default(1);
             $table->timestamps();
         });
     }
