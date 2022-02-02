@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Website\WebsiteController;
@@ -39,4 +40,9 @@ Route::prefix('dashboard')->group(function () {
 
     // ROLE ROUTE LIST
     Route::resource('/role', RoleController::class);
+    // BASIC ROUTE LIST
+    Route::get('basic', [ManageController::class ,'basic'])->name('admin.manage.basic');
+
+    Route::get('contact-info', [ManageController::class ,'contactinfo'])->name('admin.manage.contactinfo');
+    Route::get('socialmedia', [ManageController::class ,'socialmedia'])->name('admin.manage.socialmedia');
 });

@@ -53,6 +53,31 @@
                             value="{{ $user->phone }}">
                     </div>
                 </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-3 col-form-label">Role Name </label>
+                    <div class="col-9">
+                        <input disabled type="text" class="form-control" id="phone" name="phone" placeholder="Phone"
+                            value="{{ $user->role->role_name }}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-3 col-form-label">User Image</label>
+                    <div class="col-9">
+                        @if ($user->photo)
+                        <img src="{{ asset('uploads/users/'.$user->photo) }}" alt="image" class="img-fluid avatar-sm rounded">
+                        @else
+                        <img src="{{ asset('uploads/avatar.png') }}" alt="image" class="img-fluid avatar-sm rounded">
+                        @endif
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-3 col-form-label">Created At</label>
+                    <div class="col-9">
+                        <input disabled type="text" class="form-control" id="phone" name="phone" placeholder="Phone"
+                            value="">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -46,13 +46,16 @@
                 <div class="collapse" id="sidebaruUser">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="#">BASIC INFORMATION</a>
+                            <a href="{{ route('admin.manage.basic') }}">BASIC INFORMATION</a>
                         </li>
                         <li>
-                            <a href="#">CONTACT INFORMATION</a>
+                            <a href="{{ route('admin.manage.contactinfo') }}">CONTACT INFORMATION</a>
                         </li>
                         <li>
-                            <a href="#">CONTENTS</a>
+                            <a href="{{ route('admin.manage.socialmedia') }} ">SOCIAL MEDIA</a>
+                        </li>
+                        <li>
+                            <a href="#">CONTACTS</a>
                         </li>
                         <li>
                             <a href="#">PAGES</a>
