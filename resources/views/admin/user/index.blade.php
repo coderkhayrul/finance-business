@@ -65,7 +65,6 @@
                                     <a href="{{ route('user.show',$user->id) }}" class="action-icon text-primary"> <i class="mdi mdi-eye"></i></a>
                                     <a href="{{ route('user.edit',$user->id) }}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
 
-
                                     <a href="javascript:void(0);" data-bs-toggle="modal" data-value="{{ $user->id }}" data-bs-target="#deleteModal" class="action-icon text-danger delete-modal"> <i class="mdi mdi-delete"></i></a>
                                 </td>
                             </tr>
@@ -80,7 +79,7 @@
     </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -91,15 +90,17 @@
                 Do you really want to delete these records? This process cannot be undone.
             </div>
             <div class="modal-footer">
-                <form action="{{ route('user.soft.delete',$user->id) }}" method="post">
+                <form action="{{ route('user.destroy',$user->id) }}" method="post">
                     @csrf
+                    @method('DELETE')
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-danger" name="delete_user">Yes, delete it</button>
+                    <button type="submit" class="btn btn-danger" name="delete_data">Yes, delete it</button>
                 </form>
             </div> <!-- end modal footer -->
         </div> <!-- end modal content-->
     </div> <!-- end modal dialog-->
-</div> <!-- end modal-->
+</div>
+<!-- end modal-->
 @endsection
 @section('admin-custrom-css')
 <!-- Datatables css -->

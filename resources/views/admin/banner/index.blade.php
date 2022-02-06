@@ -70,8 +70,8 @@
                                     @endif
                                 </td>
                                 <td class="table-action">
-                                    <a href="" class="action-icon text-primary"> <i class="mdi mdi-eye"></i></a>
-                                    <a href="" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                    <a href="{{ route('banner.show',$banner->ban_id) }}" class="action-icon text-primary"> <i class="mdi mdi-eye"></i></a>
+                                    <a href="#" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
 
                                     <a href="#" data-bs-toggle="modal" data-value="{{ $banner->ban_id }}" data-bs-target="#deleteModal" class="action-icon text-danger delete-modal"> <i class="mdi mdi-delete"></i></a>
                                 </td>

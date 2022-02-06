@@ -130,9 +130,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $user = User::where('id', $request->delete_data)->delete();
+        if ($user) {
+            Session::flash('success', 'User Delete Successfully');
+        } else {
+            Session::flash('error', 'User Delete Failed!');
+        }
+        return redirect()->back();
     }
 
     public function softdelete($id)

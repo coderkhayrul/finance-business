@@ -43,15 +43,11 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
+        $this->validate($request, [
+            'ban_order' => ['required|unique:banners']
+        ]);
 
-        // $this->validate($request, [
-        //     'ban_title' => 'required',
-        //     'ban_order' => 'required"unique:banners',
-        //     'ban_image' => 'required|mimes:png,jpg,jpeg',
-        // ]);
-
-        // Logo
+        // Banner Image
         if ($request->hasFile('banner_image')) {
             $bannerImage = $request->file('banner_image');
             $bannerName = time() . '_' . rand(100000, 10000000) . '.' . $bannerImage->getClientOriginalExtension();
@@ -89,7 +85,8 @@ class BannerController extends Controller
      */
     public function show($id)
     {
-        //
+        $banner = Banner::where('ban_id', $id)->firstOrFail();
+        return view('admin.banner.show', compact('banner'));
     }
 
     /**
