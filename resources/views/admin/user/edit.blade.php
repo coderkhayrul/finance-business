@@ -131,13 +131,12 @@
                     </div>
                 </div>
             </form>
-            <div class="card-footer bg-dark">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <button onclick="event.preventDefault(); getElementById('password_update').submit();"
-                            class="btn btn-primary"><i class="uil-sync me-1"></i>
-                            <span>Update Password</span> </button>
-                    </div>
+            <div class="card-footer bg-dark row justify-content-md-center">
+                <div class="col col-lg-5">
+                    <button onclick="event.preventDefault(); getElementById('password_update').submit();"
+                        class="btn btn-primary"><i class="uil-sync me-1"></i>
+                        <span>Update Password</span>
+                    </button>
                 </div>
             </div>
         </div>

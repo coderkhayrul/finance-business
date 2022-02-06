@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
@@ -44,11 +45,14 @@ Route::prefix('dashboard')->group(function () {
     Route::get('basic', [ManageController::class, 'basic'])->name('admin.manage.basic');
     Route::post('basic', [ManageController::class, 'basic_update'])->name('admin.manage.basic.update');
 
-    // Contact Information Route List
+    // CONTACT INFORMATION ROUTE LIST
     Route::get('contact-info', [ManageController::class, 'contactinfo'])->name('admin.manage.contactinfo');
     Route::post('contact-info', [ManageController::class, 'contactinfo_update'])->name('admin.manage.contactinfo.update');
 
-    // Social Media Route List
+    // SOCIAL MEDIA ROUTE LIST
     Route::get('socialmedia', [ManageController::class, 'socialmedia'])->name('admin.manage.socialmedia');
     Route::post('socialmedia', [ManageController::class, 'socialmedia_update'])->name('admin.manage.socialmedia.update');
+
+    // BANNER ROUTE LIST
+    Route::resource('/banner', BannerController::class);
 });

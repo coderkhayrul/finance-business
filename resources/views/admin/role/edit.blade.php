@@ -52,8 +52,8 @@
             </div>
             </form>
             <div class="card-footer bg-dark">
-                <div class="justify-content-end row">
-                    <div class="col-9">
+                <div class="row justify-content-md-center">
+                    <div class="col col-lg-3">
                         <button onclick="event.preventDefault(); getElementById('update-form').submit();"
                             class="btn btn-primary"><i class=" uil-sync me-1"></i>
                             <span>Update Role</span> </button>

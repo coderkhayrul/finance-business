@@ -24,26 +24,51 @@
                     <span> DASHBOARD </span>
                 </a>
             </li>
-            <li class="side-nav-item">
-                <a href="{{ route('user.index') }}" class="side-nav-link">
-                    <i class="uil-chat-bubble-user"></i>
-                    <span> USERS </span>
-                </a>
-            </li>
-            <li class="side-nav-item">
-                <a href="{{ route('role.index') }}" class="side-nav-link">
-                    <i class="uil-keyhole-square-full"></i>
-                    <span> ROLES</span>
-                </a>
-            </li>
+
+
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebaruUser" aria-expanded="false" aria-controls="sidebaruUser"
+                    class="side-nav-link">
+                    <i class="uil-chat-bubble-user"></i>
+                    <span> USERS </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebaruUser">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('user.index') }}">ALL USER</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('user.create') }}">ADD USER</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('role.index') }} ">ROLES</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="{{ route('banner.index') }}" class="side-nav-link">
+                    <i class="uil-meeting-board"></i>
+                    <span> BANNERS </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a href="#" class="side-nav-link">
+                    <i class="uil-symbol"></i>
+                    <span> PARTNERS </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarManager" aria-expanded="false" aria-controls="sidebarManager"
                     class="side-nav-link">
                     <i class=" uil-cog"></i>
                     <span> MANAGE </span>
                     <span class="menu-arrow"></span>
                 </a>
-                <div class="collapse" id="sidebaruUser">
+                <div class="collapse" id="sidebarManager">
                     <ul class="side-nav-second-level">
                         <li>
                             <a href="{{ route('admin.manage.basic') }}">BASIC INFORMATION</a>

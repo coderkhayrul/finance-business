@@ -45,13 +45,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer bg-dark">
-                    <div class="justify-content-end row">
-                        <div class="col-9">
+                <div class="card-footer bg-dark row justify-content-md-center">
+                    <div class="col col-lg-3">
                             <button type="submit" class="btn btn-primary"><i class="uil-weight me-1"></i></i>
-                                <span>Save</span> </button>
+                                <span>Save</span>
+                            </button>
                         </div>
-                    </div>
                 </div>
             </form>
         </div>

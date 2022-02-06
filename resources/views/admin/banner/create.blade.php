@@ -17,7 +17,7 @@
                     </a>
                 </form>
             </div>
-            <h4 class="page-title">Users</h4>
+            <h4 class="page-title">Banner</h4>
         </div>
     </div>
 </div>
@@ -25,75 +25,31 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <form class="form-horizontal" action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" action="{{ route('banner.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-header d-flex justify-content-between bg-dark text-light">
-                    <strong class="fs-4"> <i class="uil-chat-bubble-user"></i> New User Create</strong>
-                    <a href="{{ route('user.index') }}" class="btn btn-secondary btn-sm">All Users</a>
+                    <strong class="fs-4"> <i class="uil-meeting-board"></i> New Banner Create</strong>
+                    <a href="{{ route('banner.index') }}" class="btn btn-secondary btn-sm">All Banner</a>
                 </div>
                 <div class="card-body">
                     <div class="row mb-3 mt-3">
-                        <label for="name" class="col-3 col-form-label">Name <strong
+                        <label for="name" class="col-3 col-form-label">Title <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Name">
-                            @error('name')
+                            <input type="text" class="form-control @error('banner_title') is-invalid @enderror" id="banner_title" name="banner_title" placeholder="Banner Title">
+                            @error('banner_title')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <label for="email" class="col-3 col-form-label">Email <strong
+                    <div class="row mb-3 mt-3">
+                        <label for="name" class="col-3 col-form-label">SubTitle <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email">
-                            @error('email')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="phone" class="col-3 col-form-label">Phone</label>
-                        <div class="col-9">
-                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="passsword" class="col-3 col-form-label">Password <strong
-                                class="text-danger">*</strong></label>
-                        <div class="col-9">
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password"
-                                placeholder="Password">
-                            @error('password')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="repassword" class="col-3 col-form-label">Re Password <strong
-                                class="text-danger">*</strong></label>
-                        <div class="col-9">
-                            <input type="password" class="form-control" id="password-confirm"
-                                name="password_confirmation" placeholder="Retype Password">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="role" class="col-3 col-form-label">Selete Role <strong
-                                class="text-danger">*</strong></label>
-                        <div class="col-9">
-                            <select class="form-select mb-3 @error('role_id') is-invalid @enderror" name="role_id">
-                                <option selected>Select Your Role</option>
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}">{{ $role->role_name }}</option>
-                                @endforeach
-                            </select>
-                             @error('role_id')
+                            <input type="text" class="form-control @error('banner_subtitle') is-invalid @enderror" id="banner_subtitle" name="banner_subtitle" placeholder="Sub Title">
+                            @error('banner_subtitle')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -102,12 +58,49 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="image" class="col-3 col-form-label">User Image Upload</label>
+                        <label for="email" class="col-3 col-form-label">Button Name <strong
+                                class="text-danger">*</strong></label>
+                        <div class="col-9">
+                            <input type="text" class="form-control @error('banner_button') is-invalid @enderror" id="banner_button" name="banner_button" placeholder="Button Name">
+                            @error('banner_button')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="email" class="col-3 col-form-label">URL <strong
+                                class="text-danger">*</strong></label>
+                        <div class="col-9">
+                            <input type="text" class="form-control @error('banner_url') is-invalid @enderror" id="banner_url" name="banner_url" placeholder="Banner Url">
+                            @error('banner_url')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="email" class="col-3 col-form-label">Order By <strong
+                                class="text-danger">*</strong></label>
+                        <div class="col-9">
+                            <input type="number" class="form-control @error('banner_order') is-invalid @enderror" id="banner_order" name="banner_order" placeholder="Banner Order">
+                            @error('banner_order')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="image" class="col-3 col-form-label">Banner Image Upload</label>
                         <div class="col-6">
-                            <input type="file" id="example-fileinput" name="image" class="form-control">
+                            <input type="file" id="example-fileinput" name="banner_image" class="form-control">
                         </div>
                         <div class="col-3 text-center">
-                            <img id="preview-image" src="{{ asset('uploads/avatar.png') }}" alt="image" class="img-fluid rounded" width="100"/>
+                            <img id="preview-image" src="{{ asset('uploads/no image.png') }}" alt="image" class="img-fluid rounded" width="100"/>
                         </div>
                     </div>
                 </div>
@@ -115,7 +108,7 @@
                 <div class="card-footer bg-dark row justify-content-md-center">
                     <div class="col col-lg-2">
                         <button type="submit" class="btn btn-primary"><i class="uil-sync me-1"></i>
-                        <span>Register</span> </button>
+                        <span>Banner Save</span> </button>
                     </div>
                 </div>
             </form>
@@ -136,3 +129,6 @@
 
 @endsection
 
+{{-- @section('admin-custrom-js')
+
+@endsection --}}
