@@ -29,34 +29,36 @@
                 <strong class="fs-4"> <i class="uil-meeting-board"></i> Banner Information</strong>
                 <a href="{{ route('banner.index') }}" class="btn btn-secondary btn-sm">All Banner</a>
             </div>
-            <div class="card-body">
-                <form action="{{ route('banner.update',$banner->ban_id) }}" method="post">
+            <form action="{{ route('banner.update',$banner->ban_id) }}" method="post">
+                @csrf
+                @method('PUT')
+                <div class="card-body">
                     <div class="row mb-3 mt-3">
                         <label for="inputEmail3" class="col-3 col-form-label">Banner Title <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control" value="{{ $banner->ban_title }}">
+                            <input name="ban_title" type="text" class="form-control" value="{{ $banner->ban_title }}">
                         </div>
                     </div>
                     <div class="row mb-3 mt-3">
                         <label for="inputEmail3" class="col-3 col-form-label">Banner Sub Title <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control" value="{{ $banner->ban_subtitle }}">
+                            <input name="ban_subtitle" type="text" class="form-control" value="{{ $banner->ban_subtitle }}">
                         </div>
                     </div>
                     <div class="row mb-3 mt-3">
                         <label for="inputEmail3" class="col-3 col-form-label">Banner Button <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control" value="{{ $banner->ban_button }}">
+                            <input name="ban_button" type="text" class="form-control" value="{{ $banner->ban_button }}">
                         </div>
                     </div>
                     <div class="row mb-3 mt-3">
                         <label for="inputEmail3" class="col-3 col-form-label">Banner Order <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control" value="{{ $banner->ban_order }}">
+                            <input type="number" name="ban_order" class="form-control" value="{{ $banner->ban_order }}">
                         </div>
                     </div>
 
@@ -64,7 +66,7 @@
                         <label for="inputEmail3" class="col-3 col-form-label">Banner Url <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control" value="{{ $banner->ban_url }}">
+                            <input type="text" name="ban_url" class="form-control" value="{{ $banner->ban_url }}">
                         </div>
                     </div>
 
@@ -75,7 +77,7 @@
                         </div>
                         <div class="col-3 text-center">
                             @if ($banner->ban_image)
-                            <img id="preview-image" src="{{ asset('uploads/banner/'.$banner->ban_image) }}" alt="image"
+                            <img name="ban_image" id="preview-image" src="{{ asset('uploads/banner/'.$banner->ban_image) }}" alt="image"
                                 class="img-fluid rounded" width="100" />
 
                             @else
@@ -84,8 +86,14 @@
                             @endif
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+                <div class="card-footer bg-dark row justify-content-md-center">
+                    <div class="col col-lg-4">
+                        <button type="submit" class="btn btn-primary"><i class="uil-sync me-1"></i>
+                            <span>Banner Update</span> </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

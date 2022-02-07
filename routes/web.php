@@ -42,16 +42,16 @@ Route::prefix('dashboard')->group(function () {
     // ROLE ROUTE LIST
     Route::resource('/role', RoleController::class);
     // BASIC ROUTE LIST
-    Route::get('basic', [ManageController::class, 'basic'])->name('admin.manage.basic');
-    Route::post('basic', [ManageController::class, 'basic_update'])->name('admin.manage.basic.update');
+    Route::get('/basic', [ManageController::class, 'basic'])->name('admin.manage.basic');
+    Route::post('/basic', [ManageController::class, 'basic_update'])->name('admin.manage.basic.update');
 
     // CONTACT INFORMATION ROUTE LIST
-    Route::get('contact-info', [ManageController::class, 'contactinfo'])->name('admin.manage.contactinfo');
-    Route::post('contact-info', [ManageController::class, 'contactinfo_update'])->name('admin.manage.contactinfo.update');
+    Route::get('/contact-info', [ManageController::class, 'contactinfo'])->name('admin.manage.contactinfo');
+    Route::post('/contact-info', [ManageController::class, 'contactinfo_update'])->name('admin.manage.contactinfo.update');
 
     // SOCIAL MEDIA ROUTE LIST
-    Route::get('socialmedia', [ManageController::class, 'socialmedia'])->name('admin.manage.socialmedia');
-    Route::post('socialmedia', [ManageController::class, 'socialmedia_update'])->name('admin.manage.socialmedia.update');
+    Route::get('/socialmedia', [ManageController::class, 'socialmedia'])->name('admin.manage.socialmedia');
+    Route::post('/socialmedia', [ManageController::class, 'socialmedia_update'])->name('admin.manage.socialmedia.update');
 
     // BANNER ROUTE LIST
     Route::resource('/banner', BannerController::class);
