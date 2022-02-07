@@ -39,6 +39,67 @@
                             >
                     </div>
                 </div>
+                <div class="row mb-3 mt-3">
+                    <label for="inputEmail3" class="col-3 col-form-label">Banner Sub Title <strong
+                            class="text-danger">*</strong></label>
+                    <div class="col-9">
+                        <input disabled type="text" class="form-control" value="{{ $banner->ban_subtitle }}"
+                            >
+                    </div>
+                </div>
+                <div class="row mb-3 mt-3">
+                    <label for="inputEmail3" class="col-3 col-form-label">Banner Button <strong
+                            class="text-danger">*</strong></label>
+                    <div class="col-9">
+                        <input disabled type="text" class="form-control" value="{{ $banner->ban_button }}"
+                            >
+                    </div>
+                </div>
+                <div class="row mb-3 mt-3">
+                    <label for="inputEmail3" class="col-3 col-form-label">Banner Order <strong
+                            class="text-danger">*</strong></label>
+                    <div class="col-9">
+                        <input disabled type="text" class="form-control" value="{{ $banner->ban_order }}"
+                            >
+                    </div>
+                </div>
+                <div class="row mb-3 mt-3">
+                    <label for="inputEmail3" class="col-3 col-form-label">Banner Url <strong
+                            class="text-danger">*</strong></label>
+                    <div class="col-9">
+                        <input disabled type="text" class="form-control" value="{{ $banner->ban_url }}"
+                            >
+                    </div>
+                </div>
+
+                <div class="row mb-3 mt-3">
+                    <label for="inputEmail3" class="col-3 col-form-label">Banner Published By <strong
+                            class="text-danger">*</strong></label>
+                    <div class="col-9">
+                        <input disabled type="text" class="form-control" value="{{ $banner->user->name }}"
+                            >
+                    </div>
+                </div>
+
+                <div class="row mb-3 mt-3">
+                    <label for="inputEmail3" class="col-3 col-form-label">Banner Create By <strong
+                            class="text-danger">*</strong></label>
+                    <div class="col-9">
+                        <input disabled type="text" class="form-control" value="{{ $banner->user->name }}">
+                    </div>
+                </div>
+
+                <div class="row mb-3 mt-3">
+                    <label for="inputEmail3" class="col-3 col-form-label">Banner Update By <strong
+                            class="text-danger">*</strong></label>
+                    <div class="col-9">
+                        @if ($banner->ban_editor)
+                        <input disabled type="text" class="form-control" value="{{ $banner->user->name }}">
+                        @else
+                        <input disabled type="text" class="form-control" value="Not yet edited">
+                        @endif
+                    </div>
+                </div>
 
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-3 col-form-label">User Image</label>

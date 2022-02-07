@@ -97,7 +97,8 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $banner = Banner::where('ban_id', $id)->firstOrFail();
+        return view('admin.banner.edit', compact('banner'));
     }
 
     /**
