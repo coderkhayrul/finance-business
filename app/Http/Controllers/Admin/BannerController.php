@@ -110,7 +110,7 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->all();
+        return "Now Working";
     }
 
     /**
