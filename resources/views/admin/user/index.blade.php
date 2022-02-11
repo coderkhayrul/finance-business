@@ -62,11 +62,15 @@
                                 <td>{{ $user->phone ? $user->phone : 'Not Found' }}</td>
                                 <td>{{ $user->role->role_name }}</td>
                                 <td class="table-action">
-                                    <a href="{{ route('user.show',$user->id) }}" class="action-icon text-primary"> <i class="mdi mdi-eye"></i></a>
-                                    <a href="{{ route('user.edit',$user->id) }}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
-
-                                    <a href="javascript:void(0);" data-bs-toggle="modal" data-value="{{ $user->id }}" data-bs-target="#deleteModal" class="action-icon text-danger delete-modal"> <i class="mdi mdi-delete"></i></a>
+                                    <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage</button>
+                                    <div class="dropdown-menu">
+                                        <a href="{{ route('user.show',$user->id) }}" class="dropdown-item text-primary"> <i class="mdi mdi-eye"></i> Show</a>
+                                        <a href="{{ route('user.edit',$user->id) }}" class="dropdown-item"> <i class="mdi mdi-pencil"></i> Edit</a>
+                                        <a href="javascript:void(0);" data-bs-toggle="modal" data-value="{{ $user->id }}" data-bs-target="#deleteModal" class="dropdown-item text-danger delete-modal"> <i class="mdi mdi-delete"></i> Delete</a>
+                                    </div>
                                 </td>
+
+
                             </tr>
                         @endforeach
                     </tbody>

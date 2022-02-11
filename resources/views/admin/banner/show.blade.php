@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="row mb-3 mt-3">
-                    <label for="inputEmail3" class="col-3 col-form-label">Banner Published By <strong
+                    <label for="inputEmail3" class="col-3 col-form-label">Banner Publish By <strong
                             class="text-danger">*</strong></label>
                     <div class="col-9">
                         <input disabled type="text" class="form-control" value="{{ $banner->user->name }}"
@@ -94,7 +94,7 @@
                             class="text-danger">*</strong></label>
                     <div class="col-9">
                         @if ($banner->ban_editor)
-                        <input disabled type="text" class="form-control" value="{{ $banner->user->name }}">
+                        <input disabled type="text" class="form-control" value="{{ $banner->ban_editor }}">
                         @else
                         <input disabled type="text" class="form-control" value="Not yet edited">
                         @endif

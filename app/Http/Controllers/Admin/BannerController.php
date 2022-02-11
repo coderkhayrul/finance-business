@@ -14,6 +14,9 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class BannerController extends Controller
 {
+    public function __construct(){
+        return $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -110,7 +113,35 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->all();
+        $banner = Banner::where('ban_id', $id)->firstOrFail();
+
+        // Banner Image
+        if ($request->hasFile('banner_image')) {
+            $bannerImage = $request->file('banner_image');
+            $bannerName = time() . '_' . rand(100000, 10000000) . '.' . $bannerImage->getClientOriginalExtension();
+            Image::make($bannerImage)->save('uploads/banner/' . $bannerName);
+        } else {
+            $bannerName = $banner->ban_image;
+        }
+
+        $banner = Banner::where('ban_id', $id)->update([
+            'ban_title' => $request->ban_title,
+            'ban_subtitle' => $request->ban_subtitle,
+            'ban_button' => $request->ban_button,
+            'ban_url' => $request->ban_url,
+            'ban_order' => $request->ban_order,
+            'ban_editor' => Auth::user()->id,
+            'ban_image' => $bannerName,
+            'ban_slug' => Str::slug($request->ban_title, '-'),
+            'ban_status' => 1,
+        ]);
+
+        if ($banner) {
+            Session::flash('success', 'Banner Update successfully');
+        } else {
+            Session::flash('error', 'Banner Update Failed!');
+        }
+        return redirect()->back();
     }
 
     /**

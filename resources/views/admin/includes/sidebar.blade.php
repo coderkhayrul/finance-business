@@ -55,9 +55,37 @@
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="#" class="side-nav-link">
+                <a href="{{ route('partner.index') }}" class="side-nav-link">
                     <i class="uil-symbol"></i>
                     <span> PARTNERS </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarGallery" aria-expanded="false" aria-controls="sidebaruUser"
+                    class="side-nav-link">
+                    <i class="uil-images"></i>
+                    <span> GALLERY </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarGallery">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="#">ALL IMAGE</a>
+                        </li>
+                        <li>
+                            <a href="#">ADD IMAGE</a>
+                        </li>
+                        <li>
+                            <a href="#">GALLERY CATEGORIES</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="#" class="side-nav-link">
+                    <i class="uil-comments-alt"></i>
+                    <span> CONTACT MESSAGE </span>
                 </a>
             </li>
 

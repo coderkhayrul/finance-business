@@ -48,16 +48,17 @@
                                     <span class="badge badge-danger-lighten">Blocked</span>
                                     @endif
                                 </td>
-                                <td class="table-action" style="width: 90px;">
-                                    <a href="{{ route('role.edit',$role->id) }}" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                <td class="table-action">
+                                    <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage</button>
+                                    <div class="dropdown-menu">
+                                        <a href="{{ route('role.edit',$role->id) }}" class="dropdown-item"> <i class="mdi mdi-pencil"></i> Edit</a>
 
-                                    <a href="#" class="action-icon text-danger" title="Delete" onclick="event.preventDefault();">
-                                        <i class="mdi mdi-delete" ></i></a>
-                                    {{-- <form id="delete-form" action="{{ route('role.destroy',$role->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form> --}}
+                                    <a href="#" class="dropdown-item text-danger" title="Delete" onclick="event.preventDefault();">
+                                        <i class="mdi mdi-delete" ></i> Delete</a>
+                                    </div>
                                 </td>
+
+
                             </tr>
                         @endforeach
                     </tbody>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ManageController;
+use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Website\WebsiteController;
@@ -55,4 +56,7 @@ Route::prefix('dashboard')->group(function () {
 
     // BANNER ROUTE LIST
     Route::resource('/banner', BannerController::class);
+
+    // PARTNER ROUTE LIST
+    Route::resource('/partner', PartnerController::class);
 });
