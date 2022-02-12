@@ -14,7 +14,8 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class BannerController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         return $this->middleware('auth');
     }
     /**
@@ -113,7 +114,6 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
         $banner = Banner::where('ban_id', $id)->firstOrFail();
 
         // Banner Image
@@ -143,9 +143,6 @@ class BannerController extends Controller
             Session::flash('error', 'Banner Update Failed!');
         }
         return redirect()->back();
-=======
-        return "Now Working";
->>>>>>> f06ee9d86f98d2c6706a47010ae8dfd33d939c78
     }
 
     /**
