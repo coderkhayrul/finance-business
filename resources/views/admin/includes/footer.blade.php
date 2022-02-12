@@ -20,6 +20,20 @@
 </div>
 </div>
 
+<-- Preloader Start -->
+<script>
+    $(document).ready(function() {
+    //Preloader
+    preloaderFadeOutTime = 1000;
+    function hidePreloader() {
+    var preloader = $('#preloader');
+    preloader.fadeOut(preloaderFadeOutTime);
+    }
+    hidePreloader();
+    });
+</script>
+<-- Preloader End -->
+
 {{-- NOTIFICATION START --}}
 <script>
     @if(Session::has('success'))
@@ -65,7 +79,9 @@
     }
             toastr.warning("{{ session('updatepassword') }}");
     @endif
+
 </script>
+
 {{-- NOTIFICATION END --}}
 
 <script src="{{ asset('admin') }}/assets/js/custom.js"></script>

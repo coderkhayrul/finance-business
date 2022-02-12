@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\ContactMesageController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Website\WebsiteController;
+use App\Models\ContactMessage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -59,4 +61,7 @@ Route::prefix('dashboard')->group(function () {
 
     // PARTNER ROUTE LIST
     Route::resource('/partner', PartnerController::class);
+
+    // CONTACT MESSAGE ROUTE LIST
+    Route::resource('/contact-message', ContactMesageController::class, ['only' => ['index', 'show', 'destroy']]);
 });
