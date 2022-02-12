@@ -13,6 +13,11 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class PartnerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -94,7 +99,9 @@ class PartnerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $partner = Partner::where('partner_id', $id)->firstOrFail();
+
+        return view('admin.partner.edit', compact('partner'));
     }
 
     /**
@@ -106,7 +113,35 @@ class PartnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $partner_get = Partner::where('partner_id', $id)->firstOrFail();
+        $this->validate($request, [
+            'partner_title' => 'required',
+        ]);
+        // Partner Logo
+        if ($request->hasFile('partner_logo')) {
+            $partnerImage = $request->file('partner_logo');
+            $partnerName = time() . '_' . rand(100000, 10000000) . '.' . $partnerImage->getClientOriginalExtension();
+            Image::make($partnerImage)->save('uploads/partner/' . $partnerName);
+        } else {
+            $partnerName = $partner_get->partner_logo;
+        }
+
+        $partner = Partner::where('partner_id', $id)->update([
+            'partner_title' => $request->partner_title,
+            'partner_order' => $request->partner_order,
+            'partner_url' => Str::slug($request->partner_title, '-'),
+            'partner_editor' => Auth::id(),
+            'partner_slug' => Str::slug($request->partner_title, '-'),
+            'partner_logo' => $partnerName,
+        ]);
+
+        if ($partner) {
+            Session::flash('success', 'Partner Updated successfully');
+        } else {
+            Session::flash('error', 'Partner Updated Failed!');
+        }
+        return redirect()->back();
+
     }
 
     /**
@@ -115,8 +150,18 @@ class PartnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->delete_data;
+
+        $partner = Partner::where('partner_id',$id)->delete();
+
+        if ($partner) {
+            Session::flash('success', 'Partner Delete successfully');
+        } else {
+            Session::flash('error', 'Partner Delete Failed!');
+        }
+
+        return redirect()->route('partner.index');
     }
 }

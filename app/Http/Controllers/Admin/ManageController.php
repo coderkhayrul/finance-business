@@ -14,6 +14,11 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class ManageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function basic()
     {
         $basic = Basic::where('id', 1)->where('basic_status', 1)->firstOrFail();
