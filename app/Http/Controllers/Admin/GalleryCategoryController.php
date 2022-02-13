@@ -83,7 +83,8 @@ class GalleryCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $gallery_category = GalleryCategory::where('galcate_id', $id)->firstOrFail();
+        return view('admin.gallery.category.edit', compact('gallery_category'));
     }
 
     /**
@@ -95,7 +96,26 @@ class GalleryCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'galcate_name' => 'required',
+            'galcate_order' => 'required',
+        ]);
+
+        $update = GalleryCategory::where('galcate_id', $id)->update([
+            'galcate_name' => $request->galcate_name,
+            'galcate_remarks' => $request->galcate_remarks,
+            'galcate_order' => $request->galcate_order,
+            'galcate_url' => Str::slug(Str::random(20), '-'),
+            'galcate_slug' => Str::slug(Str::random(20), '-'),
+            'galcate_editor' => Auth::id()
+        ]);
+
+        if ($update) {
+            Session::flash('success', 'Gallery Category Update Successfully');
+        } else {
+            Session::flash('error', 'Gallery Category Update Failed!');
+        }
+        return redirect()->back();
     }
 
     /**
@@ -104,8 +124,14 @@ class GalleryCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $delete = GalleryCategory::where('galcate_id', $request->delete_data)->delete();
+        if ($delete) {
+            Session::flash('success', 'Gallery Category Delete Successfully');
+        } else {
+            Session::flash('error', 'Gallery Category Delete Failed!');
+        }
+        return redirect()->back();
     }
 }

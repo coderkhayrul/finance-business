@@ -65,7 +65,7 @@
                             class="text-danger">*</strong></label>
                     <div class="col-9">
                         @if ($gallery_category->galcate_editor)
-                        <input disabled type="text" class="form-control" value="{{ $gallery_category->galcate_editor }}">
+                        <input disabled type="text" class="form-control" value="{{ $gallery_category->user->name }}">
                         @else
                         <input disabled type="text" class="form-control" value="Not yet edited">
                         @endif
