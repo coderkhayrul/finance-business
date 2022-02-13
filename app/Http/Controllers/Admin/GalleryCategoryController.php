@@ -71,7 +71,8 @@ class GalleryCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $gallery_category = GalleryCategory::where('galcate_id', $id)->firstOrFail();
+        return view('admin.gallery.category.show', compact('gallery_category'));
     }
 
     /**
