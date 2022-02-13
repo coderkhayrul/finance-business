@@ -76,7 +76,7 @@
                             <a href="#">ADD IMAGE</a>
                         </li>
                         <li>
-                            <a href="#">GALLERY CATEGORIES</a>
+                            <a href="{{ route('gallery-category.index') }}">GALLERY CATEGORIES</a>
                         </li>
                     </ul>
                 </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ContactMesageController;
+use App\Http\Controllers\Admin\GalleryCategoryController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\UserController;
@@ -64,4 +65,7 @@ Route::prefix('dashboard')->group(function () {
 
     // CONTACT MESSAGE ROUTE LIST
     Route::resource('/contact-message', ContactMesageController::class, ['only' => ['index', 'show', 'destroy']]);
+
+    // GALLERY CATEGORY ROUTE LIST
+    Route::resource('/gallery-category', GalleryCategoryController::class);
 });
