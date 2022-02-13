@@ -70,10 +70,10 @@
                 <div class="collapse" id="sidebarGallery">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="#">ALL IMAGE</a>
+                            <a href="{{ route('gallery.index') }}">ALL GALLERY</a>
                         </li>
                         <li>
-                            <a href="#">ADD IMAGE</a>
+                            <a href="{{ route('gallery.create') }}">ADD GALLERY</a>
                         </li>
                         <li>
                             <a href="{{ route('gallery-category.index') }}">GALLERY CATEGORIES</a>
