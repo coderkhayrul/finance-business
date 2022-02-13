@@ -72,7 +72,7 @@
                 <h5 class="text-primary">Message Overview:</h5>
 
                 <p class="text-muted mb-2">
-                    {{ $contactmessage->cm_message }}
+                    {!! $contactmessage->cm_message !!}
                 </p>
 
             </div>
