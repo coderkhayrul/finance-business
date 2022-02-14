@@ -25,13 +25,13 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header d-flex justify-content-between bg-dark text-light">
-                <strong class="fs-4"> <i class="uil-meeting-board"></i> All Banner Information</strong>
-                <a href="{{ route('banner.create') }}" class="btn btn-secondary btn-sm">Create Banner</a>
+            <div class="card-header d-flex justify-content-between">
+                <strong class="fs-4"> <i class="dripicons-checklist"></i> All Banner Information</strong>
+                <a href="{{ route('banner.create') }}" class="btn btn-dark btn-sm"><i class="dripicons-plus"></i> Create Banner</a>
             </div>
             <div class="card-body">
                 <table id="basic-datatable" class="table dt-responsive nowrap w-100">
-                    <thead>
+                    <thead class="bg-dark text-light">
                         <tr>
                             <th>Image</th>
                             <th>Title</th>
@@ -39,7 +39,7 @@
                             <th>Creator</th>
                             <th>Publish</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th>Manage</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -78,37 +78,40 @@
                                     </div>
                                 </td>
                             </tr>
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">Are you sure?</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                        </div> <!-- end modal header -->
+                                        <div class="modal-body">
+                                            Do you really want to delete these records? This process cannot be undone.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form action="{{ route('banner.destroy',$banner->ban_id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-danger" name="delete_data">Yes, delete it</button>
+                                            </form>
+                                        </div> <!-- end modal footer -->
+                                    </div> <!-- end modal content-->
+                                </div> <!-- end modal dialog-->
+                            </div>
+                            <!-- end modal-->
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer">
-
+            <div class="card-footer bg-dark">
+                <a href="#" class="btn btn-success btn-sm">PRINT</a>
+                <a href="#" class="btn btn-danger btn-sm">PDF</a>
+                <a href="#" class="btn btn-secondary btn-sm">EXCEL</a>
+                <a href="#" class="btn btn-warning btn-sm">CGV</a>
             </div>
         </div>
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Are you sure?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-            </div> <!-- end modal header -->
-            <div class="modal-body">
-                Do you really want to delete these records? This process cannot be undone.
-            </div>
-            <div class="modal-footer">
-                <form action="{{ route('banner.destroy',$banner->ban_id) }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-danger" name="delete_data">Yes, delete it</button>
-                </form>
-            </div> <!-- end modal footer -->
-        </div> <!-- end modal content-->
-    </div> <!-- end modal dialog-->
-</div>
-<!-- end modal-->
 @endsection

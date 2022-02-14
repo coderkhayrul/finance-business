@@ -17,7 +17,7 @@
                     </a>
                 </form>
             </div>
-            <h4 class="page-title">Users</h4>
+            <h4 class="page-title">Banner</h4>
         </div>
     </div>
 </div>
@@ -25,9 +25,9 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header d-flex justify-content-between bg-dark text-light">
+            <div class="card-header d-flex justify-content-between">
                 <strong class="fs-4"> <i class="uil-meeting-board"></i> Banner Information</strong>
-                <a href="{{ route('banner.index') }}" class="btn btn-secondary btn-sm">All Banner</a>
+                <a href="{{ route('banner.index') }}" class="btn btn-dark btn-sm"><i class="uil-meeting-board"></i>  All Banner</a>
             </div>
             <form action="{{ route('banner.update',$banner->ban_id) }}" method="post">
                 @csrf
@@ -89,7 +89,7 @@
                 </div>
                 <div class="card-footer bg-dark row justify-content-md-center">
                     <div class="col col-lg-4">
-                        <button type="submit" class="btn btn-primary"><i class="uil-sync me-1"></i>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="uil-sync me-1"></i>
                             <span>Banner Update</span> </button>
                     </div>
                 </div>

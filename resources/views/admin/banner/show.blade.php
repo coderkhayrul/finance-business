@@ -25,12 +25,11 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header d-flex justify-content-between bg-dark text-light">
+            <div class="card-header d-flex justify-content-between">
                 <strong class="fs-4"> <i class="uil-meeting-board"></i> Banner Information</strong>
-                <a href="{{ route('banner.index') }}" class="btn btn-secondary btn-sm">All Banner</a>
+                <a href="{{ route('banner.index') }}" class="btn btn-dark btn-sm"><i class="uil-meeting-board"></i>  All Banner</a>
             </div>
             <div class="card-body">
-
                 <div class="row mb-3 mt-3">
                     <label for="inputEmail3" class="col-3 col-form-label">Banner Title <strong
                             class="text-danger">*</strong></label>
@@ -107,10 +106,16 @@
                         @if ($banner->ban_image)
                         <img src="{{ asset('uploads/banner/'.$banner->ban_image) }}" alt="image" class="img-fluid avatar-sm rounded">
                         @else
-                        <img src="{{ asset('uploads/no image.png') }}" alt="image" class="img-fluid avatar-sm rounded">
+                        <img src="{{ asset('uploads/noimage.png') }}" alt="image" class="img-fluid avatar-sm rounded">
                         @endif
                     </div>
                 </div>
+            </div>
+            <div class="card-footer bg-dark">
+                <a href="#" class="btn btn-success btn-sm">PRINT</a>
+                <a href="#" class="btn btn-danger btn-sm">PDF</a>
+                <a href="#" class="btn btn-secondary btn-sm">EXCEL</a>
+                <a href="#" class="btn btn-warning btn-sm">CGV</a>
             </div>
         </div>
     </div>

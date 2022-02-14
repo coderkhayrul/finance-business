@@ -25,9 +25,9 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header d-flex justify-content-between bg-dark text-light">
+            <div class="card-header d-flex justify-content-between">
                 <strong class="fs-4"> <i class="uil-scenery"></i> Gallery Category Information</strong>
-                <a href="{{ route('gallery-category.index') }}" class="btn btn-secondary btn-sm">All Gallery Categories</a>
+                <a href="{{ route('gallery-category.index') }}" class="btn btn-dark btn-sm"><i class="uil-scenery"></i> All Categories</a>
             </div>
             <div class="card-body">
 
@@ -71,6 +71,12 @@
                         @endif
                     </div>
                 </div>
+            </div>
+            <div class="card-footer bg-dark">
+                <a href="#" class="btn btn-success btn-sm">PRINT</a>
+                <a href="#" class="btn btn-danger btn-sm">PDF</a>
+                <a href="#" class="btn btn-secondary btn-sm">EXCEL</a>
+                <a href="#" class="btn btn-warning btn-sm">CGV</a>
             </div>
         </div>
     </div>

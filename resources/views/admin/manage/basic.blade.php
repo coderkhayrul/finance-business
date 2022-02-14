@@ -27,9 +27,9 @@
         <div class="card">
             <form class="form-horizontal" action="{{ route('admin.manage.basic.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="card-header d-flex justify-content-between bg-dark text-light">
+                <div class="card-header d-flex justify-content-between">
                     <strong class="fs-4"> <i class="uil-chat-bubble-user"></i> Basic Information</strong>
-                    <a href="{{ route('admin.manage.contactinfo') }}" class="btn btn-secondary btn-sm">Contact Information</a>
+                    <a href="{{ route('admin.manage.contactinfo') }}" class="btn btn-dark btn-sm"><i class="uil-chat-bubble-user"></i> Contact Information</a>
                 </div>
                 <div class="card-body">
                     <div class="row mb-3 mt-3">
@@ -102,12 +102,10 @@
                     </div>
                 </div>
 
-                <div class="card-footer bg-dark">
-                    <div class="justify-content-end row">
-                        <div class="col-9">
-                            <button type="submit" class="btn btn-primary"><i class="uil-sync me-1"></i>
-                            <span>Update</span> </button>
-                        </div>
+                <div class="card-footer bg-dark row justify-content-md-center">
+                    <div class="col col-lg-2">
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="uil-sync me-1"></i>
+                        <span>Updae</span> </button>
                     </div>
                 </div>
             </form>

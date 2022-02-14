@@ -28,9 +28,9 @@
             <form class="form-horizontal" action="{{ route('partner.update',$partner->partner_slug) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="card-header d-flex justify-content-between bg-dark text-light">
+                <div class="card-header d-flex justify-content-between">
                     <strong class="fs-4"> <i class="uil-symbol"></i> Update Partner Create</strong>
-                    <a href="{{ route('partner.index') }}" class="btn btn-secondary btn-sm">All Partner</a>
+                    <a href="{{ route('partner.index') }}" class="btn btn-dark btn-sm"><i class="uil-symbol"></i> All Partner</a>
                 </div>
                 <div class="card-body">
                     <input type="hidden" name="partner_id" value="{{ $partner->partner_id}}">
@@ -81,7 +81,7 @@
                             <img name="ban_image" id="preview-image" src="{{ asset('uploads/partner/'.$partner->partner_logo) }}" alt="image"
                                 class="img-fluid rounded" width="100" />
                             @else
-                            <img id="preview-image" src="{{ asset('uploads/avatar.png') }}" alt="image"
+                            <img id="preview-image" src="{{ asset('uploads/noimage.png') }}" alt="image"
                                 class="img-fluid rounded" width="100" />
                             @endif
                         </div>
@@ -90,7 +90,7 @@
 
                 <div class="card-footer bg-dark row justify-content-md-center">
                     <div class="col col-lg-3">
-                        <button type="submit" class="btn btn-primary"><i class="uil-sync me-1"></i>
+                        <button type="submit" class="btn btn-primary btn sm"><i class="uil-sync me-1"></i>
                         <span>Partner Update</span> </button>
                     </div>
                 </div>

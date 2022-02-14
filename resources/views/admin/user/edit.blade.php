@@ -25,9 +25,9 @@
 <div class="row">
     <div class="col-md-7">
         <div class="card">
-            <div class="card-header d-flex justify-content-between bg-dark text-light">
-                <strong class="fs-4"> <i class="uil-chat-bubble-user"></i> User Information Update</strong>
-                <a href="{{ route('user.index') }}" class="btn btn-secondary btn-sm">All Users</a>
+            <div class="card-header d-flex justify-content-between">
+                <strong class="fs-4"> <i class="dripicons-user"></i> User Information Update</strong>
+                <a href="{{ route('user.index') }}" class="btn btn-dark btn-sm"><i class="dripicons-user"></i> All Users</a>
             </div>
             <div class="card-body">
                 <form class="form-horizontal" action="{{ route('user.update',$user->id) }}" method="POST"
@@ -81,7 +81,7 @@
                 <div class="row">
                     <div class="col-12 text-center">
                         <button onclick="event.preventDefault(); getElementById('update-form').submit();"
-                            class="btn btn-primary"><i class=" uil-sync me-1"></i>
+                            class="btn btn-primary btn-sm"><i class=" uil-sync me-1"></i>
                             <span>Update User</span> </button>
                     </div>
                 </div>
@@ -93,8 +93,8 @@
     @if ($user->role->role_name !== 'admin')
         <div class="col-md-5">
         <div class="card">
-            <div class="card-header bg-dark text-light">
-                <strong class="fs-4"> <i class="uil-chat-bubble-user"></i> User Password Update</strong>
+            <div class="card-header">
+                <strong class="fs-4"> <i class="dripicons-user"></i> User Password Update</strong>
             </div>
             <form action="{{ route('user.password.update',$user->id) }}" method="post">
                 @csrf
@@ -134,8 +134,8 @@
             <div class="card-footer bg-dark row justify-content-md-center">
                 <div class="col col-lg-5">
                     <button onclick="event.preventDefault(); getElementById('password_update').submit();"
-                        class="btn btn-primary"><i class="uil-sync me-1"></i>
-                        <span>Update Password</span>
+                        class="btn btn-primary btn-sm"><i class="uil-sync me-1"></i>
+                        <span>Update</span>
                     </button>
                 </div>
             </div>
@@ -147,8 +147,8 @@
     <div class="row f-flex justify-content-start">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header d-flex justify-content-between bg-dark text-light">
-                    <strong class="fs-4"> <i class="uil-chat-bubble-user"></i> User Image Update</strong>
+                <div class="card-header d-flex justify-content-between">
+                    <strong class="fs-4"> <i class="dripicons-user"></i> User Image Update</strong>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('user.image.update',$user->id) }}" method="post" id="update-form-image" enctype="multipart/form-data">
@@ -175,7 +175,7 @@
                     <div class="justify-content-end row ">
                         <div class="12 m-auto text-center">
                             <button onclick="event.preventDefault(); getElementById('update-form-image').submit();"
-                                class="btn btn-primary"><i class=" uil-sync me-1"></i>
+                                class="btn btn-primary btn-sm"><i class=" uil-sync me-1"></i>
                                 <span>Update Image</span> </button>
                         </div>
                     </div>

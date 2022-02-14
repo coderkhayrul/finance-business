@@ -25,19 +25,19 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header d-flex justify-content-between bg-dark text-light">
+            <div class="card-header d-flex justify-content-between">
                 <strong class="fs-4"> <i class="uil-scenery"></i> All Category Information</strong>
-                <a href="{{ route('gallery-category.create') }}" class="btn btn-secondary btn-sm">Create Category</a>
+                <a href="{{ route('gallery-category.create') }}" class="btn btn-dark btn-sm"><i class="dripicons-plus"></i> Create Category</a>
             </div>
             <div class="card-body">
                 <table id="basic-datatable" class="table dt-responsive nowrap w-100">
-                    <thead>
+                    <thead class="bg-dark text-light">
                         <tr>
                             <th>Category Name</th>
                             <th>Order By</th>
                             <th>Creator</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th>Manage</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,8 +89,11 @@
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer">
-
+            <div class="card-footer bg-dark">
+                <a href="#" class="btn btn-success btn-sm">PRINT</a>
+                <a href="#" class="btn btn-danger btn-sm">PDF</a>
+                <a href="#" class="btn btn-secondary btn-sm">EXCEL</a>
+                <a href="#" class="btn btn-warning btn-sm">CGV</a>
             </div>
         </div>
     </div>

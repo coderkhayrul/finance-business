@@ -29,7 +29,7 @@
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebaruUser" aria-expanded="false" aria-controls="sidebaruUser"
                     class="side-nav-link">
-                    <i class="uil-chat-bubble-user"></i>
+                    <i class="dripicons-user-group"></i>
                     <span> USERS </span>
                     <span class="menu-arrow"></span>
                 </a>

@@ -31,20 +31,20 @@
                     <strong>Success - </strong> {{ Session::get('updatepassword') }}
                 </div>
             @endif
-            <div class="card-header d-flex justify-content-between bg-dark text-light">
-                <strong class="fs-4"> <i class="uil-chat-bubble-user"></i> All User Information</strong>
-                <a href="{{ route('user.create') }}" class="btn btn-secondary btn-sm">Create User</a>
+            <div class="card-header d-flex justify-content-between">
+                <strong class="fs-4"> <i class="dripicons-checklist"></i> All User Information</strong>
+                <a href="{{ route('user.create') }}" class="btn btn-dark btn-sm"><i class="dripicons-user"></i> Create User</a>
             </div>
             <div class="card-body">
                 <table id="basic-datatable" class="table dt-responsive nowrap w-100">
-                    <thead>
+                    <thead class="bg-dark text-white">
                         <tr>
                             <th>Image</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Role</th>
-                            <th>Action</th>
+                            <th>Manage</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,8 +76,11 @@
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer">
-
+            <div class="card-footer bg-dark">
+                <a href="#" class="btn btn-success btn-sm">PRINT</a>
+                <a href="#" class="btn btn-danger btn-sm">PDF</a>
+                <a href="#" class="btn btn-secondary btn-sm">EXCEL</a>
+                <a href="#" class="btn btn-warning btn-sm">CGV</a>
             </div>
         </div>
     </div>

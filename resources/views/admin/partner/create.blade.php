@@ -27,9 +27,9 @@
         <div class="card">
             <form class="form-horizontal" action="{{ route('partner.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="card-header d-flex justify-content-between bg-dark text-light">
+                <div class="card-header d-flex justify-content-between">
                     <strong class="fs-4"> <i class="uil-symbol"></i> New Partner Create</strong>
-                    <a href="{{ route('partner.index') }}" class="btn btn-secondary btn-sm">All Partner</a>
+                    <a href="{{ route('partner.index') }}" class="btn btn-dark btn-sm"><i class="uil-symbol"></i> All Partner</a>
                 </div>
                 <div class="card-body">
                     <div class="row mb-3 mt-3">
@@ -75,14 +75,14 @@
                             <input type="file" id="example-fileinput" name="partner_logo" class="form-control">
                         </div>
                         <div class="col-3 text-center">
-                            <img id="preview-image" src="{{ asset('uploads/no image.png') }}" alt="image" class="img-fluid rounded" width="100"/>
+                            <img id="preview-image" src="{{ asset('uploads/noimage.png') }}" alt="image" class="img-fluid rounded" width="100"/>
                         </div>
                     </div>
                 </div>
 
                 <div class="card-footer bg-dark row justify-content-md-center">
                     <div class="col col-lg-2">
-                        <button type="submit" class="btn btn-primary"><i class="uil-sync me-1"></i>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="uil-sync me-1"></i>
                         <span>Partner Save</span> </button>
                     </div>
                 </div>

@@ -27,9 +27,9 @@
         <div class="card">
             <form class="form-horizontal" action="{{ route('banner.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="card-header d-flex justify-content-between bg-dark text-light">
+                <div class="card-header d-flex justify-content-between">
                     <strong class="fs-4"> <i class="uil-meeting-board"></i> New Banner Create</strong>
-                    <a href="{{ route('banner.index') }}" class="btn btn-secondary btn-sm">All Banner</a>
+                    <a href="{{ route('banner.index') }}" class="btn btn-dark btn-sm"><i class="uil-meeting-board"></i> All Banner</a>
                 </div>
                 <div class="card-body">
                     <div class="row mb-3 mt-3">
@@ -107,7 +107,7 @@
 
                 <div class="card-footer bg-dark row justify-content-md-center">
                     <div class="col col-lg-2">
-                        <button type="submit" class="btn btn-primary"><i class="uil-sync me-1"></i>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="uil-sync me-1"></i>
                         <span>Banner Save</span> </button>
                     </div>
                 </div>

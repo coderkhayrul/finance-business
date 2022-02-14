@@ -25,9 +25,9 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header d-flex justify-content-between bg-dark text-light">
+            <div class="card-header d-flex justify-content-between">
                 <strong class="fs-4"> <i class="uil-symbol"></i> Partner Information</strong>
-                <a href="{{ route('partner.index') }}" class="btn btn-secondary btn-sm">All Partner</a>
+                <a href="{{ route('partner.index') }}" class="btn btn-dark btn-sm"><i class="uil-symbol"></i> All Partner</a>
             </div>
             <div class="card-body">
 
@@ -79,10 +79,16 @@
                         <img src="{{ asset('uploads/partner/'.$partner->partner_logo) }}" alt="image"
                             class="img-fluid avatar-sm rounded">
                         @else
-                        <img src="{{ asset('uploads/no image.png') }}" alt="image" class="img-fluid avatar-sm rounded">
+                        <img src="{{ asset('uploads/noimage.png') }}" alt="image" class="img-fluid avatar-sm rounded">
                         @endif
                     </div>
                 </div>
+            </div>
+            <div class="card-footer bg-dark">
+                <a href="#" class="btn btn-success btn-sm">PRINT</a>
+                <a href="#" class="btn btn-danger btn-sm">PDF</a>
+                <a href="#" class="btn btn-secondary btn-sm">EXCEL</a>
+                <a href="#" class="btn btn-warning btn-sm">CGV</a>
             </div>
         </div>
     </div>

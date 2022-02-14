@@ -25,9 +25,9 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header d-flex justify-content-between bg-dark text-light">
-                <strong class="fs-4"> <i class="uil-chat-bubble-user"></i> User Information</strong>
-                <a href="{{ route('user.index') }}" class="btn btn-secondary btn-sm">All Users</a>
+            <div class="card-header d-flex justify-content-between">
+                <strong class="fs-4"> <i class="dripicons-user"></i> User Information</strong>
+                <a href="{{ route('user.index') }}" class="btn btn-dark btn-sm"><i class="dripicons-user"></i> All Users</a>
             </div>
             <div class="card-body">
                 <div class="row mb-3 mt-3">
@@ -73,11 +73,16 @@
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-3 col-form-label">Created At</label>
                     <div class="col-9">
-                        <input disabled type="text" class="form-control" id="phone" name="phone" placeholder="Phone"
-                            value="">
+                        <input disabled type="text" class="form-control" value="{{ $user->created_at }}">
 
                     </div>
                 </div>
+            </div>
+            <div class="card-footer bg-dark">
+                <a href="#" class="btn btn-success btn-sm">PRINT</a>
+                <a href="#" class="btn btn-danger btn-sm">PDF</a>
+                <a href="#" class="btn btn-secondary btn-sm">EXCEL</a>
+                <a href="#" class="btn btn-warning btn-sm">CGV</a>
             </div>
         </div>
     </div>

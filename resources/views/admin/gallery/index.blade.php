@@ -24,13 +24,13 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header d-flex justify-content-between bg-dark text-light">
+            <div class="card-header d-flex justify-content-between">
                 <strong class="fs-4"> <i class="uil-images"></i> All Gallery Information</strong>
-                <a href="{{ route('gallery.create') }}" class="btn btn-secondary btn-sm">Create Gallery</a>
+                <a href="{{ route('gallery.create') }}" class="btn btn-dark btn-sm"><i class="dripicons-plus"></i> Create Gallery</a>
             </div>
             <div class="card-body">
                 <table id="basic-datatable" class="table dt-responsive nowrap w-100">
-                    <thead>
+                    <thead class="bg-dark text-light">
                         <tr>
                             <th>Image</th>
                             <th>Title</th>
@@ -108,8 +108,11 @@
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer">
-
+            <div class="card-footer bg-dark">
+                <a href="#" class="btn btn-success btn-sm">PRINT</a>
+                <a href="#" class="btn btn-danger btn-sm">PDF</a>
+                <a href="#" class="btn btn-secondary btn-sm">EXCEL</a>
+                <a href="#" class="btn btn-warning btn-sm">CGV</a>
             </div>
         </div>
     </div>

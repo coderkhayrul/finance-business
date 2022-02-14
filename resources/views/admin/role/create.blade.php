@@ -27,9 +27,9 @@
         <div class="card">
             <form class="form-horizontal" action="{{ route('role.store') }}" method="POST">
                 @csrf
-                <div class="card-header d-flex justify-content-between bg-dark text-light">
-                    <strong class="fs-4"> <i class="uil-keyhole-square-full"></i> New Role Create</strong>
-                    <a href="{{ route('role.index') }}" class="btn btn-secondary btn-sm">Roles Users</a>
+                <div class="card-header d-flex justify-content-between">
+                    <strong class="fs-4"> <i class="dripicons-tags"></i> New Role Create</strong>
+                    <a href="{{ route('role.index') }}" class="btn btn-dark btn-sm"><i class="dripicons-tags"></i> Roles Users</a>
                 </div>
                 <div class="card-body">
                     <div class="row mb-3 mt-3">

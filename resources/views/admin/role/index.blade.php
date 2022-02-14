@@ -24,17 +24,17 @@
 <div class="row d-flex justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header d-flex justify-content-between bg-dark text-light">
-                <strong class="fs-4"> <i class="uil-keyhole-square-full"></i> All Roles Information</strong>
-                <a href="{{ route('role.create') }}" class="btn btn-secondary btn-sm">Create Role</a>
+            <div class="card-header d-flex justify-content-between">
+                <strong class="fs-4"> <i class="dripicons-checklist"></i> All Roles Information</strong>
+                <a href="{{ route('role.create') }}" class="btn btn-dark btn-sm"><i class="dripicons-tags"></i> Create Role</a>
             </div>
             <div class="card-body">
                 <table id="basic-datatable" class="table dt-responsive nowrap w-100">
-                    <thead>
+                    <thead class="bg-dark text-light">
                         <tr>
                             <th>Name</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th>Manage</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,8 +64,11 @@
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer">
-
+            <div class="card-footer bg-dark">
+                <a href="#" class="btn btn-success btn-sm">PRINT</a>
+                <a href="#" class="btn btn-danger btn-sm">PDF</a>
+                <a href="#" class="btn btn-secondary btn-sm">EXCEL</a>
+                <a href="#" class="btn btn-warning btn-sm">CGV</a>
             </div>
         </div>
     </div>

@@ -27,9 +27,9 @@
         <div class="card">
             <form class="form-horizontal" action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="card-header d-flex justify-content-between bg-dark text-light">
-                    <strong class="fs-4"> <i class="uil-chat-bubble-user"></i> New User Create</strong>
-                    <a href="{{ route('user.index') }}" class="btn btn-secondary btn-sm">All Users</a>
+                <div class="card-header d-flex justify-content-between">
+                    <strong class="fs-4"> <i class="dripicons-user"></i> New User Create</strong>
+                    <a href="{{ route('user.index') }}" class="btn btn-dark btn-sm"><i class="dripicons-user"></i> All Users</a>
                 </div>
                 <div class="card-body">
                     <div class="row mb-3 mt-3">
@@ -93,7 +93,7 @@
                                     <option value="{{ $role->id }}">{{ $role->role_name }}</option>
                                 @endforeach
                             </select>
-                             @error('role_id')
+                            @error('role_id')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

@@ -26,9 +26,9 @@
     <div class="col-md-8">
         <div class="card">
 
-            <div class="card-header d-flex justify-content-between bg-dark text-light">
-                <strong class="fs-4"> <i class="uil-keyhole-square-full"></i> Role Information Update</strong>
-                <a href="{{ route('role.index') }}" class="btn btn-secondary btn-sm">All Role</a>
+            <div class="card-header d-flex justify-content-between">
+                <strong class="fs-4"> <i class="dripicons-tags"></i> Role Information Update</strong>
+                <a href="{{ route('role.index') }}" class="btn btn-dark btn-sm"><i class="dripicons-tagss"></i> All Role</a>
             </div>
             <div class="card-body">
                 <form class="form-horizontal" action="{{ route('role.update',$role->id) }}" method="POST"
@@ -55,7 +55,7 @@
                 <div class="row justify-content-md-center">
                     <div class="col col-lg-3">
                         <button onclick="event.preventDefault(); getElementById('update-form').submit();"
-                            class="btn btn-primary"><i class=" uil-sync me-1"></i>
+                            class="btn btn-primary btn-sm"><i class=" uil-sync me-1"></i>
                             <span>Update Role</span> </button>
                     </div>
                 </div>
