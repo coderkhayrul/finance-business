@@ -90,7 +90,7 @@
 
                 <div class="card-footer bg-dark row justify-content-md-center">
                     <div class="col col-lg-3">
-                        <button type="submit" class="btn btn-primary btn sm"><i class="uil-sync me-1"></i>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="uil-sync me-1"></i>
                         <span>Partner Update</span> </button>
                     </div>
                 </div>

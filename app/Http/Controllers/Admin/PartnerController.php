@@ -27,7 +27,7 @@ class PartnerController extends Controller
     public function index()
     {
 
-        $partners = Partner::where('partner_status',1)->orderBy('partner_id','DESC')->get();
+        $partners = Partner::where('partner_status', 1)->orderBy('partner_id', 'DESC')->get();
         return view('admin.partner.index', compact('partners'));
     }
 
@@ -49,34 +49,37 @@ class PartnerController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'partner_title' => 'required',
-            'partner_logo' => 'required'
-        ],
-        [
-            'partner_title.required'=>'Please enter partner title!',
-            'partner_logo.required'=>'Please upload partner logo!',
-        ]);
+        $this->validate(
+            $request,
+            [
+                'partner_title' => 'required',
+                'partner_logo' => 'required'
+            ],
+            [
+                'partner_title.required' => 'Please enter partner title!',
+                'partner_logo.required' => 'Please upload partner logo!',
+            ]
+        );
 
-        $creator=Auth::user()->id;
-        $slug='P'.uniqid();
-        $insert=Partner::insertGetId([
-            'partner_title'=>$request['partner_title'],
-            'partner_url'=>$request['partner_url'],
-            'partner_order'=>$request['partner_order'],
-            'partner_creator'=>$creator,
-            'partner_slug'=>$slug,
-            'created_at'=>Carbon::now()->toDateTimeString()
+        $creator = Auth::user()->id;
+        $slug = 'P' . uniqid();
+        $insert = Partner::insertGetId([
+            'partner_title' => $request['partner_title'],
+            'partner_url' => $request['partner_url'],
+            'partner_order' => $request['partner_order'],
+            'partner_creator' => $creator,
+            'partner_slug' => $slug,
+            'created_at' => Carbon::now()->toDateTimeString()
         ]);
         // Partner Logo Store
-        if($request->hasFile('partner_logo')){
-            $image=$request->file('partner_logo');
-            $imageName=$insert.time().'.'.$image->getClientOriginalExtension();
+        if ($request->hasFile('partner_logo')) {
+            $image = $request->file('partner_logo');
+            $imageName = $insert . time() . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save('uploads/partner/' . $imageName);
 
-            Partner::where('partner_id',$insert)->update([
-                'partner_logo'=>$imageName,
-                'updated_at'=>Carbon::now()->toDateTimeString(),
+            Partner::where('partner_id', $insert)->update([
+                'partner_logo' => $imageName,
+                'updated_at' => Carbon::now()->toDateTimeString(),
             ]);
         }
 
@@ -98,7 +101,7 @@ class PartnerController extends Controller
     public function show($slug)
     {
         // $partner = Partner::where('partner_id', $id)->firstOrFail();
-        $partner=Partner::where('partner_status',1)->where('partner_slug',$slug)->firstOrFail();
+        $partner = Partner::where('partner_status', 1)->where('partner_slug', $slug)->firstOrFail();
         return view('admin.partner.show', compact('partner'));
     }
 
@@ -110,7 +113,7 @@ class PartnerController extends Controller
      */
     public function edit($slug)
     {
-        $partner=Partner::where('partner_status',1)->where('partner_slug',$slug)->firstOrFail();
+        $partner = Partner::where('partner_status', 1)->where('partner_slug', $slug)->firstOrFail();
         return view('admin.partner.edit', compact('partner'));
     }
 
@@ -123,40 +126,40 @@ class PartnerController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        $this->validate($request,[
-        'partner_title'=>'required',
-        ],[
-        'partner_title.required'=>'Please enter partner title!',
+        $this->validate($request, [
+            'partner_title' => 'required',
+        ], [
+            'partner_title.required' => 'Please enter partner title!',
         ]);
-        
-        $id=$request['partner_id'];
+
+        $id = $request['partner_id'];
         // $slug=$request['partner_slug'];
-        $editor=Auth::user()->id;
-        $update=Partner::where('partner_status',1)->where('partner_id',$id)->update([
-            'partner_title'=>$request['partner_title'],
-            'partner_url'=>$request['partner_url'],
-            'partner_order'=>$request['partner_order'],
-            'partner_editor'=>$editor,
-            'updated_at'=>Carbon::now()->toDateTimeString()
+        $editor = Auth::user()->id;
+        $update = Partner::where('partner_status', 1)->where('partner_id', $id)->update([
+            'partner_title' => $request['partner_title'],
+            'partner_url' => $request['partner_url'],
+            'partner_order' => $request['partner_order'],
+            'partner_editor' => $editor,
+            'updated_at' => Carbon::now()->toDateTimeString()
         ]);
 
 
         // PARTNER IMAGE UPDATE
-        if($request->hasFile('partner_logo')){
-            $image=$request->file('partner_logo');
-            $imageName=$id.time().'.'.$image->getClientOriginalExtension();
-            Image::make($image)->save('uploads/partners/'.$imageName);
+        if ($request->hasFile('partner_logo')) {
+            $image = $request->file('partner_logo');
+            $imageName = $id . time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('uploads/partners/' . $imageName);
 
-            Partner::where('partner_id',$id)->update([
-                'partner_logo'=>$imageName,
-                'updated_at'=>Carbon::now()->toDateTimeString(),
+            Partner::where('partner_id', $id)->update([
+                'partner_logo' => $imageName,
+                'updated_at' => Carbon::now()->toDateTimeString(),
             ]);
         }
-        if($update){
-            Session::flash('success','Successfully update partner information.');
+        if ($update) {
+            Session::flash('success', 'Successfully update partner information.');
             return back();
-        }else{
-            Session::flash('error','please try again.');
+        } else {
+            Session::flash('error', 'please try again.');
             return back();
         }
     }
@@ -171,7 +174,7 @@ class PartnerController extends Controller
     {
         $id = $request->delete_data;
 
-        $del=Partner::where('partner_status',1)->where('partner_id',$id)->delete();
+        $del = Partner::where('partner_status', 1)->where('partner_id', $id)->delete();
 
         if ($del) {
             Session::flash('success', 'Partner Delete successfully');
