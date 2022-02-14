@@ -59,19 +59,26 @@ Route::prefix('dashboard')->group(function () {
     Route::post('/socialmedia', [ManageController::class, 'socialmedia_update'])->name('admin.manage.socialmedia.update');
 
     // BANNER ROUTE LIST
-    Route::resource('/banner', BannerController::class);
+    Route::get('/banner', [BannerController::class, 'index'])->name('banner.index');
+    Route::get('/banner/create', [BannerController::class, 'create'])->name('banner.create');
+    Route::post('/banner', [BannerController::class, 'store'])->name('banner.store');
+    Route::get('/banner/show/{slug}', [BannerController::class, 'show'])->name('banner.show');
+    Route::get('/banner/edit/{slug}', [BannerController::class, 'edit'])->name('banner.edit');
+    Route::put('/banner/{slug}', [BannerController::class, 'update'])->name('banner.update');
+    Route::delete('/banner/{slug}', [BannerController::class, 'destroy'])->name('banner.destroy');
+    // Route::post('/banner/soft-delete/{slug}', [BannerController::class, 'delete'])->name('banner.delete');
+    // Route::get('/banner/restore/{slug}', [BannerController::class, 'restore'])->name('banner.restore');
 
     // PARTNER ROUTE LIST
-    // Route::resource('/partner', PartnerController::class);
     Route::get('/partner', [PartnerController::class, 'index'])->name('partner.index');
     Route::get('/partner/create', [PartnerController::class, 'create'])->name('partner.create');
     Route::post('/partner', [PartnerController::class, 'store'])->name('partner.store');
     Route::get('/partner/show/{slug}', [PartnerController::class, 'show'])->name('partner.show');
     Route::get('/partner/edit/{slug}', [PartnerController::class, 'edit'])->name('partner.edit');
     Route::put('/partner/{slug}', [PartnerController::class, 'update'])->name('partner.update');
-    Route::post('/partner/soft-delete/{slug}', [PartnerController::class, 'delete'])->name('partner.delete');
     Route::delete('/partner/{slug}', [PartnerController::class, 'destroy'])->name('partner.destroy');
-    Route::get('/partner/restore/{slug}', [PartnerController::class, 'restore'])->name('partner.restore');
+    // Route::post('/partner/soft-delete/{slug}', [PartnerController::class, 'delete'])->name('partner.delete');
+    // Route::get('/partner/restore/{slug}', [PartnerController::class, 'restore'])->name('partner.restore');
 
     // CONTACT MESSAGE ROUTE LIST
     Route::resource('/contact-message', ContactMesageController::class, ['only' => ['index', 'show', 'destroy']]);

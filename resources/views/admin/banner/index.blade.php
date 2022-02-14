@@ -72,8 +72,8 @@
                                 <td class="table-action">
                                     <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage</button>
                                     <div class="dropdown-menu">
-                                    <a href="{{ route('banner.show',$banner->ban_id) }}" class="dropdown-item"> <i class="mdi mdi-eye"></i> Show</a>
-                                    <a href="{{ route('banner.edit',$banner->ban_id) }}" class="dropdown-item"> <i class="mdi mdi-pencil"></i> Edit</a>
+                                    <a href="{{ route('banner.show',$banner->ban_slug) }}" class="dropdown-item"> <i class="mdi mdi-eye"></i> Show</a>
+                                    <a href="{{ route('banner.edit',$banner->ban_slug) }}" class="dropdown-item"> <i class="mdi mdi-pencil"></i> Edit</a>
                                     <a href="#" data-bs-toggle="modal" data-value="{{ $banner->ban_id }}" data-bs-target="#deleteModal" class=" text-danger delete-modal dropdown-item"> <i class="mdi mdi-delete"></i> Delete</a>
                                     </div>
                                 </td>
@@ -90,7 +90,7 @@
                                             Do you really want to delete these records? This process cannot be undone.
                                         </div>
                                         <div class="modal-footer">
-                                            <form action="{{ route('banner.destroy',$banner->ban_id) }}" method="post">
+                                            <form action="{{ route('banner.destroy',$banner->ban_slug) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

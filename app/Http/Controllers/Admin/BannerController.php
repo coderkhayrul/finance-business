@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -47,33 +48,41 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         $this->validate($request, [
-            'ban_order' => ['required|unique:banners']
+            'ban_title' => 'required|unique:banners',
+            'ban_image' => 'required'
         ]);
 
-        // Banner Image
-        if ($request->hasFile('banner_image')) {
-            $bannerImage = $request->file('banner_image');
-            $bannerName = time() . '_' . rand(100000, 10000000) . '.' . $bannerImage->getClientOriginalExtension();
-            Image::make($bannerImage)->save('uploads/banner/' . $bannerName);
-        } else {
-            $bannerName = null;
+        $slug = 'B' . uniqid();
+        $creator = Auth::user()->id;
+
+        $insert = Banner::insertGetId([
+            'ban_title' => $request['ban_title'],
+            'ban_subtitle' => $request['ban_subtitle'],
+            'ban_button' => $request['ban_button'],
+            'ban_url' => $request['ban_url'],
+            'ban_order' => $request['ban_order'],
+            'ban_publish' => 0,
+            'ban_creator' => $creator,
+            'ban_slug' => $slug,
+            'ban_status' => 1,
+            'created_at' => Carbon::now()->toDateTimeString()
+        ]);
+
+        // Banner Image Upload
+        if ($request->hasFile('ban_image')) {
+            $image = $request->file('ban_image');
+            $imageName = $insert . time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('uploads/banner/' . $imageName);
+
+            Banner::where('ban_id', $insert)->update([
+                'ban_image' => $imageName,
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ]);
         }
 
-        $banner = Banner::create([
-            'ban_title' => $request->banner_title,
-            'ban_subtitle' => $request->banner_subtitle,
-            'ban_button' => $request->banner_button,
-            'ban_url' => $request->banner_url,
-            'ban_order' => $request->banner_order,
-            'ban_publish' => 0,
-            'ban_creator' => Auth::id(),
-            'ban_image' => $bannerName,
-            'ban_slug' => Str::slug($request->banner_title, '-'),
-            'ban_status' => 1
-        ]);
-
-        if ($banner) {
+        if ($insert) {
             Session::flash('success', 'Banner Created successfully');
         } else {
             Session::flash('error', 'Banner Created Failed!');
@@ -87,9 +96,9 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $banner = Banner::where('ban_id', $id)->firstOrFail();
+        $banner = Banner::where('ban_status', 1)->where('ban_slug', $slug)->firstOrFail();
         return view('admin.banner.show', compact('banner'));
     }
 
@@ -99,9 +108,9 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        $banner = Banner::where('ban_id', $id)->firstOrFail();
+        $banner = Banner::where('ban_status', 1)->where('ban_slug', $slug)->firstOrFail();
         return view('admin.banner.edit', compact('banner'));
     }
 
@@ -112,32 +121,37 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        $banner = Banner::where('ban_id', $id)->firstOrFail();
 
-        // Banner Image
-        if ($request->hasFile('banner_image')) {
-            $bannerImage = $request->file('banner_image');
-            $bannerName = time() . '_' . rand(100000, 10000000) . '.' . $bannerImage->getClientOriginalExtension();
-            Image::make($bannerImage)->save('uploads/banner/' . $bannerName);
-        } else {
-            $bannerName = $banner->ban_image;
-        }
-
-        $banner = Banner::where('ban_id', $id)->update([
-            'ban_title' => $request->ban_title,
-            'ban_subtitle' => $request->ban_subtitle,
-            'ban_button' => $request->ban_button,
-            'ban_url' => $request->ban_url,
-            'ban_order' => $request->ban_order,
-            'ban_editor' => Auth::user()->id,
-            'ban_image' => $bannerName,
-            'ban_slug' => Str::slug($request->ban_title, '-'),
+        $this->validate($request, [
+            'ban_title' => 'required',
+        ], [
+            'ban_title.required' => 'Please enter banner title!',
+        ]);
+        $id = $request->ban_id;
+        $editor = Auth::user()->id;
+        $update = Banner::where('ban_status', 1)->where('ban_id', $id)->where('ban_slug', $slug)->update([
+            'ban_title' => $request['ban_title'],
+            'ban_subtitle' => $request['ban_subtitle'],
+            'ban_button' => $request['ban_button'],
+            'ban_url' => $request['ban_url'],
+            'ban_order' => $request['ban_order'],
+            'ban_editor' => $editor,
             'ban_status' => 1,
         ]);
+        if ($request->hasFile('ban_image')) {
+            $image = $request->file('ban_image');
+            $imageName = $id . time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('uploads/banner/' . $imageName);
 
-        if ($banner) {
+            Banner::where('ban_id', $id)->update([
+                'banner_image' => $imageName,
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ]);
+        }
+
+        if ($update) {
             Session::flash('success', 'Banner Update successfully');
         } else {
             Session::flash('error', 'Banner Update Failed!');
@@ -153,7 +167,7 @@ class BannerController extends Controller
      */
     public function destroy(Request $request)
     {
-        $banner = Banner::where('ban_id', $request->delete_data)->delete();
+        $banner = Banner::where('ban_status', 1)->where('ban_id', $request->delete_data)->delete();
         if ($banner) {
             Session::flash('success', 'Banner Delete Successfully');
         } else {

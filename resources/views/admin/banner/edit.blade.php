@@ -23,16 +23,17 @@
 </div>
 
 <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-md-10">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <strong class="fs-4"> <i class="uil-meeting-board"></i> Banner Information</strong>
                 <a href="{{ route('banner.index') }}" class="btn btn-dark btn-sm"><i class="uil-meeting-board"></i>  All Banner</a>
             </div>
-            <form action="{{ route('banner.update',$banner->ban_id) }}" method="post">
+            <form action="{{ route('banner.update',$banner->ban_slug) }}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="card-body">
+                    <input type="hidden" name="ban_id" value="{{ $banner->ban_id}}">
                     <div class="row mb-3 mt-3">
                         <label for="inputEmail3" class="col-3 col-form-label">Banner Title <strong
                                 class="text-danger">*</strong></label>
@@ -73,7 +74,7 @@
                     <div class="row mb-3">
                         <label for="image" class="col-3 col-form-label">Banner Image Upload</label>
                         <div class="col-6">
-                            <input type="file" id="example-fileinput" name="banner_image" class="form-control">
+                            <input type="file" id="example-fileinput" name="ban_image" class="form-control">
                         </div>
                         <div class="col-3 text-center">
                             @if ($banner->ban_image)

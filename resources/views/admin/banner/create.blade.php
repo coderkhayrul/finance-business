@@ -36,8 +36,8 @@
                         <label for="name" class="col-3 col-form-label">Title <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control @error('banner_title') is-invalid @enderror" id="banner_title" name="banner_title" placeholder="Banner Title">
-                            @error('banner_title')
+                            <input type="text" class="form-control @error('ban_title') is-invalid @enderror" id="ban_title" name="ban_title" placeholder="Banner Title">
+                            @error('ban_title')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -48,8 +48,8 @@
                         <label for="name" class="col-3 col-form-label">SubTitle <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control @error('banner_subtitle') is-invalid @enderror" id="banner_subtitle" name="banner_subtitle" placeholder="Sub Title">
-                            @error('banner_subtitle')
+                            <input type="text" class="form-control @error('ban_subtitle') is-invalid @enderror" id="ban_subtitle" name="ban_subtitle" placeholder="Sub Title">
+                            @error('ban_subtitle')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -61,8 +61,8 @@
                         <label for="email" class="col-3 col-form-label">Button Name <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control @error('banner_button') is-invalid @enderror" id="banner_button" name="banner_button" placeholder="Button Name">
-                            @error('banner_button')
+                            <input type="text" class="form-control @error('ban_button') is-invalid @enderror" id="ban_button" name="ban_button" placeholder="Button Name">
+                            @error('ban_button')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -73,8 +73,8 @@
                         <label for="email" class="col-3 col-form-label">URL <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" class="form-control @error('banner_url') is-invalid @enderror" id="banner_url" name="banner_url" placeholder="Banner Url">
-                            @error('banner_url')
+                            <input type="text" class="form-control @error('ban_url') is-invalid @enderror" id="ban_url" name="ban_url" placeholder="Banner Url">
+                            @error('ban_url')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -85,8 +85,8 @@
                         <label for="email" class="col-3 col-form-label">Order By <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="number" class="form-control @error('banner_order') is-invalid @enderror" id="banner_order" name="banner_order" placeholder="Banner Order">
-                            @error('banner_order')
+                            <input type="number" class="form-control @error('ban_order') is-invalid @enderror" id="ban_order" name="ban_order" placeholder="Banner Order">
+                            @error('ban_order')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -97,10 +97,10 @@
                     <div class="row mb-3">
                         <label for="image" class="col-3 col-form-label">Banner Image Upload</label>
                         <div class="col-6">
-                            <input type="file" id="example-fileinput" name="banner_image" class="form-control">
+                            <input type="file" id="example-fileinput" name="ban_image" class="form-control">
                         </div>
                         <div class="col-3 text-center">
-                            <img id="preview-image" src="{{ asset('uploads/no image.png') }}" alt="image" class="img-fluid rounded" width="100"/>
+                            <img id="preview-image" src="{{ asset('uploads/noimage.png') }}" alt="image" class="img-fluid rounded" width="100"/>
                         </div>
                     </div>
                 </div>
