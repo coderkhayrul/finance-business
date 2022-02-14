@@ -48,7 +48,7 @@
                         <label for="name" class="col-3 col-form-label">Partner Url <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" value="{{ old('partner_url') }}" class="form-control @error('partner_url') is-invalid @enderror" id="partner_url" name="partner_url" placeholder="Partner Url">
+                            <input type="text" value="{{ old('partner_url') }}" class="form-control @error('partner_url') is-invalid @enderror" id="partner_url" name="partner_url" placeholder="www.example.com">
                             @error('partner_url')
                                 <div class="invalid-feedback">
                                     {{ $message }}

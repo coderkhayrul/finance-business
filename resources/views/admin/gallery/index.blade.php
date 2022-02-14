@@ -1,4 +1,3 @@
-
 @extends('layouts.admin-layout')
 @section('admin-content')
 <!-- start page title -->
@@ -43,56 +42,68 @@
                     </thead>
                     <tbody>
                         @foreach ($gallerys as $gallery)
-                            <tr>
-                                <td>
-                                    @if ($gallery->gallery_image)
-                                    <img src="{{ asset('uploads/gallery/'.$gallery->gallery_image) }}" alt="image" class="img-fluid avatar-sm rounded">
-                                    @else
-                                    <img src="{{ asset('uploads/no image.png') }}" alt="image" class="img-fluid avatar-sm rounded">
-                                    @endif
-                                </td>
-                                <td>{{ $gallery->gallery_title }}</td>
-                                <td>{{ $gallery->gallery_order }}</td>
-                                <td>{{ $gallery->user->name }}</td>
-                                <td>
-                                    @if ($gallery->gallery_status == 1)
-                                    <span class="badge badge-success-lighten">Active</span>
-                                    @else
-                                    <span class="badge badge-danger-lighten">Blocked</span>
-                                    @endif
-                                </td>
-                                <td class="table-action">
-                                    <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage</button>
-                                    <div class="dropdown-menu">
-                                    <a href="{{ route('partner.show',$gallery->gallery_id) }}" class="dropdown-item"> <i class="mdi mdi-eye"></i> Show</a>
-                                    <a href="{{ route('partner.edit',$gallery->gallery_id) }}" class="dropdown-item"> <i class="mdi mdi-pencil"></i> Edit</a>
-                                    <a href="#" data-bs-toggle="modal" data-value="{{ $gallery->gallery_id }}" data-bs-target="#deleteModal" class=" text-danger delete-modal dropdown-item"> <i class="mdi mdi-delete"></i> Delete</a>
+                        <tr>
+                            <td>
+                                @if ($gallery->gallery_image)
+                                <img src="{{ asset('uploads/gallery/'.$gallery->gallery_image) }}" alt="image"
+                                    class="img-fluid avatar-sm rounded">
+                                @else
+                                <img src="{{ asset('uploads/no image.png') }}" alt="image"
+                                    class="img-fluid avatar-sm rounded">
+                                @endif
+                            </td>
+                            <td>{{ $gallery->gallery_title }}</td>
+                            <td>{{ $gallery->gallery_order }}</td>
+                            <td>{{ $gallery->user->name }}</td>
+                            <td>
+                                @if ($gallery->gallery_status == 1)
+                                <span class="badge badge-success-lighten">Active</span>
+                                @else
+                                <span class="badge badge-danger-lighten">Blocked</span>
+                                @endif
+                            </td>
+                            <td class="table-action">
+                                <button type="button" class="btn btn-primary dropdown-toggle btn-sm"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage</button>
+                                <div class="dropdown-menu">
+                                    <a href="{{ route('partner.show',$gallery->gallery_id) }}" class="dropdown-item"> <i
+                                            class="mdi mdi-eye"></i> Show</a>
+                                    <a href="{{ route('partner.edit',$gallery->gallery_id) }}" class="dropdown-item"> <i
+                                            class="mdi mdi-pencil"></i> Edit</a>
+                                    <a href="#" data-bs-toggle="modal" data-value="{{ $gallery->gallery_id }}"
+                                        data-bs-target="#deleteModal" class=" text-danger delete-modal dropdown-item">
+                                        <i class="mdi mdi-delete"></i> Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Are you sure?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-hidden="true"></button>
+                                    </div> <!-- end modal header -->
+                                    <div class="modal-body">
+                                        Do you really want to delete these records? This process cannot be undone.
                                     </div>
-                                </td>
-                            </tr>
-                            <!-- Modal -->
-                            <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel">Are you sure?</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-                                        </div> <!-- end modal header -->
-                                        <div class="modal-body">
-                                            Do you really want to delete these records? This process cannot be undone.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <form action="{{ route('gallery.destroy',$gallery->gallery_id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <button type="submit" class="btn btn-danger" name="delete_data">Yes, delete it</button>
-                                            </form>
-                                        </div> <!-- end modal footer -->
-                                    </div> <!-- end modal content-->
-                                </div> <!-- end modal dialog-->
-                            </div>
-                            <!-- end modal-->
+                                    <div class="modal-footer">
+                                        <form action="{{ route('gallery.destroy',$gallery->gallery_id) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-danger" name="delete_data">Yes, delete
+                                                it</button>
+                                        </form>
+                                    </div> <!-- end modal footer -->
+                                </div> <!-- end modal content-->
+                            </div> <!-- end modal dialog-->
+                        </div>
+                        <!-- end modal-->
                         @endforeach
                     </tbody>
                 </table>
@@ -103,24 +114,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('admin-custrom-css')
-<!-- Datatables css -->
-<link href="{{ asset('admin') }}/assets/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
-<link href="{{ asset('admin') }}/assets/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css" />
-@endsection
-
-@section('admin-custrom-js')
-<!-- Datatables js -->
-<script src="{{ asset('admin') }}/assets/js/vendor/jquery.dataTables.min.js"></>
-<script src="{{ asset('admin') }}/assets/js/vendor/dataTables.bootstrap5.js"></script>
-<script src="{{ asset('admin') }}/assets/js/vendor/dataTables.responsive.min.js"></script>
-<script src="{{ asset('admin') }}/assets/js/vendor/responsive.bootstrap5.min.js"></script>
-
-<!-- Datatable Init js -->
-<script src="{{ asset('admin') }}/assets/js/pages/demo.datatable-init.js"></script>
-
-{{-- Delete Alert --}}
-@include('admin.includes.delete_alert')
 @endsection

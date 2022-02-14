@@ -72,24 +72,3 @@
 </div>
 
 @endsection
-
-@section('admin-custrom-css')
-<!-- Datatables css -->
-<link href="{{ asset('admin') }}/assets/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
-<link href="{{ asset('admin') }}/assets/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css" />
-@endsection
-
-@section('admin-custrom-js')
-<!-- Datatables js -->
-<script src="{{ asset('admin') }}/assets/js/vendor/jquery.dataTables.min.js"></script>
-<script src="{{ asset('admin') }}/assets/js/vendor/dataTables.bootstrap5.js"></script>
-<script src="{{ asset('admin') }}/assets/js/vendor/dataTables.responsive.min.js"></script>
-<script src="{{ asset('admin') }}/assets/js/vendor/responsive.bootstrap5.min.js"></script>
-
-<!-- Datatable Init js -->
-<script src="{{ asset('admin') }}/assets/js/pages/demo.datatable-init.js"></script>
-
-{{-- Delete Alert --}}
-@include('admin.includes.delete_alert')
-
-@endsection

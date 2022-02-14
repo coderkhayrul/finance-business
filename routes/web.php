@@ -62,7 +62,16 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('/banner', BannerController::class);
 
     // PARTNER ROUTE LIST
-    Route::resource('/partner', PartnerController::class);
+    // Route::resource('/partner', PartnerController::class);
+    Route::get('/partner', [PartnerController::class, 'index'])->name('partner.index');
+    Route::get('/partner/create', [PartnerController::class,'create'])->name('partner.create');
+    Route::post('/partner', [PartnerController::class,'store'])->name('partner.store');
+    Route::get('/partner/show/{slug}', [PartnerController::class,'show'])->name('partner.show');
+    Route::get('/partner/edit/{slug}', [PartnerController::class,'edit'])->name('partner.edit');
+    Route::put('/partner/{slug}', [PartnerController::class,'update'])->name('partner.update');
+    Route::post('/partner/soft-delete/{slug}', [PartnerController::class,'delete'])->name('partner.delete');
+    Route::delete('/partner/{slug}', [PartnerController::class,'destroy'])->name('partner.destroy');
+    Route::get('/partner/restore/{slug}', [PartnerController::class,'restore'])->name('partner.restore');
 
     // CONTACT MESSAGE ROUTE LIST
     Route::resource('/contact-message', ContactMesageController::class, ['only' => ['index', 'show', 'destroy']]);

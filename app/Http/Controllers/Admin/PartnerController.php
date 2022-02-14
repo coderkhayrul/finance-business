@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -25,7 +26,8 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        $partners = Partner::all();
+
+        $partners = Partner::where('partner_status',1)->orderBy('partner_id','DESC')->get();
         return view('admin.partner.index', compact('partners'));
     }
 
@@ -49,34 +51,42 @@ class PartnerController extends Controller
     {
         $this->validate($request, [
             'partner_title' => 'required',
-            'partner_order' => 'required|unique:partners,partner_order'
+            'partner_logo' => 'required'
+        ],
+        [
+            'partner_title.required'=>'Please enter partner title!',
+            'partner_logo.required'=>'Please upload partner logo!',
         ]);
 
-        // Partner Logo
-        if ($request->hasFile('partner_logo')) {
-            $partnerImage = $request->file('partner_logo');
-            $partnerName = time() . '_' . rand(100000, 10000000) . '.' . $partnerImage->getClientOriginalExtension();
-            Image::make($partnerImage)->save('uploads/partner/' . $partnerName);
-        } else {
-            $partnerName = null;
+        $creator=Auth::user()->id;
+        $slug='P'.uniqid();
+        $insert=Partner::insertGetId([
+            'partner_title'=>$request['partner_title'],
+            'partner_url'=>$request['partner_url'],
+            'partner_order'=>$request['partner_order'],
+            'partner_creator'=>$creator,
+            'partner_slug'=>$slug,
+            'created_at'=>Carbon::now()->toDateTimeString()
+        ]);
+        // Partner Logo Store
+        if($request->hasFile('partner_logo')){
+            $image=$request->file('partner_logo');
+            $imageName=$insert.time().'.'.$image->getClientOriginalExtension();
+            Image::make($image)->save('uploads/partner/' . $imageName);
+
+            Partner::where('partner_id',$insert)->update([
+                'partner_logo'=>$imageName,
+                'updated_at'=>Carbon::now()->toDateTimeString(),
+            ]);
         }
 
-        $partner = Partner::create([
-            'partner_title' => $request->partner_title,
-            'partner_order' => $request->partner_order,
-            'partner_url' => Str::slug($request->partner_title, '-'),
-            'partner_creator' => Auth::id(),
-            'partner_slug' => Str::slug($request->partner_title, '-'),
-            'partner_status' => 1,
-            'partner_logo' => $partnerName,
-        ]);
-
-        if ($partner) {
+        if ($insert) {
             Session::flash('success', 'Partner Created successfully');
+            return redirect()->back();
         } else {
             Session::flash('error', 'Partner Created Failed!');
+            return redirect()->back();
         }
-        return back();
     }
 
     /**
@@ -85,9 +95,10 @@ class PartnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $partner = Partner::where('partner_id', $id)->firstOrFail();
+        // $partner = Partner::where('partner_id', $id)->firstOrFail();
+        $partner=Partner::where('partner_status',1)->where('partner_slug',$slug)->firstOrFail();
         return view('admin.partner.show', compact('partner'));
     }
 
@@ -97,10 +108,9 @@ class PartnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        $partner = Partner::where('partner_id', $id)->firstOrFail();
-
+        $partner=Partner::where('partner_status',1)->where('partner_slug',$slug)->firstOrFail();
         return view('admin.partner.edit', compact('partner'));
     }
 
@@ -111,37 +121,44 @@ class PartnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        $partner_get = Partner::where('partner_id', $id)->firstOrFail();
-        $this->validate($request, [
-            'partner_title' => 'required',
+        $this->validate($request,[
+        'partner_title'=>'required',
+        ],[
+        'partner_title.required'=>'Please enter partner title!',
         ]);
-        // Partner Logo
-        if ($request->hasFile('partner_logo')) {
-            $partnerImage = $request->file('partner_logo');
-            $partnerName = time() . '_' . rand(100000, 10000000) . '.' . $partnerImage->getClientOriginalExtension();
-            Image::make($partnerImage)->save('uploads/partner/' . $partnerName);
-        } else {
-            $partnerName = $partner_get->partner_logo;
-        }
-
-        $partner = Partner::where('partner_id', $id)->update([
-            'partner_title' => $request->partner_title,
-            'partner_order' => $request->partner_order,
-            'partner_url' => Str::slug($request->partner_title, '-'),
-            'partner_editor' => Auth::id(),
-            'partner_slug' => Str::slug($request->partner_title, '-'),
-            'partner_logo' => $partnerName,
+        
+        $id=$request['partner_id'];
+        // $slug=$request['partner_slug'];
+        $editor=Auth::user()->id;
+        $update=Partner::where('partner_status',1)->where('partner_id',$id)->update([
+            'partner_title'=>$request['partner_title'],
+            'partner_url'=>$request['partner_url'],
+            'partner_order'=>$request['partner_order'],
+            'partner_editor'=>$editor,
+            'updated_at'=>Carbon::now()->toDateTimeString()
         ]);
 
-        if ($partner) {
-            Session::flash('success', 'Partner Updated successfully');
-        } else {
-            Session::flash('error', 'Partner Updated Failed!');
-        }
-        return redirect()->back();
 
+        // PARTNER IMAGE UPDATE
+        if($request->hasFile('partner_logo')){
+            $image=$request->file('partner_logo');
+            $imageName=$id.time().'.'.$image->getClientOriginalExtension();
+            Image::make($image)->save('uploads/partners/'.$imageName);
+
+            Partner::where('partner_id',$id)->update([
+                'partner_logo'=>$imageName,
+                'updated_at'=>Carbon::now()->toDateTimeString(),
+            ]);
+        }
+        if($update){
+            Session::flash('success','Successfully update partner information.');
+            return back();
+        }else{
+            Session::flash('error','please try again.');
+            return back();
+        }
     }
 
     /**
@@ -150,18 +167,18 @@ class PartnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, $slug)
     {
         $id = $request->delete_data;
 
-        $partner = Partner::where('partner_id',$id)->delete();
+        $del=Partner::where('partner_status',1)->where('partner_id',$id)->delete();
 
-        if ($partner) {
+        if ($del) {
             Session::flash('success', 'Partner Delete successfully');
+            return redirect()->route('partner.index');
         } else {
             Session::flash('error', 'Partner Delete Failed!');
+            return redirect()->route('partner.index');
         }
-
-        return redirect()->route('partner.index');
     }
 }

@@ -20,7 +20,7 @@
 </div>
 </div>
 
-<-- Preloader Start -->
+{{--  Preloader Start  --}}
 <script>
     $(document).ready(function() {
     //Preloader
@@ -32,7 +32,7 @@
     hidePreloader();
     });
 </script>
-<-- Preloader End -->
+{{-- Preloader End --}}
 
 {{-- NOTIFICATION START --}}
 <script>
@@ -88,6 +88,15 @@
 <script src="{{ asset('admin') }}/assets/js/vendor.min.js"></script>
 <script src="{{ asset('admin') }}/assets/js/app.min.js"></script>
 @yield('admin-custrom-js')
+
+<!-- Datatables js -->
+<script src="{{ asset('admin') }}/assets/js/vendor/jquery.dataTables.min.js"></script>
+<script src="{{ asset('admin') }}/assets/js/vendor/dataTables.bootstrap5.js"></script>
+<script src="{{ asset('admin') }}/assets/js/vendor/dataTables.responsive.min.js"></script>
+<script src="{{ asset('admin') }}/assets/js/vendor/responsive.bootstrap5.min.js"></script>
+<script src="{{ asset('admin') }}/assets/js/pages/demo.datatable-init.js"></script>
+<!-- Delete Model Notification -->
+@include('admin.includes.delete_alert')
 </body>
 
 </html>

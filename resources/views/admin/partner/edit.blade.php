@@ -25,7 +25,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <form class="form-horizontal" action="{{ route('partner.update',$partner->partner_id) }}" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" action="{{ route('partner.update',$partner->partner_slug) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="card-header d-flex justify-content-between bg-dark text-light">
@@ -33,6 +33,7 @@
                     <a href="{{ route('partner.index') }}" class="btn btn-secondary btn-sm">All Partner</a>
                 </div>
                 <div class="card-body">
+                    <input type="hidden" name="partner_id" value="{{ $partner->partner_id}}">
                     <div class="row mb-3 mt-3">
                         <label for="name" class="col-3 col-form-label">Partner Title <strong
                                 class="text-danger">*</strong></label>
