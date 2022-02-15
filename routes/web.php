@@ -39,21 +39,28 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
 
     // USER ROUTE LIST
-    Route::resource('/user', UserController::class);
+    // Route::resource('/user', UserController::class);
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+    Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/user/{slug}', [UserController::class, 'store'])->name('user.store');
+    Route::get('/user/show/{slug}', [UserController::class, 'show'])->name('user.show');
+    Route::get('/user/edit/{slug}', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/user/{slug}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/user/{slug}', [UserController::class, 'destroy'])->name('user.destroy');
+    // ============ @@@@ ==============
     Route::post('/users/{id}/password', [UserController::class, 'password_update'])->name('user.password.update');
     Route::post('/users/{id}/image', [UserController::class, 'image_update'])->name('user.image.update');
     Route::delete('/users/{id}/delete', [UserController::class, 'softdelete'])->name('user.soft.delete');
 
     // ROLE ROUTE LIST
-    // Route::resource('/role', RoleController::class);
-    Route::get('/role',[RoleController::class, 'index'])->name('role.index');
-    Route::get('/role/create',[RoleController::class, 'create'])->name('role.create');
-    Route::post('/role',[RoleController::class, 'store'])->name('role.store');
-    Route::get('/role/show/{slug}',[RoleController::class, 'show'])->name('role.show');
-    Route::get('/role/edit/{slug}',[RoleController::class, 'edit'])->name('role.edit');
-    Route::put('/role/{slug}',[RoleController::class, 'update'])->name('role.update');
-    Route::delete('/role/{slug}',[RoleController::class, 'destory'])->name('role.destory');
-    
+    Route::get('/role', [RoleController::class, 'index'])->name('role.index');
+    Route::get('/role/create', [RoleController::class, 'create'])->name('role.create');
+    Route::post('/role', [RoleController::class, 'store'])->name('role.store');
+    Route::get('/role/show/{slug}', [RoleController::class, 'show'])->name('role.show');
+    Route::get('/role/edit/{slug}', [RoleController::class, 'edit'])->name('role.edit');
+    Route::put('/role/{slug}', [RoleController::class, 'update'])->name('role.update');
+    Route::delete('/role/{slug}', [RoleController::class, 'destory'])->name('role.destory');
+
     // BASIC ROUTE LIST
     Route::get('/basic', [ManageController::class, 'basic'])->name('admin.manage.basic');
     Route::post('/basic', [ManageController::class, 'basic_update'])->name('admin.manage.basic.update');
@@ -85,19 +92,19 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('/partner/{slug}', [PartnerController::class, 'destroy'])->name('partner.destroy');
 
     // CONTACT MESSAGE ROUTE LIST
-    Route::get('/contact-message',[ContactMesageController::class,'index'])->name('contact-message.index');
-    Route::get('/contact-message/show/{slug}',[ContactMesageController::class,'show'])->name('contact-message.show');
-    Route::delete('/contact-message/{slug}',[ContactMesageController::class,'destroy'])->name('contact-message.destroy');
+    Route::get('/contact-message', [ContactMesageController::class, 'index'])->name('contact-message.index');
+    Route::get('/contact-message/show/{slug}', [ContactMesageController::class, 'show'])->name('contact-message.show');
+    Route::delete('/contact-message/{slug}', [ContactMesageController::class, 'destroy'])->name('contact-message.destroy');
 
     // GALLERY CATEGORY ROUTE LIST
-    Route::get('/gallery-category',[GalleryCategoryController::class,'index'])->name('gallery-category.index');
-    Route::get('/gallery-category/create',[GalleryCategoryController::class,'create'])->name('gallery-category.create');
-    Route::post('/gallery-category',[GalleryCategoryController::class,'store'])->name('gallery-category.store');
-    Route::get('/gallery-category/show/{slug}',[GalleryCategoryController::class,'show'])->name('gallery-category.show');
-    Route::get('/gallery-category/edit/{slug}',[GalleryCategoryController::class,'edit'])->name('gallery-category.edit');
-    Route::put('/gallery-category/{slug}',[GalleryCategoryController::class,'update'])->name('gallery-category.update');
-    Route::delete('/gallery-category/{slug}',[GalleryCategoryController::class,'destroy'])->name('gallery-category.destroy');
-    
+    Route::get('/gallery-category', [GalleryCategoryController::class, 'index'])->name('gallery-category.index');
+    Route::get('/gallery-category/create', [GalleryCategoryController::class, 'create'])->name('gallery-category.create');
+    Route::post('/gallery-category', [GalleryCategoryController::class, 'store'])->name('gallery-category.store');
+    Route::get('/gallery-category/show/{slug}', [GalleryCategoryController::class, 'show'])->name('gallery-category.show');
+    Route::get('/gallery-category/edit/{slug}', [GalleryCategoryController::class, 'edit'])->name('gallery-category.edit');
+    Route::put('/gallery-category/{slug}', [GalleryCategoryController::class, 'update'])->name('gallery-category.update');
+    Route::delete('/gallery-category/{slug}', [GalleryCategoryController::class, 'destroy'])->name('gallery-category.destroy');
+
     // GALLERY ROUTE LIST
     Route::resource('/gallery', GalleryController::class);
 });
