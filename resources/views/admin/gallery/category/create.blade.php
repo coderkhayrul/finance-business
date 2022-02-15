@@ -45,6 +45,19 @@
                         </div>
                     </div>
                     <div class="row mb-3 mt-3">
+                        <label for="name" class="col-3 col-form-label">Gallery Category Url <strong
+                                class="text-danger">*</strong></label>
+                        <div class="col-9">
+                            <input type="text" value="{{ old('galcate_url') }}" class="form-control @error('galcate_url') is-invalid @enderror" id="galcate_url" name="galcate_url" placeholder="Category Name">
+                            @error('galcate_url')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 mt-3">
                         <label for="name" class="col-3 col-form-label">Gallery Category Remark <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">

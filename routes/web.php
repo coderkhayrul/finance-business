@@ -66,8 +66,6 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/banner/edit/{slug}', [BannerController::class, 'edit'])->name('banner.edit');
     Route::put('/banner/{slug}', [BannerController::class, 'update'])->name('banner.update');
     Route::delete('/banner/{slug}', [BannerController::class, 'destroy'])->name('banner.destroy');
-    // Route::post('/banner/soft-delete/{slug}', [BannerController::class, 'delete'])->name('banner.delete');
-    // Route::get('/banner/restore/{slug}', [BannerController::class, 'restore'])->name('banner.restore');
 
     // PARTNER ROUTE LIST
     Route::get('/partner', [PartnerController::class, 'index'])->name('partner.index');
@@ -77,18 +75,22 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/partner/edit/{slug}', [PartnerController::class, 'edit'])->name('partner.edit');
     Route::put('/partner/{slug}', [PartnerController::class, 'update'])->name('partner.update');
     Route::delete('/partner/{slug}', [PartnerController::class, 'destroy'])->name('partner.destroy');
-    // Route::post('/partner/soft-delete/{slug}', [PartnerController::class, 'delete'])->name('partner.delete');
-    // Route::get('/partner/restore/{slug}', [PartnerController::class, 'restore'])->name('partner.restore');
 
     // CONTACT MESSAGE ROUTE LIST
-    // Route::resource('/contact-message', ContactMesageController::class, ['only' => ['index', 'show', 'destroy']]);
     Route::get('/contact-message',[ContactMesageController::class,'index'])->name('contact-message.index');
     Route::get('/contact-message/show/{slug}',[ContactMesageController::class,'show'])->name('contact-message.show');
     Route::delete('/contact-message/{slug}',[ContactMesageController::class,'destroy'])->name('contact-message.destroy');
 
     // GALLERY CATEGORY ROUTE LIST
-    Route::resource('/gallery-category', GalleryCategoryController::class);
-
+    // Route::resource('/gallery-category', GalleryCategoryController::class);
+    Route::get('/gallery-category',[GalleryCategoryController::class,'index'])->name('gallery-category.index');
+    Route::get('/gallery-category/create',[GalleryCategoryController::class,'create'])->name('gallery-category.create');
+    Route::post('/gallery-category',[GalleryCategoryController::class,'store'])->name('gallery-category.store');
+    Route::get('/gallery-category/show/{slug}',[GalleryCategoryController::class,'show'])->name('gallery-category.show');
+    Route::get('/gallery-category/edit/{slug}',[GalleryCategoryController::class,'edit'])->name('gallery-category.edit');
+    Route::put('/gallery-category/{slug}',[GalleryCategoryController::class,'update'])->name('gallery-category.update');
+    Route::delete('/gallery-category/{slug}',[GalleryCategoryController::class,'destroy'])->name('gallery-category.destroy');
+    
     // GALLERY ROUTE LIST
     Route::resource('/gallery', GalleryController::class);
 });

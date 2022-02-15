@@ -33,6 +33,7 @@
                     <a href="{{ route('gallery-category.index') }}" class="btn btn-dark btn-sm"><i class="uil-scenery"></i> All Category</a>
                 </div>
                 <div class="card-body">
+                    <input type="hidden" name="galcate_id" value="{{ $gallery_category->galcate_id}}">
                     <div class="row mb-3 mt-3">
                         <label for="name" class="col-3 col-form-label">Gallery Category Name <strong
                                 class="text-danger">*</strong></label>
@@ -45,6 +46,19 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="row mb-3 mt-3">
+                        <label for="name" class="col-3 col-form-label">Gallery Category Url <strong
+                                class="text-danger">*</strong></label>
+                        <div class="col-9">
+                            <input type="text" value="{{ $gallery_category->galcate_url }}" class="form-control @error('galcate_url') is-invalid @enderror" id="galcate_url" name="galcate_url" placeholder="Category Url">
+                            @error('galcate_url')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
                     <div class="row mb-3 mt-3">
                         <label for="name" class="col-3 col-form-label">Gallery Category Remark <strong
                                 class="text-danger">*</strong></label>
