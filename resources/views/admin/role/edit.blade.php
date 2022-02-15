@@ -31,10 +31,11 @@
                 <a href="{{ route('role.index') }}" class="btn btn-dark btn-sm"><i class="dripicons-tagss"></i> All Role</a>
             </div>
             <div class="card-body">
-                <form class="form-horizontal" action="{{ route('role.update',$role->id) }}" method="POST"
+                <form class="form-horizontal" action="{{ route('role.update',$role->role_slug) }}" method="POST"
                     id="update-form">
                     @csrf
                     @method('PUT')
+                    <input type="hidden" name="id" value="{{ $role->id }}">
                     <div class="row mb-3 mt-3">
                         <label for="inputEmail3" class="col-3 col-form-label">Name <strong
                                 class="text-danger">*</strong></label>

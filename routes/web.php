@@ -45,7 +45,15 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('/users/{id}/delete', [UserController::class, 'softdelete'])->name('user.soft.delete');
 
     // ROLE ROUTE LIST
-    Route::resource('/role', RoleController::class);
+    // Route::resource('/role', RoleController::class);
+    Route::get('/role',[RoleController::class, 'index'])->name('role.index');
+    Route::get('/role/create',[RoleController::class, 'create'])->name('role.create');
+    Route::post('/role',[RoleController::class, 'store'])->name('role.store');
+    Route::get('/role/show/{slug}',[RoleController::class, 'show'])->name('role.show');
+    Route::get('/role/edit/{slug}',[RoleController::class, 'edit'])->name('role.edit');
+    Route::put('/role/{slug}',[RoleController::class, 'update'])->name('role.update');
+    Route::delete('/role/{slug}',[RoleController::class, 'destory'])->name('role.destory');
+    
     // BASIC ROUTE LIST
     Route::get('/basic', [ManageController::class, 'basic'])->name('admin.manage.basic');
     Route::post('/basic', [ManageController::class, 'basic_update'])->name('admin.manage.basic.update');
@@ -82,7 +90,6 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('/contact-message/{slug}',[ContactMesageController::class,'destroy'])->name('contact-message.destroy');
 
     // GALLERY CATEGORY ROUTE LIST
-    // Route::resource('/gallery-category', GalleryCategoryController::class);
     Route::get('/gallery-category',[GalleryCategoryController::class,'index'])->name('gallery-category.index');
     Route::get('/gallery-category/create',[GalleryCategoryController::class,'create'])->name('gallery-category.create');
     Route::post('/gallery-category',[GalleryCategoryController::class,'store'])->name('gallery-category.store');

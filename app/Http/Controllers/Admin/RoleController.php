@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleRequest;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -22,7 +23,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::where('role_status',1)->orderBy('id', 'DESC')->get();
         return view('admin.role.index', compact('roles'));
     }
 
@@ -42,15 +43,22 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RoleRequest $request)
+    public function store(Request $request)
     {
-        $role = new Role();
-        $role->role_name = $request->role_name;
-        $role->role_slug = Str::slug($request->role_name, '-');
-        $role->role_status = 1;
-        $role->save();
-        Session::flash('success', 'Role Create Successfully!');
-        return redirect()->back();
+        $slug = Str::slug($request['role_name'], '-');
+        $insert = Role::insertGetId([
+            'role_name' => $request['role_name'],
+            'role_slug' => $slug,
+            'role_status' => 1,
+            'created_at' => Carbon::now()->toDateTimeString()
+        ]);
+        if ($insert) {
+            Session::flash('success', 'Role Create Successfully!');
+            return redirect()->back();
+        }else {
+            Session::flash('error', 'Role Create Failed!');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -70,8 +78,9 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Role $role, $slug)
     {
+        $role = Role::where('role_status', 1)->where('role_slug', $slug)->firstOrFail();
         return view('admin.role.edit', compact('role'));
     }
 
@@ -82,10 +91,16 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(RoleRequest $request, Role $role)
+    public function update(Request $request, $id, $slug)
     {
-        $role->role_name = $request->role_name;
-        $role->update();
+        $id = $request->id;
+        $slug = Str::slug($request['role_slug'], '-');
+        $update = Role::where('id', $id)->update([
+            'role_name' => $request['role_name'],
+            'role_slug' => $slug,
+            'updated_at' => Carbon::now()->toDateTimeString()
+        ]);
+        
         Session::flash('success', 'Role updated successfully');
         return redirect()->route('role.index');
     }

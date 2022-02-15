@@ -51,7 +51,7 @@
                                 <td class="table-action">
                                     <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage</button>
                                     <div class="dropdown-menu">
-                                        <a href="{{ route('role.edit',$role->id) }}" class="dropdown-item"> <i class="mdi mdi-pencil"></i> Edit</a>
+                                        <a href="{{ route('role.edit',$role->role_slug) }}" class="dropdown-item"> <i class="mdi mdi-pencil"></i> Edit</a>
 
                                     <a href="#" class="dropdown-item text-danger" title="Delete" onclick="event.preventDefault();">
                                         <i class="mdi mdi-delete" ></i> Delete</a>
