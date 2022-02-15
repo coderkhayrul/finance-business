@@ -36,6 +36,7 @@
                             <th>Title</th>
                             <th>Order By</th>
                             <th>Creator</th>
+                            <th>Published</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -55,6 +56,13 @@
                             <td>{{ $gallery->gallery_title }}</td>
                             <td>{{ $gallery->gallery_order }}</td>
                             <td>{{ $gallery->user->name }}</td>
+                            <td>
+                                    @if ($gallery->gallery_publish === 1)
+                                    <span class="badge badge-success-lighten">Published</span>
+                                    @else
+                                    <span class="badge badge-danger-lighten">Unpublished</span>
+                                    @endif
+                                </td>
                             <td>
                                 @if ($gallery->gallery_status == 1)
                                 <span class="badge badge-success-lighten">Active</span>

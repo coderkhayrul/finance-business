@@ -91,9 +91,10 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $gallery = Gallery::where('gallery_slug', $slug)->where('gallery_status', 1)->firstOrFail();
+        return view('admin.gallery.show', compact('gallery'));
     }
 
     /**
@@ -102,9 +103,11 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $gallery = Gallery::where('gallery_status', 1)->where('gallery_slug', $slug)->firstOrFail();
+        $categories = GalleryCategory::where('galcate_status', 1)->orderBy('galcate_id', 'DESC')->get();
+        return view('admin.gallery.edit', compact('gallery', 'categories'));
     }
 
     /**
@@ -114,9 +117,39 @@ class GalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $this->validate($request, [
+            'gallery_title' => 'required'
+        ]);
+        $id = $request['gallery_id'];
+        $editor = Auth::user()->id;
+        $update = Gallery::where('gallery_status', 1)->where('gallery_id', $id)->update([
+            'gallery_title' => $request['gallery_title'],
+            'gallery_remarks' => $request['gallery_remarks'],
+            'gallery_order' => $request['gallery_order'],
+            'gallery_category_id' => $request['gallery_category_id'],
+            'gallery_editor' => $editor
+        ]);
+
+        // GALLERY IMAGE UPDATE
+        if ($request->hasFile('gallery_image')) {
+            $image = $request->file('gallery_image');
+            $imageName = $id . time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('uploads/gallery/' . $imageName);
+
+            Gallery::where('gallery_id', $id)->update([
+                'gallery_image' => $imageName,
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ]);
+        }
+        if ($update) {
+            Session::flash('success', 'Successfully upload Gallery information.');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'please try again.');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -127,12 +160,14 @@ class GalleryController extends Controller
      */
     public function destroy(Request $request)
     {
-        $delete = Gallery::where('gallery_id', $request->delete_data)->delete();
+        $delete = Gallery::where('gallery_status', 1)->where('gallery_id', $request->delete_data)->delete();
+
         if ($delete) {
             Session::flash('success', 'Galley Deleted successfully');
+            return redirect()->back();
         } else {
             Session::flash('error', 'Galley Delete Failed!');
+            return redirect()->back();
         }
-        return redirect()->back();
     }
 }
