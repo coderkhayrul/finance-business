@@ -66,9 +66,9 @@
                                 <button type="button" class="btn btn-primary dropdown-toggle btn-sm"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage</button>
                                 <div class="dropdown-menu">
-                                    <a href="{{ route('partner.show',$gallery->gallery_id) }}" class="dropdown-item"> <i
+                                    <a href="{{ route('gallery.show',$gallery->gallery_slug) }}" class="dropdown-item"> <i
                                             class="mdi mdi-eye"></i> Show</a>
-                                    <a href="{{ route('partner.edit',$gallery->gallery_id) }}" class="dropdown-item"> <i
+                                    <a href="{{ route('gallery.edit',$gallery->gallery_slug) }}" class="dropdown-item"> <i
                                             class="mdi mdi-pencil"></i> Edit</a>
                                     <a href="#" data-bs-toggle="modal" data-value="{{ $gallery->gallery_id }}"
                                         data-bs-target="#deleteModal" class=" text-danger delete-modal dropdown-item">
@@ -90,7 +90,7 @@
                                         Do you really want to delete these records? This process cannot be undone.
                                     </div>
                                     <div class="modal-footer">
-                                        <form action="{{ route('gallery.destroy',$gallery->gallery_id) }}"
+                                        <form action="{{ route('gallery.destroy',$gallery->gallery_slug) }}"
                                             method="post">
                                             @csrf
                                             @method('DELETE')

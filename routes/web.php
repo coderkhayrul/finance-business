@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Website\WebsiteController;
 use App\Models\ContactMessage;
+use App\Models\GalleryCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -106,5 +107,12 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('/gallery-category/{slug}', [GalleryCategoryController::class, 'destroy'])->name('gallery-category.destroy');
 
     // GALLERY ROUTE LIST
-    Route::resource('/gallery', GalleryController::class);
+    // Route::resource('/gallery', GalleryController::class);
+    Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+    Route::get('/gallery/create', [GalleryController::class, 'create'])->name('gallery.create');
+    Route::post('/gallery', [GalleryController::class, 'store'])->name('gallery.store');
+    Route::get('/gallery/show/{slug}', [GalleryController::class, 'show'])->name('gallery.show');
+    Route::get('/gallery/edit/{slug}', [GalleryController::class, 'edit'])->name('gallery.edit');
+    Route::put('/gallery/{slug}', [GalleryController::class, 'update'])->name('gallery.update');
+    Route::delete('/gallery/{slug}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
 });

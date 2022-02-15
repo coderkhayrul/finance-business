@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Gallery;
 use App\Models\GalleryCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -20,7 +21,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $gallerys = Gallery::all();
+        $gallerys = Gallery::where('gallery_status', 1)->orderBy('gallery_id', 'DESC')->get();
         return view('admin.gallery.index', compact('gallerys'));
     }
 
@@ -45,38 +46,43 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'gallery_title' => 'required',
-            'gallery_order' => 'required',
-            'gallery_category_id' => 'required',
+            'gallery_title' => 'required|string',
+            'gallery_category_id' => 'required|numeric',
+            'gallery_image' => 'required',
         ]);
 
-        // Gallery Image
-        if ($request->hasFile('gallery_image')) {
-            $galleryImage = $request->file('gallery_image');
-            $galleryName = time() . '_' . rand(100000, 10000000) . '.' . $galleryImage->getClientOriginalExtension();
-            Image::make($galleryImage)->save('uploads/gallery/' . $galleryName);
-        } else {
-            $galleryName = null;
-        }
-
-        $galley_store = Gallery::create([
+        $gallery_creator = Auth()->user()->id;
+        $slug = "G" . uniqid();
+        $insert = Gallery::insertGetId([
             'gallery_title' => $request->gallery_title,
             'gallery_remarks' => $request->gallery_remarks,
             'gallery_order' => $request->gallery_order,
             'gallery_category_id' => $request->gallery_category_id,
-
-            'gallery_publish' => 1,
-            'gallery_creator' => Auth::id(),
-            'gallery_slug' => Str::slug(Str::random(20), '-'),
-            'gallery_image' => $galleryName,
+            'gallery_publish' => 0,
+            'gallery_creator' => $gallery_creator,
+            'gallery_slug' => $slug,
             'gallery_status' => 1,
+            'created_at' => Carbon::now()->toDateTimeString()
         ]);
-        if ($galley_store) {
+        // Gallery Image Upload
+        if ($request->hasFile('gallery_image')) {
+            $image = $request->file('gallery_image');
+            $imageName = $insert . time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('uploads/gallery/' . $imageName);
+
+            Gallery::where('gallery_id', $insert)->update([
+                'gallery_image' => $imageName,
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ]);
+        }
+
+        if ($insert) {
             Session::flash('success', 'Galley Created successfully');
+            return redirect()->back();
         } else {
             Session::flash('error', 'Galley Created Failed!');
+            return redirect()->back();
         }
-        return redirect()->back();
     }
 
     /**
