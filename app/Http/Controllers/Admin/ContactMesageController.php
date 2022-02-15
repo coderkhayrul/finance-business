@@ -16,7 +16,7 @@ class ContactMesageController extends Controller
      */
     public function index()
     {
-        $contactmessages = ContactMessage::all();
+        $contactmessages = ContactMessage::where('cm_status', 1)->orderBy('cm_id', 'DESC')->get();
         return view('admin.contactmessage.index', compact('contactmessages'));
     }
 
@@ -26,9 +26,9 @@ class ContactMesageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $contactmessage = ContactMessage::where('cm_id', $id)->firstOrFail();
+        $contactmessage = ContactMessage::where('cm_slug', $slug)->firstOrFail();
         return view('admin.contactmessage.show', compact('contactmessage'));
     }
 
@@ -38,7 +38,7 @@ class ContactMesageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request,$slug)
     {
         $contactmessage = ContactMessage::where('cm_id', $request->delete_data)->delete();
         if ($contactmessage) {

@@ -81,7 +81,10 @@ Route::prefix('dashboard')->group(function () {
     // Route::get('/partner/restore/{slug}', [PartnerController::class, 'restore'])->name('partner.restore');
 
     // CONTACT MESSAGE ROUTE LIST
-    Route::resource('/contact-message', ContactMesageController::class, ['only' => ['index', 'show', 'destroy']]);
+    // Route::resource('/contact-message', ContactMesageController::class, ['only' => ['index', 'show', 'destroy']]);
+    Route::get('/contact-message',[ContactMesageController::class,'index'])->name('contact-message.index');
+    Route::get('/contact-message/show/{slug}',[ContactMesageController::class,'show'])->name('contact-message.show');
+    Route::delete('/contact-message/{slug}',[ContactMesageController::class,'destroy'])->name('contact-message.destroy');
 
     // GALLERY CATEGORY ROUTE LIST
     Route::resource('/gallery-category', GalleryCategoryController::class);
