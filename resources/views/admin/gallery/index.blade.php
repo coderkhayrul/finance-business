@@ -62,7 +62,7 @@
                                     @else
                                     <span class="badge badge-danger-lighten">Unpublished</span>
                                     @endif
-                                </td>
+                            </td>
                             <td>
                                 @if ($gallery->gallery_status == 1)
                                 <span class="badge badge-success-lighten">Active</span>
