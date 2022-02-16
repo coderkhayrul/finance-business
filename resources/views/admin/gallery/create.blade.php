@@ -92,7 +92,7 @@
                             <input type="file" id="example-fileinput" name="gallery_image" class="form-control">
                         </div>
                         <div class="col-3 text-center">
-                            <img id="preview-image" src="{{ asset('uploads/no image.png') }}" alt="image" class="img-fluid rounded" width="100"/>
+                            <img id="preview-image" src="{{ asset('uploads/noimage.png') }}" alt="image" class="img-fluid rounded" width="100"/>
                         </div>
                     </div>
                 </div>
