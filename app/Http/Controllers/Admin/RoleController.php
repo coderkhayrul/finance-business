@@ -94,7 +94,7 @@ class RoleController extends Controller
     public function update(Request $request, $id, $slug)
     {
         $id = $request->id;
-        $slug = Str::slug($request['role_slug'], '-');
+        $slug = Str::slug($request['role_name'], '-');
         $update = Role::where('id', $id)->update([
             'role_name' => $request['role_name'],
             'role_slug' => $slug,
