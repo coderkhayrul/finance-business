@@ -1,13 +1,11 @@
 <div class="leftside-menu">
 
     <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-light">
+    <a href="{{ url('dashboard') }}" class="logo text-center logo-light">
         <span class="logo-lg">
-            {{-- <img src="{{ asset('admin') }}/assets/images/logo.png" alt="" height="16"> --}}
             <h3><strong>FINANCE</strong></h3>
         </span>
         <span class="logo-sm">
-            {{-- <img src="{{ asset('admin') }}/assets/images/logo_sm.png" alt="" height="16"> --}}
             <h3><strong>FINANCE</strong></h3>
         </span>
     </a>
@@ -58,6 +56,18 @@
                 <a href="{{ route('partner.index') }}" class="side-nav-link">
                     <i class="uil-symbol"></i>
                     <span> PARTNERS </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a href="{{ route('testimonial.index') }}" class="side-nav-link">
+                    <i class="uil-bag"></i>
+                    <span> TESTIMONAIL </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a href="#" class="side-nav-link">
+                    <i class="uil-yellow"></i>
+                    <span> SERVICES </span>
                 </a>
             </li>
             <li class="side-nav-item">

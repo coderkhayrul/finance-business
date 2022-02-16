@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Website\WebsiteController;
 use App\Models\ContactMessage;
 use App\Models\GalleryCategory;
@@ -107,7 +108,6 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('/gallery-category/{slug}', [GalleryCategoryController::class, 'destroy'])->name('gallery-category.destroy');
 
     // GALLERY ROUTE LIST
-    // Route::resource('/gallery', GalleryController::class);
     Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
     Route::get('/gallery/create', [GalleryController::class, 'create'])->name('gallery.create');
     Route::post('/gallery', [GalleryController::class, 'store'])->name('gallery.store');
@@ -115,4 +115,22 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/gallery/edit/{slug}', [GalleryController::class, 'edit'])->name('gallery.edit');
     Route::put('/gallery/{slug}', [GalleryController::class, 'update'])->name('gallery.update');
     Route::delete('/gallery/{slug}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+
+    // TESTIMONIAL ROUTE LIST
+    Route::get('/testimonial', [TestimonialController::class, 'index'])->name('testimonial.index');
+    Route::get('/testimonial/create', [TestimonialController::class, 'create'])->name('testimonial.create');
+    Route::post('/testimonial', [TestimonialController::class, 'store'])->name('testimonial.store');
+    Route::get('/testimonial/show/{slug}', [TestimonialController::class, 'show'])->name('testimonial.show');
+    Route::get('/testimonial/edit/{slug}', [TestimonialController::class, 'edit'])->name('testimonial.edit');
+    Route::put('/testimonial/{slug}', [TestimonialController::class, 'update'])->name('testimonial.update');
+    Route::delete('/testimonial/{slug}', [TestimonialController::class, 'destroy'])->name('testimonial.destroy');
+
+    // SERVICE ROUTE LIST
+    // Route::get('/service', [TestimonialController::class, 'index'])->name('service.index');
+    // Route::get('/service/create', [TestimonialController::class, 'create'])->name('service.create');
+    // Route::post('/service', [TestimonialController::class, 'store'])->name('service.store');
+    // Route::get('/service/show/{slug}', [TestimonialController::class, 'show'])->name('service.show');
+    // Route::get('/service/edit/{slug}', [TestimonialController::class, 'edit'])->name('service.edit');
+    // Route::put('/service/{slug}', [TestimonialController::class, 'update'])->name('service.update');
+    // Route::delete('/service/{slug}', [TestimonialController::class, 'destroy'])->name('service.destroy');
 });
