@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Testimonial extends Model
 {
     use HasFactory;
-    
+
     protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'tm_creator', 'id');
+    }
 }

@@ -12,7 +12,8 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class TestimonialController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
     /**
@@ -22,7 +23,7 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        $testimonials = Testimonial::where('tm_status',1)->orderBy('tm_id', 'DESC')->get();
+        $testimonials = Testimonial::where('tm_status', 1)->orderBy('tm_id', 'DESC')->get();
         return view('admin.testimonial.index', compact('testimonials'));
     }
 
@@ -44,17 +45,20 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'tm_name' => 'required',
-            'tm_image' => 'required',
-        ],
-        [
-            'tm_name.required' => 'Please Enter Testimonial Name',
-            'tm_image.required' => 'Please Upload Image'
-        ]);
+        $this->validate(
+            $request,
+            [
+                'tm_name' => 'required',
+                'tm_image' => 'required',
+            ],
+            [
+                'tm_name.required' => 'Please Enter Testimonial Name',
+                'tm_image.required' => 'Please Upload Image'
+            ]
+        );
 
         $creator = Auth::user()->id;
-        $slug = "TM". uniqid();
+        $slug = "TM" . uniqid();
         $insert = Testimonial::insertGetId([
             'tm_name' => $request['tm_name'],
             'tm_designation' => $request['tm_designation'],
@@ -72,14 +76,14 @@ class TestimonialController extends Controller
         if ($request->hasFile('tm_image')) {
             $image = $request->file('tm_image');
             $imageName = $insert . time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->save('uploads/testimonial/'. $imageName);
+            Image::make($image)->save('uploads/testimonial/' . $imageName);
 
             Testimonial::where('tm_id', $insert)->update([
                 'tm_image' => $imageName,
                 'updated_at' => Carbon::now()->toDateTimeString(),
             ]);
         }
-        
+
         if ($insert) {
             Session::flash('success', 'Testimonial Created successfully');
             return redirect()->back();
@@ -95,9 +99,10 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $data = Testimonial::where('tm_status', 1)->where('tm_slug', $slug)->firstOrFail();
+        return view('admin.testimonial.show', compact('data'));
     }
 
     /**
@@ -106,9 +111,10 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $data = Testimonial::where('tm_status', 1)->where('tm_slug', $slug)->firstOrFail();
+        return view('admin.testimonial.edit', compact('data'));
     }
 
     /**
@@ -118,9 +124,9 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        return $request->all();
     }
 
     /**
@@ -129,8 +135,16 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $slug)
     {
-        //
+        $id = $request->get('delete_data');
+        $delete = Testimonial::where('tm_id', $id)->where('tm_slug', $slug)->delete();
+        if ($delete) {
+            Session::flash('success', 'Testimonial Delete successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Testimonial Delete Failed!');
+            return redirect()->back();
+        }
     }
 }

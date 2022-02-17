@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="image" class="col-3 col-form-label">Partner Logo Upload</label>
+                        <label for="image" class="col-3 col-form-label">Image Upload</label>
                         <div class="col-6">
                             <input type="file" id="example-fileinput" name="tm_image" class="form-control @error('tm_image') is-invalid @enderror">
                             @error('tm_image')
