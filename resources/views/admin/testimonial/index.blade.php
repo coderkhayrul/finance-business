@@ -83,7 +83,7 @@
                                             Do you really want to delete these records? This process cannot be undone.
                                         </div>
                                         <div class="modal-footer">
-                                            <form action="{{ route('partner.destroy',$partner->partner_slug) }}" method="post">
+                                            <form action="{{ route('testimonial.destroy',$data->tm_slug) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
