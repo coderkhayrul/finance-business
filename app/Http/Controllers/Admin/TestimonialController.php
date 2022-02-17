@@ -126,7 +126,39 @@ class TestimonialController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        return $request->all();
+        $this->validate($request, [
+            'tm_name' => 'required|string|max:255'
+        ]);
+
+        $editor = Auth::user()->id;
+        $update = Testimonial::where('tm_status', 1)->where('tm_slug', $slug)->update([
+            'tm_name' => $request['tm_name'],
+            'tm_designation' => $request['tm_designation'],
+            'tm_company' => $request['tm_company'],
+            'tm_order' => $request['tm_order'],
+            'tm_feedback' => $request['tm_name'],
+            'tm_editor' => $editor,
+        ]);
+
+        // Testimonial Image Upload
+        if ($request->hasFile('tm_image')) {
+            $image = $request->file('tm_image');
+            $imageName = $update . time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('uploads/testimonial/' . $imageName);
+
+            Testimonial::where('tm_id', $update)->update([
+                'tm_image' => $imageName,
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ]);
+        }
+
+        if ($update) {
+            Session::flash('success', 'Testimonial Updated successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Testimonial Update Failed!');
+            return redirect()->back();
+        }
     }
 
     /**
