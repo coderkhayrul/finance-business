@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Website\WebsiteController;
 use App\Models\ContactMessage;
@@ -126,11 +127,11 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('/testimonial/{slug}', [TestimonialController::class, 'destroy'])->name('testimonial.destroy');
 
     // SERVICE ROUTE LIST
-    // Route::get('/service', [TestimonialController::class, 'index'])->name('service.index');
-    // Route::get('/service/create', [TestimonialController::class, 'create'])->name('service.create');
-    // Route::post('/service', [TestimonialController::class, 'store'])->name('service.store');
-    // Route::get('/service/show/{slug}', [TestimonialController::class, 'show'])->name('service.show');
-    // Route::get('/service/edit/{slug}', [TestimonialController::class, 'edit'])->name('service.edit');
-    // Route::put('/service/{slug}', [TestimonialController::class, 'update'])->name('service.update');
-    // Route::delete('/service/{slug}', [TestimonialController::class, 'destroy'])->name('service.destroy');
+    Route::get('/services', [ServiceController::class, 'index'])->name('service.index');
+    Route::get('/service/create', [ServiceController::class, 'create'])->name('service.create');
+    Route::post('/service', [ServiceController::class, 'store'])->name('service.store');
+    Route::get('/service/show/{slug}', [ServiceController::class, 'show'])->name('service.show');
+    Route::get('/service/edit/{slug}', [ServiceController::class, 'edit'])->name('service.edit');
+    Route::put('/service/{slug}', [ServiceController::class, 'update'])->name('service.update');
+    Route::delete('/service/{slug}', [ServiceController::class, 'destroy'])->name('service.destroy');
 });

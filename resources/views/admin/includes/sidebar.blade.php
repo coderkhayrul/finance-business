@@ -65,7 +65,7 @@
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="#" class="side-nav-link">
+                <a href="{{ route('service.index') }}" class="side-nav-link">
                     <i class="uil-yellow"></i>
                     <span> SERVICES </span>
                 </a>
