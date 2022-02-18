@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -14,7 +15,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::where('service_status', 1)->orderBy('service_id', 'DESC')->get();
+        return view('admin.service.index', compact('services'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.service.create');
     }
 
     /**
@@ -35,7 +37,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
