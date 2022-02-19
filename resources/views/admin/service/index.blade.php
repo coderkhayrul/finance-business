@@ -35,7 +35,7 @@
                         <tr>
                             <th>Service</th>
                             <th>Order</th>
-                            <th>Icon</th>
+                            <th class="text-center">Icon</th>
                             <th>Image</th>
                             <th>Status</th>
                             <th>Manage</th>
@@ -47,9 +47,9 @@
 
                                 <td>{{ $data['service_title'] }}</td>
                                 <td>{{ $data['service_order'] }}</td>
-                                <td>{{ $data['service_icon'] }}</td>
+                                <td class="text-center">{!! $data['service_icon'] !!}</td>
                                 <td>
-                                    @if ($data->image_image)
+                                    @if ($data->service_image)
                                     <img src="{{ asset('uploads/service/'.$data['service_image']) }}" alt="image" class="img-fluid avatar-sm rounded">
                                     @else
                                     <img src="{{ asset('uploads/noimage.png') }}" alt="image" class="img-fluid avatar-sm rounded">
