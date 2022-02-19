@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Website\WebsiteController;
 use App\Models\ContactMessage;
@@ -37,11 +38,11 @@ Route::get('/contact-us', [WebsiteController::class, 'contactus'])->name('websit
 
 // Admin Route List
 Route::prefix('dashboard')->group(function () {
-    // ROOT ROUTE
+    
+    // ROOT ROUTE DASHBOARD
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
 
     // USER ROUTE LIST
-    // Route::resource('/user', UserController::class);
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
     Route::post('/user/{slug}', [UserController::class, 'store'])->name('user.store');
@@ -49,7 +50,7 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/user/edit/{slug}', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/{slug}', [UserController::class, 'update'])->name('user.update');
     Route::delete('/user/{slug}', [UserController::class, 'destroy'])->name('user.destroy');
-    // ============ @@@@ ==============
+    // ============ EXTRA ==============
     Route::post('/users/{id}/password', [UserController::class, 'password_update'])->name('user.password.update');
     Route::post('/users/{id}/image', [UserController::class, 'image_update'])->name('user.image.update');
     Route::delete('/users/{id}/delete', [UserController::class, 'softdelete'])->name('user.soft.delete');
@@ -126,11 +127,11 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('/testimonial/{slug}', [TestimonialController::class, 'destroy'])->name('testimonial.destroy');
 
     // SERVICE ROUTE LIST
-    // Route::get('/service', [TestimonialController::class, 'index'])->name('service.index');
-    // Route::get('/service/create', [TestimonialController::class, 'create'])->name('service.create');
-    // Route::post('/service', [TestimonialController::class, 'store'])->name('service.store');
-    // Route::get('/service/show/{slug}', [TestimonialController::class, 'show'])->name('service.show');
-    // Route::get('/service/edit/{slug}', [TestimonialController::class, 'edit'])->name('service.edit');
-    // Route::put('/service/{slug}', [TestimonialController::class, 'update'])->name('service.update');
-    // Route::delete('/service/{slug}', [TestimonialController::class, 'destroy'])->name('service.destroy');
+    Route::get('/services', [ServiceController::class, 'index'])->name('service.index');
+    Route::get('/service/create', [ServiceController::class, 'create'])->name('service.create');
+    Route::post('/service', [ServiceController::class, 'store'])->name('service.store');
+    Route::get('/service/show/{slug}', [ServiceController::class, 'show'])->name('service.show');
+    Route::get('/service/edit/{slug}', [ServiceController::class, 'edit'])->name('service.edit');
+    Route::put('/service/{slug}', [ServiceController::class, 'update'])->name('service.update');
+    Route::delete('/service/{slug}', [ServiceController::class, 'destroy'])->name('service.destroy');
 });
