@@ -155,6 +155,7 @@ class PartnerController extends Controller
                 'updated_at' => Carbon::now()->toDateTimeString(),
             ]);
         }
+
         if ($update) {
             Session::flash('success', 'Successfully update partner information.');
             return back();

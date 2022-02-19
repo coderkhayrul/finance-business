@@ -129,6 +129,7 @@ class BannerController extends Controller
         ], [
             'ban_title.required' => 'Please enter banner title!',
         ]);
+
         $id = $request->ban_id;
         $editor = Auth::user()->id;
         $update = Banner::where('ban_status', 1)->where('ban_id', $id)->where('ban_slug', $slug)->update([
@@ -139,6 +140,7 @@ class BannerController extends Controller
             'ban_order' => $request['ban_order'],
             'ban_editor' => $editor,
             'ban_status' => 1,
+            'updated_at' => Carbon::now()->toDateTimeString()
         ]);
         if ($request->hasFile('ban_image')) {
             $image = $request->file('ban_image');
@@ -153,10 +155,11 @@ class BannerController extends Controller
 
         if ($update) {
             Session::flash('success', 'Banner Update successfully');
+            return redirect()->back();
         } else {
             Session::flash('error', 'Banner Update Failed!');
+            return redirect()->back();
         }
-        return redirect()->back();
     }
 
     /**
