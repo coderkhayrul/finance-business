@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Website\WebsiteController;
 use App\Models\ContactMessage;
@@ -134,4 +135,13 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/service/edit/{slug}', [ServiceController::class, 'edit'])->name('service.edit');
     Route::put('/service/{slug}', [ServiceController::class, 'update'])->name('service.update');
     Route::delete('/service/{slug}', [ServiceController::class, 'destroy'])->name('service.destroy');
+
+    // TEAM MEMBER ROUTE LIST
+    Route::get('/team-member', [TeamMemberController::class, 'index'])->name('team-member.index');
+    Route::get('/team-member/create', [TeamMemberController::class, 'create'])->name('team-member.create');
+    Route::post('/team-member', [TeamMemberController::class, 'store'])->name('team-member.store');
+    Route::get('/team-member/show/{slug}', [TeamMemberController::class, 'show'])->name('team-member.show');
+    Route::get('/team-member/edit/{slug}', [TeamMemberController::class, 'edit'])->name('team-member.edit');
+    Route::put('/team-member/{slug}', [TeamMemberController::class, 'update'])->name('team-member.update');
+    Route::delete('/team-member/{slug}', [TeamMemberController::class, 'destroy'])->name('team-member.destroy');
 });

@@ -71,6 +71,12 @@
                 </a>
             </li>
             <li class="side-nav-item">
+                <a href="{{ route('team-member.index') }}" class="side-nav-link">
+                    <i class="uil-trademark-circle"></i>
+                    <span> TEAM MEMBER </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarGallery" aria-expanded="false" aria-controls="sidebaruUser"
                     class="side-nav-link">
                     <i class="uil-images"></i>
