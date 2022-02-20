@@ -16,7 +16,7 @@ class TeamMemberController extends Controller
     public function index()
     {
         $teammember = TeamMember::where('team_status',1)->where('team_id', 'DESC')->get();
-        return view('admin.teammember.index');
+        return view('admin.teammember.index', compact('teammember'));
     }
 
     /**
@@ -26,7 +26,7 @@ class TeamMemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.teammember.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class TeamMemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
