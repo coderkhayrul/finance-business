@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\TeamMember;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class TeamMemberController extends Controller
 {
@@ -15,7 +19,7 @@ class TeamMemberController extends Controller
      */
     public function index()
     {
-        $teammember = TeamMember::where('team_status',1)->where('team_id', 'DESC')->get();
+        $teammember = TeamMember::where('team_status',1)->orderBy('team_id', 'DESC')->get();
         return view('admin.teammember.index', compact('teammember'));
     }
 
@@ -37,7 +41,53 @@ class TeamMemberController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $this->validate($request,[
+            'team_name' => 'required',
+            'team_image' => 'required',
+            ],        
+            [
+                'team_name.required' => 'Please Enter You Name',
+                'team_image.required' => 'Image Must Me Upload',
+            ]
+        );
+
+        $slug = "TM" . uniqid();
+        $creator = Auth::user()->id;
+        
+        $insert = TeamMember::insertGetId([
+            'team_name' => $request['team_name'],
+            'team_designation' => $request['team_designation'],
+            'team_facebook' => $request['team_facebook'],
+            'team_twitter' => $request['team_twitter'],
+            'team_linkedin' => $request['team_linkedin'],
+            'team_instragram' => $request['team_instragram'],
+            'team_remarks' => $request['team_remarks'],
+            'team_order' => $request['team_order'],
+            'team_order' => $request['team_order'],
+            'team_creator' => $creator,
+            'team_slug' => $slug,
+            'team_status' => 1,
+            'created_at' => Carbon::now()->toDateTimeString()
+        ]);
+
+        // Team Member Upload Image 
+        if ($request->hasFile('team_image')) {
+            $image = $request->file('team_image');
+            $imageName = $insert . time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('uploads/teammember/' . $imageName);
+
+            TeamMember::where('team_id', $insert)->update([
+                'team_image' => $imageName,
+                'created_at' => Carbon::now()->toDateTimeString(),
+            ]);
+        }
+        if ($insert) {
+            Session::flash('success', 'Team Member Created successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Team Member Created Failed!');
+            return redirect()->back();
+        }
     }
 
     /**

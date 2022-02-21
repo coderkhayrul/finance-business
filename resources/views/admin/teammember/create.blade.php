@@ -29,7 +29,7 @@
                 @csrf
                 <div class="card-header d-flex justify-content-between">
                     <strong class="fs-4"> <i class="uil-trademark-circle"></i> New Team Member Create</strong>
-                    <a href="{{ route('testimonial.index') }}" class="btn btn-dark btn-sm"><i class="uil-trademark-circle"></i> All Team Member</a>
+                    <a href="{{ route('team-member.index') }}" class="btn btn-dark btn-sm"><i class="uil-trademark-circle"></i> All Team Member</a>
                 </div>
                 <div class="card-body">
                     <div class="row mb-3 mt-3">
@@ -125,8 +125,8 @@
                         <label for="email" class="col-3 col-form-label">Order By <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="number" value="{{ old('tm_order') }}" class="form-control @error('tm_order') is-invalid @enderror" id="tm_order" name="tm_order" placeholder="Team Member Order">
-                            @error('tm_order')
+                            <input type="number" value="{{ old('team_order') }}" class="form-control @error('team_order') is-invalid @enderror" id="team_order" name="team_order" placeholder="Team Member Order">
+                            @error('team_order')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -150,8 +150,8 @@
                     <div class="row mb-3">
                         <label for="image" class="col-3 col-form-label">Image Upload</label>
                         <div class="col-6">
-                            <input type="file" id="example-fileinput" name="tm_image" class="form-control @error('tm_image') is-invalid @enderror">
-                            @error('tm_image')
+                            <input type="file" id="example-fileinput" name="team_image" class="form-control @error('team_image') is-invalid @enderror">
+                            @error('team_image')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

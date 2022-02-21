@@ -22,7 +22,7 @@ class CreateTeamMembersTable extends Migration
             $table->string('team_linkedin', 200)->nullable();
             $table->string('team_instragram', 200)->nullable();
             $table->text('team_remarks')->nullable();
-            $table->string('team_photo', 50)->nullable();
+            $table->string('team_image', 50)->nullable();
             $table->integer('team_order')->nullable();
             $table->integer('team_creator')->nullable;
             $table->integer('team_editor')->nullable();
