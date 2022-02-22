@@ -19,7 +19,7 @@ class TeamMemberController extends Controller
      */
     public function index()
     {
-        $teammember = TeamMember::where('team_status',1)->orderBy('team_id', 'DESC')->get();
+        $teammember = TeamMember::where('team_status', 1)->orderBy('team_id', 'DESC')->get();
         return view('admin.teammember.index', compact('teammember'));
     }
 
@@ -41,10 +41,13 @@ class TeamMemberController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'team_name' => 'required',
-            'team_image' => 'required',
-            ],        
+        // Tema Member Data Validation
+        $this->validate(
+            $request,
+            [
+                'team_name' => 'required',
+                'team_image' => 'required',
+            ],
             [
                 'team_name.required' => 'Please Enter You Name',
                 'team_image.required' => 'Image Must Me Upload',
@@ -53,7 +56,8 @@ class TeamMemberController extends Controller
 
         $slug = "TM" . uniqid();
         $creator = Auth::user()->id;
-        
+
+        // Store Data On Team-Member
         $insert = TeamMember::insertGetId([
             'team_name' => $request['team_name'],
             'team_designation' => $request['team_designation'],
@@ -70,7 +74,7 @@ class TeamMemberController extends Controller
             'created_at' => Carbon::now()->toDateTimeString()
         ]);
 
-        // Team Member Upload Image 
+        // Team Member Upload Image
         if ($request->hasFile('team_image')) {
             $image = $request->file('team_image');
             $imageName = $insert . time() . '.' . $image->getClientOriginalExtension();
@@ -81,6 +85,7 @@ class TeamMemberController extends Controller
                 'created_at' => Carbon::now()->toDateTimeString(),
             ]);
         }
+        // Notification
         if ($insert) {
             Session::flash('success', 'Team Member Created successfully');
             return redirect()->back();
@@ -96,9 +101,10 @@ class TeamMemberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $data = TeamMember::where('team_status', 1)->where('team_slug', $slug)->firstOrFail();
+        return view('admin.teammember.show', compact('data'));
     }
 
     /**
