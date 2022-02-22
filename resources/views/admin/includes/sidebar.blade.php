@@ -77,7 +77,7 @@
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="{{ route('team-member.index') }}" class="side-nav-link">
+                <a href="{{ route('client.index') }}" class="side-nav-link">
                     <i class="uil-book-reader"></i>
                     <span> CLIENT </span>
                 </a>
