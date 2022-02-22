@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ContactMesageController;
 use App\Http\Controllers\Admin\GalleryCategoryController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -39,7 +40,7 @@ Route::get('/contact-us', [WebsiteController::class, 'contactus'])->name('websit
 
 // Admin Route List
 Route::prefix('dashboard')->group(function () {
-    
+
     // ROOT ROUTE DASHBOARD
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
 
@@ -144,4 +145,13 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/team-member/edit/{slug}', [TeamMemberController::class, 'edit'])->name('team-member.edit');
     Route::put('/team-member/{slug}', [TeamMemberController::class, 'update'])->name('team-member.update');
     Route::delete('/team-member/{slug}', [TeamMemberController::class, 'destroy'])->name('team-member.destroy');
+
+    // CLIENT ROUTE LIST
+    Route::get('/client', [ClientController::class, 'index'])->name('client.index');
+    Route::get('/client/create', [ClientController::class, 'create'])->name('client.create');
+    Route::post('/client', [ClientController::class, 'store'])->name('client.store');
+    Route::get('/client/show/{slug}', [ClientController::class, 'show'])->name('client.show');
+    Route::get('/client/edit/{slug}', [ClientController::class, 'edit'])->name('client.edit');
+    Route::put('/client/{slug}', [ClientController::class, 'update'])->name('client.update');
+    Route::delete('/client/{slug}', [ClientController::class, 'destroy'])->name('client.destroy');
 });
