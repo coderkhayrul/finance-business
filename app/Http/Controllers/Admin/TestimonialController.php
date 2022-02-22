@@ -172,7 +172,7 @@ class TestimonialController extends Controller
         // return $request->all();
         $id = $request['delete_data'];
         $delete = Testimonial::where('tm_id', $id)->delete();
-        
+
         if ($delete) {
             Session::flash('success', 'Testimonial Delete successfully');
             return redirect()->back();
