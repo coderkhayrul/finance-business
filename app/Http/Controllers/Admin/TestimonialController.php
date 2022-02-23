@@ -169,7 +169,6 @@ class TestimonialController extends Controller
      */
     public function destroy(Request $request, $slug)
     {
-        // return $request->all();
         $id = $request['delete_data'];
         $delete = Testimonial::where('tm_id', $id)->delete();
 

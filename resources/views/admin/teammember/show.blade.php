@@ -17,7 +17,7 @@
                     </a>
                 </form>
             </div>
-            <h4 class="page-title">Testimonial</h4>
+            <h4 class="page-title">Team Member</h4>
         </div>
     </div>
 </div>

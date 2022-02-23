@@ -94,9 +94,10 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $data = Client::where('client_status', 1)->where('client_slug', $slug)->firstOrFail();
+        return view('admin.client.show', compact('data'));
     }
 
     /**
