@@ -106,9 +106,10 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $data = Client::where('client_status', 1)->where('client_slug' ,$slug)->firstOrFail();
+        return view('admin.client.edit', compact('data'));
     }
 
     /**
@@ -118,9 +119,16 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $this->validate($request, [
+            'client_title' => 'required'
+        ],
+        [
+            'client_title.required' => 'enter yout title'
+        ]);
+        return $request->all();
+
     }
 
     /**

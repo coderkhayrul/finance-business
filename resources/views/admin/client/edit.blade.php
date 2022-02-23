@@ -25,10 +25,11 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <form class="form-horizontal" action="{{ route('client.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal" action="{{ route('client.update',$data->client_slug) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="card-header d-flex justify-content-between">
-                    <strong class="fs-4"> <i class="uil-book-reader"></i> New Client Create</strong>
+                    <strong class="fs-4"> <i class="uil-book-reader"></i> Edit Client</strong>
                     <a href="{{ route('client.index') }}" class="btn btn-dark btn-sm"><i class="uil-book-reader"></i> All Client</a>
                 </div>
                 <div class="card-body">
@@ -36,7 +37,7 @@
                         <label for="name" class="col-3 col-form-label">Title <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" value="{{ old('client_title') }}" class="form-control @error('client_title') is-invalid @enderror" id="client_title" name="client_title" placeholder="Client Title">
+                            <input type="text" value="{{ $data->client_title }}" class="form-control @error('client_title') is-invalid @enderror" id="client_title" name="client_title" placeholder="Client Title">
                             @error('client_title')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -48,7 +49,7 @@
                         <label for="name" class="col-3 col-form-label">Url <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="text" value="{{ old('client_url') }}" class="form-control @error('client_url') is-invalid @enderror" id="client_url" name="client_url" placeholder="Enter Url">
+                            <input type="text" value="{{ $data->client_url }}" class="form-control @error('client_url') is-invalid @enderror" id="client_url" name="client_url" placeholder="Enter Url">
                             @error('client_url')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -61,7 +62,7 @@
                         <label for="email" class="col-3 col-form-label">Order By <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <input type="number" value="{{ old('client_order') }}" class="form-control @error('client_order') is-invalid @enderror" id="client_order" name="client_order" placeholder="Client Order">
+                            <input type="number" value="{{ $data->client_order }}" class="form-control @error('client_order') is-invalid @enderror" id="client_order" name="client_order" placeholder="Client Order">
                             @error('client_order')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -74,7 +75,9 @@
                         <label for="feedback" class="col-3 col-form-label">Remarks <strong
                                 class="text-danger">*</strong></label>
                         <div class="col-9">
-                            <textarea class="form-control @error('client_remarks') is-invalid @enderror" placeholder="Leave a remaks here" name="client_remarks" id="client_remarks" style="height: 100px" value="{{ old('client_remarks') }}"></textarea>
+                            <textarea class="form-control @error('client_remarks') is-invalid @enderror" 
+                            placeholder="Leave a remaks here" name="client_remarks"
+                            id="client_remarks" style="height: 100px">{{ $data->client_remarks }}</textarea>
                             @error('client_remarks')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -94,7 +97,12 @@
                             @enderror
                         </div>
                         <div class="col-3 text-center">
-                            <img id="preview-image" src="{{ asset('uploads/noimage.png') }}" alt="image" class="img-fluid rounded" width="100"/>
+                            {{-- <img id="preview-image" src="{{ asset('uploads/noimage.png') }}" alt="image" class="img-fluid rounded" width="100"/> --}}
+                            @if ($data->client_image)
+                            <img id="preview-image" src="{{ asset('uploads/client/'.$data->client_image) }}" alt="image" class="img-fluid avatar-sm rounded">
+                            @else
+                            <img id="preview-image" src="{{ asset('uploads/noimage.png') }}" alt="image" class="img-fluid avatar-sm rounded">
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -102,7 +110,7 @@
                 <div class="card-footer bg-dark row justify-content-md-center justify-content-sm-center">
                     <div class="col col-lg-3 col-sm-3">
                         <button type="submit" class="btn btn-primary btn-sm"><i class="uil-sync me-1"></i>
-                        <span>Client Save</span> </button>
+                        <span>Client Update</span> </button>
                     </div>
                 </div>
             </form>
