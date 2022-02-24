@@ -127,7 +127,7 @@ class ClientController extends Controller
                 'client_title' => 'required'
             ],
             [
-                'client_title.required' => 'enter yout title'
+                'client_title.required' => 'enter your title'
             ]
         );
 
