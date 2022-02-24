@@ -25,7 +25,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <strong class="fs-4"> <i class="uil-bag"></i> All Category Information</strong>
+                    <strong class="fs-4"> <i class="uil-chart-pie"></i> All Category Information</strong>
                     <a href="{{ route('project-category.create') }}" class="btn btn-dark btn-sm"><i
                             class="uil-plus-square"></i> Create Category</a>
                 </div>

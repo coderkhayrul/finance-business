@@ -184,7 +184,6 @@ class TeamMemberController extends Controller
      */
     public function destroy(Request $request, $slug)
     {
-        // return $request->all();
         $id = $request['delete_data'];
         $delete = TeamMember::where('team_id', $id)->delete();
 
