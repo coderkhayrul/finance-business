@@ -146,7 +146,7 @@ class TestimonialController extends Controller
             $imageName = $update . time() . '.' . $image->getClientOriginalExtension();
             Image::make($image)->save('uploads/testimonial/' . $imageName);
 
-            Testimonial::where('tm_id', $update)->update([
+            Testimonial::where('tm_slug', $slug)->update([
                 'tm_image' => $imageName,
                 'updated_at' => Carbon::now()->toDateTimeString(),
             ]);

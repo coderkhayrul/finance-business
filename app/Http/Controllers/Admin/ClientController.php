@@ -108,7 +108,7 @@ class ClientController extends Controller
      */
     public function edit($slug)
     {
-        $data = Client::where('client_status', 1)->where('client_slug' ,$slug)->firstOrFail();
+        $data = Client::where('client_status', 1)->where('client_slug', $slug)->firstOrFail();
         return view('admin.client.edit', compact('data'));
     }
 
@@ -121,14 +121,46 @@ class ClientController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        $this->validate($request, [
-            'client_title' => 'required'
-        ],
-        [
-            'client_title.required' => 'enter yout title'
-        ]);
-        return $request->all();
+        $this->validate(
+            $request,
+            [
+                'client_title' => 'required'
+            ],
+            [
+                'client_title.required' => 'enter yout title'
+            ]
+        );
 
+        // Client Update
+        $editor = Auth::user()->id;
+        $update = Client::where('client_status', 1)->where('client_slug', $slug)->update([
+            'client_title' => $request['client_title'],
+            'client_url' => $request['client_url'],
+            'client_order' => $request['client_order'],
+            'client_remarks' => $request['client_remarks'],
+            'client_editor' => $editor,
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        // Client Image Upload
+        if ($request->hasFile('client_image')) {
+            $image = $request->file('client_image');
+            $imageName = $update . time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('uploads/client/' . $imageName);
+
+            Client::where('client_slug', $slug)->update([
+                'client_image' => $imageName,
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ]);
+        }
+
+        if ($update) {
+            Session::flash('success', 'Client Updated successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Client Update Failed!');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -137,8 +169,17 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy(Request $request, $slug)
     {
-        //
+        $id = $request['delete_data'];
+        $delete = Client::where('client_id', $id)->delete();
+
+        if ($delete) {
+            Session::flash('success', 'Client Delete successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Client Delete Failed!');
+            return redirect()->back();
+        }
     }
 }
