@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\GalleryCategoryController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Controllers\Admin\ProjectCategoryController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ServiceController;
@@ -71,8 +73,8 @@ Route::prefix('dashboard')->group(function () {
     Route::post('/basic', [ManageController::class, 'basic_update'])->name('admin.manage.basic.update');
 
     // CONTACT INFORMATION ROUTE LIST
-    Route::get('/contact-info', [ManageController::class, 'contactinfo'])->name('admin.manage.contactinfo');
-    Route::post('/contact-info', [ManageController::class, 'contactinfo_update'])->name('admin.manage.contactinfo.update');
+    Route::get('/contact/info', [ManageController::class, 'contactinfo'])->name('admin.manage.contactinfo');
+    Route::post('/contact/info', [ManageController::class, 'contactinfo_update'])->name('admin.manage.contactinfo.update');
 
     // SOCIAL MEDIA ROUTE LIST
     Route::get('/socialmedia', [ManageController::class, 'socialmedia'])->name('admin.manage.socialmedia');
@@ -97,18 +99,18 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('/partner/{slug}', [PartnerController::class, 'destroy'])->name('partner.destroy');
 
     // CONTACT MESSAGE ROUTE LIST
-    Route::get('/contact-message', [ContactMesageController::class, 'index'])->name('contact-message.index');
-    Route::get('/contact-message/show/{slug}', [ContactMesageController::class, 'show'])->name('contact-message.show');
-    Route::delete('/contact-message/{slug}', [ContactMesageController::class, 'destroy'])->name('contact-message.destroy');
+    Route::get('/contact/message', [ContactMesageController::class, 'index'])->name('contact-message.index');
+    Route::get('/contact/message/show/{slug}', [ContactMesageController::class, 'show'])->name('contact-message.show');
+    Route::delete('/contact/message/{slug}', [ContactMesageController::class, 'destroy'])->name('contact-message.destroy');
 
     // GALLERY CATEGORY ROUTE LIST
-    Route::get('/gallery-category', [GalleryCategoryController::class, 'index'])->name('gallery-category.index');
-    Route::get('/gallery-category/create', [GalleryCategoryController::class, 'create'])->name('gallery-category.create');
-    Route::post('/gallery-category', [GalleryCategoryController::class, 'store'])->name('gallery-category.store');
-    Route::get('/gallery-category/show/{slug}', [GalleryCategoryController::class, 'show'])->name('gallery-category.show');
-    Route::get('/gallery-category/edit/{slug}', [GalleryCategoryController::class, 'edit'])->name('gallery-category.edit');
-    Route::put('/gallery-category/{slug}', [GalleryCategoryController::class, 'update'])->name('gallery-category.update');
-    Route::delete('/gallery-category/{slug}', [GalleryCategoryController::class, 'destroy'])->name('gallery-category.destroy');
+    Route::get('/gallery/category', [GalleryCategoryController::class, 'index'])->name('gallery-category.index');
+    Route::get('/gallery/category/create', [GalleryCategoryController::class, 'create'])->name('gallery-category.create');
+    Route::post('/gallery/category', [GalleryCategoryController::class, 'store'])->name('gallery-category.store');
+    Route::get('/gallery/category/show/{slug}', [GalleryCategoryController::class, 'show'])->name('gallery-category.show');
+    Route::get('/gallery/category/edit/{slug}', [GalleryCategoryController::class, 'edit'])->name('gallery-category.edit');
+    Route::put('/gallery/category/{slug}', [GalleryCategoryController::class, 'update'])->name('gallery-category.update');
+    Route::delete('/gallery/category/{slug}', [GalleryCategoryController::class, 'destroy'])->name('gallery-category.destroy');
 
     // GALLERY ROUTE LIST
     Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
@@ -138,13 +140,13 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('/service/{slug}', [ServiceController::class, 'destroy'])->name('service.destroy');
 
     // TEAM MEMBER ROUTE LIST
-    Route::get('/team-member', [TeamMemberController::class, 'index'])->name('team-member.index');
-    Route::get('/team-member/create', [TeamMemberController::class, 'create'])->name('team-member.create');
-    Route::post('/team-member', [TeamMemberController::class, 'store'])->name('team-member.store');
-    Route::get('/team-member/show/{slug}', [TeamMemberController::class, 'show'])->name('team-member.show');
-    Route::get('/team-member/edit/{slug}', [TeamMemberController::class, 'edit'])->name('team-member.edit');
-    Route::put('/team-member/{slug}', [TeamMemberController::class, 'update'])->name('team-member.update');
-    Route::delete('/team-member/{slug}', [TeamMemberController::class, 'destroy'])->name('team-member.destroy');
+    Route::get('/team/member', [TeamMemberController::class, 'index'])->name('team-member.index');
+    Route::get('/team/member/create', [TeamMemberController::class, 'create'])->name('team-member.create');
+    Route::post('/team/member', [TeamMemberController::class, 'store'])->name('team-member.store');
+    Route::get('/team/member/show/{slug}', [TeamMemberController::class, 'show'])->name('team-member.show');
+    Route::get('/team/member/edit/{slug}', [TeamMemberController::class, 'edit'])->name('team-member.edit');
+    Route::put('/team/member/{slug}', [TeamMemberController::class, 'update'])->name('team-member.update');
+    Route::delete('/team/member/{slug}', [TeamMemberController::class, 'destroy'])->name('team-member.destroy');
 
     // CLIENT ROUTE LIST
     Route::get('/client', [ClientController::class, 'index'])->name('client.index');
@@ -154,4 +156,22 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/client/edit/{slug}', [ClientController::class, 'edit'])->name('client.edit');
     Route::put('/client/{slug}', [ClientController::class, 'update'])->name('client.update');
     Route::delete('/client/{slug}', [ClientController::class, 'destroy'])->name('client.destroy');
+
+    // PROJECT CATEGORY ROUTE LIST
+    Route::get('/project/category', [ProjectCategoryController::class, 'index'])->name('project-category.index');
+    Route::get('/project/category/create', [ProjectCategoryController::class, 'create'])->name('project-category.create');
+    Route::post('/project/category', [ProjectCategoryController::class, 'store'])->name('project-category.store');
+    Route::get('/project/category/show/{slug}', [ProjectCategoryController::class, 'show'])->name('project-category.show');
+    Route::get('/project/category/edit/{slug}', [ProjectCategoryController::class, 'edit'])->name('project-category.edit');
+    Route::put('/project/category/{slug}', [ProjectCategoryController::class, 'update'])->name('project-category.update');
+    Route::delete('/project/category/{slug}', [ProjectCategoryController::class, 'destroy'])->name('project-category.destroy');
+
+    // PROJECT ROUTE LIST
+    Route::get('/project', [ProjectController::class, 'index'])->name('project.index');
+    Route::get('/project/create', [ProjectController::class, 'create'])->name('project.create');
+    Route::post('/project', [ProjectController::class, 'store'])->name('project.store');
+    Route::get('/project/show/{slug}', [ProjectController::class, 'show'])->name('project.show');
+    Route::get('/project/edit/{slug}', [ProjectController::class, 'edit'])->name('project.edit');
+    Route::put('/project/{slug}', [ProjectController::class, 'update'])->name('project.update');
+    Route::delete('/project/{slug}', [ProjectController::class, 'destroy'])->name('project.destroy');
 });

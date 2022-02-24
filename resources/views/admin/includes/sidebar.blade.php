@@ -82,6 +82,29 @@
                     <span> CLIENT </span>
                 </a>
             </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarGallery" aria-expanded="false" aria-controls="sidebaruUser"
+                    class="side-nav-link">
+                    <i class="uil-briefcase"></i>
+                    <span> PROJECT </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarGallery">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('project.index') }}">ALL PROJECT</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('project.create') }}">ADD PROJECT</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('project-category.index') }}">PROJECT CATEGORIES</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarGallery" aria-expanded="false" aria-controls="sidebaruUser"
                     class="side-nav-link">
@@ -108,6 +131,12 @@
                 <a href="{{ route('contact-message.index') }}" class="side-nav-link">
                     <i class="uil-comments-alt"></i>
                     <span> CONTACT MESSAGE </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a href="#" class="side-nav-link">
+                    <i class="uil-envelope-share"></i>
+                    <span> NEWSLETTER </span>
                 </a>
             </li>
 
@@ -139,7 +168,8 @@
                 </div>
             </li>
             <li class="side-nav-item">
-                <a href="{{ route('logout') }}" class="side-nav-link" onclick="event.preventDefault('logout-form'); getElementById('logout-form').submit();">
+                <a href="{{ route('logout') }}" class="side-nav-link"
+                    onclick="event.preventDefault('logout-form'); getElementById('logout-form').submit();">
                     <i class="uil-chat-bubble-user"></i>
                     <span> LOGOUT </span>
                 </a>
