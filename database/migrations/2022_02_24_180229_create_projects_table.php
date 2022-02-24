@@ -20,7 +20,7 @@ class CreateProjectsTable extends Migration
             $table->string('project_image')->nullable();
             $table->text('project_remarks')->nullable();
             $table->integer('project_order')->nullable();
-            $table->integer('project_publish')->nullable();
+            $table->integer('project_publish')->default(1);
             $table->integer('project_creator')->nullable();
             $table->integer('project_editor')->nullable();
             $table->string('project_slug', 50)->nullable();
