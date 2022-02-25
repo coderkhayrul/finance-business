@@ -84,13 +84,13 @@
             </li>
 
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarGallery" aria-expanded="false" aria-controls="sidebaruUser"
+                <a data-bs-toggle="collapse" href="#sidebarProject" aria-expanded="false" aria-controls="sidebaruUser"
                     class="side-nav-link">
                     <i class="uil-briefcase"></i>
                     <span> PROJECT </span>
                     <span class="menu-arrow"></span>
                 </a>
-                <div class="collapse" id="sidebarGallery">
+                <div class="collapse" id="sidebarProject">
                     <ul class="side-nav-second-level">
                         <li>
                             <a href="{{ route('project.index') }}">ALL PROJECT</a>
@@ -134,7 +134,7 @@
                 </a>
             </li>
             <li class="side-nav-item">
-                <a href="#" class="side-nav-link">
+                <a href="{{ route('newsletter.index') }}" class="side-nav-link">
                     <i class="uil-envelope-share"></i>
                     <span> NEWSLETTER </span>
                 </a>

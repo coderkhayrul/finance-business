@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ContactMesageController;
 use App\Http\Controllers\Admin\GalleryCategoryController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ManageController;
+use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProjectCategoryController;
 use App\Http\Controllers\Admin\ProjectController;
@@ -174,4 +175,8 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/project/edit/{slug}', [ProjectController::class, 'edit'])->name('project.edit');
     Route::put('/project/{slug}', [ProjectController::class, 'update'])->name('project.update');
     Route::delete('/project/{slug}', [ProjectController::class, 'destroy'])->name('project.destroy');
+
+    // NEWSLETTER ROUTE LIST
+    Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
+    Route::delete('/newsletter/{slug}', [NewsletterController::class, 'destroy'])->name('newsletter.destroy');
 });
