@@ -16,6 +16,6 @@ class Project extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'project_cate', 'id');
+        return $this->belongsTo(User::class, 'project_creator', 'id');
     }
 }

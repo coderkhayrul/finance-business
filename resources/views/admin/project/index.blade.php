@@ -36,6 +36,7 @@
                                 <th>Project</th>
                                 <th>Url</th>
                                 <th>Order</th>
+                                <th>Category</th>
                                 <th>Image</th>
                                 <th>Status</th>
                                 <th>Manage</th>
@@ -48,6 +49,7 @@
                                     <td>{{ $data['project_title'] }}</td>
                                     <td>{{ $data['project_url'] }}</td>
                                     <td>{{ $data['project_order'] }}</td>
+                                    <td>{{ $data->proCategory->procate_name }}</td>
                                     <td>
                                         @if ($data->project_image)
                                             <img src="{{ asset('uploads/project/' . $data['project_image']) }}"
