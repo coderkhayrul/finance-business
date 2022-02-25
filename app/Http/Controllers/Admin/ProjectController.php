@@ -14,6 +14,10 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class ProjectController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -113,7 +117,9 @@ class ProjectController extends Controller
      */
     public function edit($slug)
     {
-        //
+        $categories = ProjectCategory::where('procate_status', 1)->orderBy('procate_id', 'DESC')->get();
+        $data = Project::where('project_status', 1)->where('project_slug', $slug)->firstOrFail();
+        return view('admin.project.edit', compact('data', 'categories'));
     }
 
     /**
@@ -123,9 +129,51 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        // Insert Project Validation
+        $this->validate($request, [
+            'project_title' => 'required',
+            'procate_id' => 'required',
+        ], [
+            'project_title.required' => 'enter your project title',
+            'procate_id.required' => 'select your project category',
+        ]);
+
+        // Project Update With Get Id
+        $slug = 'P' . uniqid();
+        $editor = Auth::user()->id;
+        $id = $request['project_id'];
+
+        $update = Project::where('project_status', 1)->where('project_id', $id)->update([
+            'project_title' => $request['project_title'],
+            'procate_id' => $request['procate_id'],
+            'project_url' => $request['project_url'],
+            'project_order' => $request['project_order'],
+            'project_remarks' => $request['project_remarks'],
+            'project_editor' => $editor,
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        // Project Image Upload
+        if ($request->hasFile('project_image')) {
+            $image = $request->file('project_image');
+            $imageName = $id . time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('uploads/project/' . $imageName);
+
+            Project::where('project_id', $id)->update([
+                'project_image' => $imageName,
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ]);
+        }
+
+        if ($update) {
+            Session::flash('success', 'Project Update successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Project Update Failed!');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -134,8 +182,17 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $slug)
     {
-        //
+        $id = $request['delete_data'];
+        $delete = Project::where('project_id', $id)->delete();
+
+        if ($delete) {
+            Session::flash('success', 'Project Delete successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Project Delete Failed!');
+            return redirect()->back();
+        }
     }
 }
