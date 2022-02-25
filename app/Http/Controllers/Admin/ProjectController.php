@@ -3,7 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
+use App\Models\ProjectCategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Intervention\Image\ImageManagerStatic as Image;
+
 
 class ProjectController extends Controller
 {
@@ -14,7 +21,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::where('project_status', 1)->orderBy('project_id', 'DESC')->get();
+        return view('admin.project.index', compact('projects'));
     }
 
     /**
@@ -24,7 +32,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $datas = ProjectCategory::where('procate_status', 1)->orderBy('procate_id', 'DESC')->get();
+        return view('admin.project.create', compact('datas'));
     }
 
     /**
@@ -35,7 +44,53 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Insert Project Validation
+        $this->validate($request, [
+            'project_title' => 'required',
+            'procate_id' => 'required',
+            'project_image' => 'required|mimes:png,jpg,jpeg',
+        ], [
+            'project_title.required' => 'enter your project title',
+            'procate_id.required' => 'select your project category',
+            'project_image.required' => 'upload you image'
+        ]);
+
+        // Project Insert With Get Id
+        $slug = 'P' . uniqid();
+        $creator = Auth::user()->id;
+
+        $insert = Project::insertGetId([
+            'project_title' => $request['project_title'],
+            'procate_id' => $request['procate_id'],
+            'project_url' => $request['project_url'],
+            'project_order' => $request['project_order'],
+            'project_remarks' => $request['project_remarks'],
+            'project_creator' => $creator,
+            'project_publish' => 1,
+            'project_slug' => $slug,
+            'project_status' => 1,
+            'created_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        // Project Image Upload
+        if ($request->hasFile('project_image')) {
+            $image = $request->file('project_image');
+            $imageName = $insert . time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->save('uploads/project/' . $imageName);
+
+            Project::where('project_id', $insert)->update([
+                'project_image' => $imageName,
+                'created_at' => Carbon::now()->toDateTimeString(),
+            ]);
+        }
+
+        if ($insert) {
+            Session::flash('success', 'Project Created successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Project Created Failed!');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -44,7 +99,7 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         //
     }
@@ -55,7 +110,7 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
         //
     }

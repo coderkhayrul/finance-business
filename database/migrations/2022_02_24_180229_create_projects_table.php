@@ -15,6 +15,7 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->bigIncrements('project_id');
+            $table->integer('procate_id');
             $table->string('project_title', 150)->nullable();
             $table->string('project_url', 100)->nullable();
             $table->string('project_image')->nullable();
