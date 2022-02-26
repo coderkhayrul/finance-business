@@ -162,7 +162,7 @@
                             <a href="#">CONTENT</a>
                         </li>
                         <li>
-                            <a href="#">PAGES</a>
+                            <a href="{{ route('page.index') }}">PAGES</a>
                         </li>
                     </ul>
                 </div>

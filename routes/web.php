@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\GalleryCategoryController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\NewsletterController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProjectCategoryController;
 use App\Http\Controllers\Admin\ProjectController;
@@ -179,4 +180,13 @@ Route::prefix('dashboard')->group(function () {
     // NEWSLETTER ROUTE LIST
     Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
     Route::delete('/newsletter/{slug}', [NewsletterController::class, 'destroy'])->name('newsletter.destroy');
+
+    // PAGES ROUTE LIST
+    Route::get('/page', [PageController::class, 'index'])->name('page.index');
+    Route::get('/page/create', [PageController::class, 'create'])->name('page.create');
+    Route::post('/page', [PageController::class, 'store'])->name('page.store');
+    Route::get('/page/show/{slug}', [PageController::class, 'show'])->name('page.show');
+    Route::get('/page/edit/{slug}', [PageController::class, 'edit'])->name('page.edit');
+    Route::put('/page/{slug}', [PageController::class, 'update'])->name('page.update');
+    Route::delete('/page/{slug}', [PageController::class, 'destroy'])->name('page.destroy');
 });
