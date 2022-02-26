@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Default Route
+// Default Authentication Route
 Auth::routes();
 
 // Website Route List

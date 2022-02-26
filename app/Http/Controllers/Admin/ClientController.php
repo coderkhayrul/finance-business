@@ -66,7 +66,6 @@ class ClientController extends Controller
             'created_at' => Carbon::now()->toDateTimeString(),
         ]);
 
-
         // Client Image Store
         if ($request->hasFile('client_image')) {
             $image = $request->file('client_image');
