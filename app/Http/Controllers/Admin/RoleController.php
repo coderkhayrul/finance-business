@@ -23,7 +23,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::where('role_status',1)->orderBy('id', 'DESC')->get();
+        $roles = Role::where('role_status', 1)->orderBy('id', 'DESC')->get();
         return view('admin.role.index', compact('roles'));
     }
 
@@ -45,6 +45,11 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'role_name' => 'required'
+        ], [
+            'role_name.required' => 'Enter Your Name'
+        ]);
         $slug = Str::slug($request['role_name'], '-');
         $insert = Role::insertGetId([
             'role_name' => $request['role_name'],
@@ -55,7 +60,7 @@ class RoleController extends Controller
         if ($insert) {
             Session::flash('success', 'Role Create Successfully!');
             return redirect()->back();
-        }else {
+        } else {
             Session::flash('error', 'Role Create Failed!');
             return redirect()->back();
         }
@@ -100,7 +105,7 @@ class RoleController extends Controller
             'role_slug' => $slug,
             'updated_at' => Carbon::now()->toDateTimeString()
         ]);
-        
+
         Session::flash('success', 'Role updated successfully');
         return redirect()->route('role.index');
     }
