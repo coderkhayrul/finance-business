@@ -35,7 +35,6 @@
                             <tr>
                                 <th>Category</th>
                                 <th>Order</th>
-                                <th>Status</th>
                                 <th>Manage</th>
                             </tr>
                         </thead>
@@ -45,13 +44,6 @@
 
                                     <td>{{ $data['procate_name'] }}</td>
                                     <td>{{ $data['procate_order'] }}</td>
-                                    <td>
-                                        @if ($data['procate_status'] === 1)
-                                            <span class="badge badge-success-lighten">Active</span>
-                                        @else
-                                            <span class="badge badge-danger-lighten">Blocked</span>
-                                        @endif
-                                    </td>
                                     <td class="table-action">
                                         <button type="button" class="btn btn-primary dropdown-toggle btn-sm"
                                             data-bs-toggle="dropdown" aria-haspopup="true"

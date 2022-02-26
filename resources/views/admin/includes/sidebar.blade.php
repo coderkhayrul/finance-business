@@ -159,7 +159,7 @@
                             <a href="{{ route('admin.manage.socialmedia') }} ">SOCIAL MEDIA</a>
                         </li>
                         <li>
-                            <a href="#">CONTACTS</a>
+                            <a href="#">CONTENT</a>
                         </li>
                         <li>
                             <a href="#">PAGES</a>

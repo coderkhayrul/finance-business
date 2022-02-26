@@ -38,7 +38,6 @@
                                 <th>Order</th>
                                 <th>Category</th>
                                 <th>Image</th>
-                                <th>Status</th>
                                 <th>Manage</th>
                             </tr>
                         </thead>
@@ -57,13 +56,6 @@
                                         @else
                                             <img src="{{ asset('uploads/noimage.png') }}" alt="image"
                                                 class="img-fluid avatar-sm rounded">
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($data['project_status'] === 1)
-                                            <span class="badge badge-success-lighten">Active</span>
-                                        @else
-                                            <span class="badge badge-danger-lighten">Blocked</span>
                                         @endif
                                     </td>
                                     <td class="table-action">
