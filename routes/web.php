@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ContactMesageController;
+use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\GalleryCategoryController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ManageController;
@@ -189,4 +190,13 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/page/edit/{slug}', [PageController::class, 'edit'])->name('page.edit');
     Route::put('/page/{slug}', [PageController::class, 'update'])->name('page.update');
     Route::delete('/page/{slug}', [PageController::class, 'destroy'])->name('page.destroy');
+
+    // CONTENT ROUTE LIST
+    Route::get('/content', [ContentController::class, 'index'])->name('content.index');
+    Route::get('/content/create', [ContentController::class, 'create'])->name('content.create');
+    Route::post('/content', [ContentController::class, 'store'])->name('content.store');
+    Route::get('/content/show/{slug}', [ContentController::class, 'show'])->name('content.show');
+    Route::get('/content/edit/{slug}', [ContentController::class, 'edit'])->name('content.edit');
+    Route::put('/content/{slug}', [ContentController::class, 'update'])->name('content.update');
+    Route::delete('/content/{slug}', [PageController::class, 'destroy'])->name('content.destroy');
 });
