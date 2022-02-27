@@ -92,9 +92,10 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $data = Page::where('page_status', 1)->where('page_slug', $slug)->firstOrFail();
+        return view('admin.page.edit', compact('data'));
     }
 
     /**
@@ -104,9 +105,26 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $id = $request['page_id'];
+        $editor = Auth::user()->id;
+        $update = Page::where('page_status', 1)->where('page_id', $id)->update([
+            'page_title' => $request['page_title'],
+            'page_url' => $request['page_url'],
+            'page_order' => $request['page_order'],
+            'page_remarks' => $request['page_remarks'],
+            'page_edtor' => $editor,
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        if ($update) {
+            Session::flash('success', 'Page Updated successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Page Updated Failed!');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -115,8 +133,17 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $slug)
     {
-        //
+        $id = $request['delete_data'];
+        $delete = Page::where('page_id', $id)->delete();
+
+        if ($delete) {
+            Session::flash('success', 'Page Delete successfully');
+            return redirect()->back();
+        } else {
+            Session::flash('error', 'Page Delete Failed!');
+            return redirect()->back();
+        }
     }
 }
