@@ -24,7 +24,7 @@ class CreateTeamMembersTable extends Migration
             $table->text('team_remarks')->nullable();
             $table->string('team_image', 50)->nullable();
             $table->integer('team_order')->nullable();
-            $table->integer('team_creator')->nullable;
+            $table->integer('team_creator')->nullable();
             $table->integer('team_editor')->nullable();
             $table->string('team_slug')->nullable();
             $table->integer('team_status')->default(1);
